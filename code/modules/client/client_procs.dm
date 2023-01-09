@@ -175,6 +175,8 @@
 							karma_purchase(karma,30,"species","Drask")
 						if("8")
 							karma_purchase(karma,30,"species","Nian")
+						if("9")
+							karma_purchase(karma,30,"species","Resomi")
 					return
 				if(href_list["KarmaRefund"])
 					var/type = href_list["KarmaRefundType"]

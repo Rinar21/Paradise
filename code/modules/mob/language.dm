@@ -388,6 +388,20 @@
 	new_name += " [pick(list("Alkaid","Andromeda","Antlia","Apus","Auriga","Caelum","Camelopardalis","Canes Venatici","Carinae","Cassiopeia","Centauri","Circinus","Cygnus","Dorado","Draco","Eridanus","Errakis","Fornax","Gliese","Grus","Horologium","Hydri","Lacerta","Leo Minor","Lupus","Lynx","Maffei","Megrez","Messier","Microscopium","Monocerotis","Muscae","Ophiuchi","Orion","Pegasi","Persei","Perseus","Polaris","Pyxis","Sculptor","Syrma","Telescopium","Tianyi","Triangulum","Trifid","Tucana","Tycho","Vir","Volans","Zavyava"))]"
 	return new_name
 
+/datum/language/resomi
+	name = "Scheshi"
+	desc = "A trilling language spoken by the diminutive Resomi."
+	speech_verb = "щебечет"
+	ask_verb = "чирикает"
+	exclaim_verbs = "верещит"
+	colour = "alien"
+	key = "e"
+	flags = RESTRICTED | WHITELISTED
+	syllables = list(
+			"ca", "ra", "ma", "sa", "na", "ta", "la", "sha", "scha", "a", "a",
+			"ce", "re", "me", "se", "ne", "te", "le", "she", "sche", "e", "e",
+			"ci", "ri", "mi", "si", "ni", "ti", "li", "shi", "schi", "i", "i")
+
 /datum/language/common
 	name = "Galactic Common"
 	desc = "The common galactic tongue."
