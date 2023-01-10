@@ -53,4 +53,5 @@
 		"l_hand" = list("path" = /obj/item/organ/external/hand),
 		"r_hand" = list("path" = /obj/item/organ/external/hand/right),
 		"l_foot" = list("path" = /obj/item/organ/external/foot),
-		"r_foot" = list("path" = /obj/item/organ/external/foot/right))
+		"r_foot" = list("path" = /obj/item/organ/external/foot/right),
+		"tail" =   list("path" = /obj/item/organ/external/tail/resomi))
