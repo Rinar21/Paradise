@@ -6,7 +6,7 @@
 	tail = "resomitail"
 	unarmed_type = /datum/unarmed_attack/claws
 	eyes = "resomi_eyes_s"
-
+	species_traits = list(IS_WHITELISTED, SMALL_BODY)
 	blurb = "A race of feathered raptors who developed on a cold world, almost \
 	outside of the Goldilocks zone. Extremely fragile, they developed hunting skills \
 	that emphasized taking out their prey without themselves getting hit. They are an \

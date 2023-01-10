@@ -105,6 +105,9 @@
 /mob/living/carbon/human/abductor/Initialize(mapload)
 	. = ..(mapload, /datum/species/abductor)
 
+/mob/living/carbon/human/resomi/Initialize(mapload)
+	. = ..(mapload, /datum/species/resomi)
+
 /mob/living/carbon/human/diona/Initialize(mapload)
 	. = ..(mapload, /datum/species/diona)
 	if (!tts_seed)
