@@ -17,7 +17,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/storage/paramedic_jacket
@@ -51,7 +52,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 //Botanist
@@ -70,7 +72,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 //Captain
@@ -89,7 +92,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/captunic/capjacket
@@ -106,7 +110,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 //Chaplain
@@ -125,7 +130,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 //Chaplain
@@ -145,7 +151,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 //Chaplain
@@ -184,7 +191,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 //Chef
@@ -216,7 +224,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 //Forensics
@@ -257,7 +266,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 //Engineering
@@ -276,7 +286,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 //Lawyer
@@ -287,7 +298,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/storage/lawyer/blackjacket
@@ -341,7 +353,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/storage/ntrep
@@ -361,7 +374,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 //Medical
@@ -384,7 +398,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 //Mime
@@ -401,7 +416,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/suspenders/nodrop

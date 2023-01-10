@@ -227,7 +227,8 @@
 		"Tajaran" = 'icons/mob/species/tajaran/suit.dmi',
 		"Unathi" = 'icons/mob/species/unathi/suit.dmi',
 		"Vox" = 'icons/mob/species/vox/suit.dmi',
-		"Vulpkanin" = 'icons/mob/species/vulpkanin/suit.dmi'
+		"Vulpkanin" = 'icons/mob/species/vulpkanin/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 	hide_tail_by_species = list("Unathi, Tajaran, Vox, Vulpkanin")
 

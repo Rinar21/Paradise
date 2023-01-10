@@ -64,7 +64,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/meson/sunglasses
@@ -127,7 +128,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 	actions_types = list(/datum/action/item_action/toggle_research_scanner)
 
@@ -155,7 +157,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/night
@@ -175,7 +178,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/eyepatch
@@ -192,7 +196,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/monocle
@@ -210,7 +215,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/material
@@ -229,7 +235,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/material/cyber
@@ -264,7 +271,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/regular/hipster
@@ -287,7 +295,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/gglasses
@@ -304,7 +313,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 	prescription_upgradable = 1
 
@@ -326,7 +336,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/sunglasses_fake
@@ -345,7 +356,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/thermal_fake
@@ -413,7 +425,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/sunglasses/lasers
@@ -444,7 +457,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/welding/attack_self(mob/user)
@@ -493,7 +507,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
@@ -563,7 +578,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/godeye/attackby(obj/item/W as obj, mob/user as mob, params)
@@ -598,7 +614,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/tajblind/eng

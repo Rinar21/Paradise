@@ -129,7 +129,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/accessory/stethoscope
@@ -565,7 +566,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/accessory/cowboyshirt/short_sleeved
@@ -581,7 +583,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/accessory/cowboyshirt/white
@@ -597,7 +600,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/accessory/cowboyshirt/white/short_sleeved
@@ -613,7 +617,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/accessory/cowboyshirt/pink
@@ -629,7 +634,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/accessory/cowboyshirt/pink/short_sleeved
@@ -645,7 +651,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/accessory/cowboyshirt/navy
@@ -661,7 +668,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/accessory/cowboyshirt/navy/short_sleeved
@@ -677,7 +685,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/accessory/cowboyshirt/red
@@ -693,7 +702,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/accessory/cowboyshirt/red/short_sleeved
@@ -711,7 +721,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/accessory/corset

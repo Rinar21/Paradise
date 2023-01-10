@@ -26,7 +26,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/redtag
@@ -46,7 +47,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /*
@@ -64,7 +66,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/pirate_black
@@ -79,7 +82,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/hgpirate
@@ -147,7 +151,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/apron/overalls
@@ -375,7 +380,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/head/hooded/winterhood
@@ -569,7 +575,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/head/hooded/hood
@@ -653,7 +660,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 
@@ -708,7 +716,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/blacktrenchcoat
@@ -723,7 +732,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 //trackjackets
@@ -745,7 +755,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/tracksuit/green
@@ -883,7 +894,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/jacket/pilot
@@ -930,7 +942,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/jacket/leather/overcoat
@@ -955,7 +968,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/soldiercoat
@@ -973,7 +987,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/sovietcoat

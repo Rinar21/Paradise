@@ -11,7 +11,8 @@
 		"Farwa" = 'icons/mob/species/monkey/ears.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/ears.dmi',
 		"Neara" = 'icons/mob/species/monkey/ears.dmi',
-		"Stok" = 'icons/mob/species/monkey/ears.dmi'
+		"Stok" = 'icons/mob/species/monkey/ears.dmi',
+		"Resomi" = 'icons/mob/species/resomi/ears.dmi'
 	) //We read you loud and skree-er.
 	materials = list(MAT_METAL=75)
 	canhear_range = 0 // can't hear headsets from very far away

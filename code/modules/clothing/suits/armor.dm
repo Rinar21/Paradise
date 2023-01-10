@@ -16,7 +16,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 	w_class = WEIGHT_CLASS_NORMAL
 

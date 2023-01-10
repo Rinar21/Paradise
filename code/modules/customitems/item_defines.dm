@@ -952,7 +952,8 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 	ignore_suitadjust = 0
 	actions_types = list(/datum/action/item_action/toggle)

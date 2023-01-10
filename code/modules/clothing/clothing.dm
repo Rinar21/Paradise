@@ -152,7 +152,8 @@
 		"Farwa" = 'icons/mob/species/monkey/ears.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/ears.dmi',
 		"Neara" = 'icons/mob/species/monkey/ears.dmi',
-		"Stok" = 'icons/mob/species/monkey/ears.dmi'
+		"Stok" = 'icons/mob/species/monkey/ears.dmi',
+		"Resomi" = 'icons/mob/species/resomi/ears.dmi'
 		) //We read you loud and skree-er.
 
 /obj/item/clothing/ears/attack_hand(mob/user)
@@ -235,7 +236,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 /*
 SEE_SELF  // can see self, no matter what

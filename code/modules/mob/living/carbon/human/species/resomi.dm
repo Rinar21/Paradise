@@ -11,7 +11,10 @@
 	outside of the Goldilocks zone. Extremely fragile, they developed hunting skills \
 	that emphasized taking out their prey without themselves getting hit. They are an \
 	advanced culture on good terms with Skrellian and Human interests."
-
+	
+	damage_overlays = 'icons/mob/human_races/masks/dam_mask_resomi.dmi'
+	blood_mask = 'icons/mob/human_races/masks/blood_resomi.dmi'
+	damage_overlays = 'icons/mob/human_races/masks/dam_resomi.dmi'
 	tox_mod = 1.35
 	brute_mod = 1.35
 	burn_mod =  1.35
@@ -31,7 +34,7 @@
 	body_temperature = 314.15
 
 	reagent_tag = PROCESS_ORG
-	bodyflags = HAS_TAIL | HAS_SKIN_COLOR
+	bodyflags = HAS_TAIL | HAS_SKIN_COLOR | HAS_BODY_MARKINGS
 
 	has_organ = list(
 		"heart" =    /obj/item/organ/internal/heart,

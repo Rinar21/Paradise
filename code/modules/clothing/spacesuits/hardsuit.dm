@@ -109,7 +109,8 @@
 		"Skrell" = 'icons/mob/species/skrell/suit.dmi',
 		"Vox" = 'icons/mob/species/vox/suit.dmi',
 		"Vulpkanin" = 'icons/mob/species/vulpkanin/suit.dmi',
-		"Drask" = 'icons/mob/species/drask/suit.dmi'
+		"Drask" = 'icons/mob/species/drask/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 		)
 	sprite_sheets_obj = list(
 		"Unathi" = 'icons/obj/clothing/species/unathi/suits.dmi',

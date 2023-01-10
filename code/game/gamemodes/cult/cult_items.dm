@@ -193,7 +193,8 @@
 		"Monkey" = 'icons/mob/species/monkey/suit.dmi',
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
-		"Neara" = 'icons/mob/species/monkey/suit.dmi'
+		"Neara" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
 	)
 	hoodtype = /obj/item/clothing/head/hooded/flagellant_hood
 

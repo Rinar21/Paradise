@@ -14,7 +14,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 		)
 
 

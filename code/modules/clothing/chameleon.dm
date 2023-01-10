@@ -237,7 +237,9 @@
 		"Farwa" = 'icons/mob/species/monkey/suit.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/suit.dmi',
 		"Neara" = 'icons/mob/species/monkey/suit.dmi',
-		"Stok" = 'icons/mob/species/monkey/suit.dmi'
+		"Stok" = 'icons/mob/species/monkey/suit.dmi',
+		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
+
 	)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
@@ -278,7 +280,8 @@
 		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
 		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Stok" = 'icons/mob/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/eyes.dmi'
 	)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
