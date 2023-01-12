@@ -125,6 +125,11 @@ GLOBAL_LIST_INIT(body_accessory_by_species, list())
 	icon_state = "wryntail"
 	allowed_species = list("Wryn")
 
+/datum/body_accessory/tail/resomi
+	name = "Resomi Tail"
+	icon_state = "resomitail"
+	allowed_species = list("Resomi")
+
 //Nian
 /datum/body_accessory/wing
 	icon = 'icons/mob/sprite_accessories/moth/moth_wings.dmi'
