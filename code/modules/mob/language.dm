@@ -402,6 +402,10 @@
 			"ce", "re", "me", "se", "ne", "te", "le", "she", "sche", "e", "e",
 			"ci", "ri", "mi", "si", "ni", "ti", "li", "shi", "schi", "i", "i")
 
+/datum/language/resomi/get_random_name()
+	var/new_name = "[pick(list("Imaki", "Cheri", "Retini", "Assier","Zariva", "Shiriva", "Meuta", "Mezea","Kala", "Rohini", "Osiki", "Mutiat", "Lahini", "Muki", "Rieuta", "Sierva", "Elebiyo", "Rotimi", "Atanda", "Cherechi", "Chukwu", "Akuri", "Kutik", "Moua", "Mikko", "Aino", "Matti", "Ansi", "Aune", "Teppo", "Aatu", "Erkki", "Kati", "Tian", "Mouaki", "Chaac", "Izel", "Patli", "Zuma", "Eloy", "Ucan", "Tun", "Ziha", "Shaack", "Ketot", "Ekchu", "Pesho"))]"
+	return new_name
+
 /datum/language/common
 	name = "Galactic Common"
 	desc = "The common galactic tongue."
