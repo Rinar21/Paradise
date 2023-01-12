@@ -31,11 +31,6 @@
 	name = "resomi kidneys"
 	icon = 'icons/obj/species_organs/resomi.dmi'
 
-/obj/item/organ/internal/ears/resomi
-	species_type = /datum/species/resomi
-	name = "resomi ears"
-	icon = 'icons/obj/species_organs/resomi.dmi'
-
 /obj/item/organ/external/tail/resomi
 	species_type = /datum/species/resomi
 	name = "Resomi tail"
