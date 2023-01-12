@@ -391,9 +391,9 @@
 /datum/language/resomi
 	name = "Scheshi"
 	desc = "A trilling language spoken by the diminutive Resomi."
-	speech_verb = "щебечет"
-	ask_verb = "чирикает"
-	exclaim_verbs = "верещит"
+	speech_verb = "chirping"
+	ask_verb = "tweets"
+	exclaim_verbs = "screeching"
 	colour = "alien"
 	key = "e"
 	flags = RESTRICTED | WHITELISTED
