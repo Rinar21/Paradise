@@ -46,11 +46,12 @@
 		)
 
 	has_organ = list(
-		"heart" =    /obj/item/organ/internal/heart,
-		"lungs" =    /obj/item/organ/internal/lungs,
+		"heart" =    /obj/item/organ/internal/heart/resomi,
+		"lungs" =    /obj/item/organ/internal/lungs/resomi,
 		"liver" =    /obj/item/organ/internal/liver/resomi,
 		"kidneys" =  /obj/item/organ/internal/kidneys/resomi,
-		"brain" =    /obj/item/organ/internal/brain,
+		"brain" =    /obj/item/organ/internal/brain/resomi,
+		"appendix" = /obj/item/organ/internal/appendix,
 		"eyes" =     /obj/item/organ/internal/eyes/resomi
 	)
 
