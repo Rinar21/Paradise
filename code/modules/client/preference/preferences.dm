@@ -1260,7 +1260,7 @@ GLOBAL_LIST_INIT(special_role_times, list( //minimum age (in days) for accounts 
 				if("age")
 					age = rand(AGE_MIN, AGE_MAX)
 				if("hair")
-					if(species in list("Human", "Unathi", "Tajaran", "Skrell", "Machine", "Wryn", "Vulpkanin", "Vox"))
+					if(species in list("Human", "Unathi", "Tajaran", "Skrell", "Machine", "Wryn", "Vulpkanin", "Vox", "Resomi"))
 						h_colour = rand_hex_color()
 				if("secondary_hair")
 					if(species in list("Human", "Unathi", "Tajaran", "Skrell", "Machine", "Wryn", "Vulpkanin", "Vox"))
@@ -1473,7 +1473,7 @@ GLOBAL_LIST_INIT(special_role_times, list( //minimum age (in days) for accounts 
 						b_type = new_b_type
 
 				if("hair")
-					if(species in list("Human", "Unathi", "Tajaran", "Skrell", "Machine", "Vulpkanin", "Vox")) //Species that have hair. (No HAS_HAIR flag)
+					if(species in list("Human", "Unathi", "Tajaran", "Skrell", "Machine", "Vulpkanin", "Vox", "Resomi")) //Species that have hair. (No HAS_HAIR flag)
 						var/input = "Choose your character's hair colour:"
 						var/new_hair = input(user, input, "Character Preference", h_colour) as color|null
 						if(new_hair)
