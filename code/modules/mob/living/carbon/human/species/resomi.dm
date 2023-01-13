@@ -19,7 +19,16 @@
 	brute_mod = 1.35
 	burn_mod =  1.35
 	speed_mod = -0.83
-
+	scream_verb = "Чирикает!"
+	female_giggle_sound = 'sound/voice/resomi_giggle.ogg'
+	male_giggle_sound = 'sound/voice/resomi_giggle.ogg'
+	male_scream_sound = 'sound/voice/resomi_scream.ogg'
+	female_scream_sound = 'sound/voice/resomi_scream.ogg'
+	female_laugh_sound = 'sound/voice/resomi_laugh.ogg'
+	male_laugh_sound = 'sound/voice/resomi_laugh.ogg'
+	female_cough_sounds = 'sound/voice/resomi_cough.ogg'
+	male_cough_sounds = 'sound/voice/resomi_cough.ogg'
+	default_bodyacc = "Resomi Tail"
 	blood_color = "#d514f7"
 	base_color = "#001144"
 
@@ -68,3 +77,37 @@
 		"l_foot" = list("path" = /obj/item/organ/external/foot),
 		"r_foot" = list("path" = /obj/item/organ/external/foot/right),
 		"tail" =   list("path" = /obj/item/organ/external/tail/resomi))
+
+/datum/species/resomi/on_species_gain(mob/living/carbon/human/H)
+	..()
+	H.verbs |= /mob/living/carbon/human/proc/emote_flap
+	var/datum/action/innate/running/run = locate() in H.actions
+	if(!run)
+		run = new
+		run.Grant(H)
+
+/datum/species/resomi/get_species_runechat_color(mob/living/carbon/human/H)
+	return H.m_colours["body"]
+
+/datum/action/innate/running
+	name = "Running"
+	desc = "Run on the tables"
+	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUNNED
+	icon_icon = 'icons/obj/structures.dmi'
+	button_icon_state = "glass_table"
+
+/datum/action/innate/running/Activate()
+	var/mob/living/carbon/human/resomi/H = owner
+	add_game_logs("Turns running on the tables mod ON at [AREACOORD(H)].", H)
+	background_icon_state = "bg_spell"
+	H.pass_flags |= PASSTABLE
+	active = TRUE
+	UpdateButtonIcon()
+
+/datum/action/innate/running/Deactivate()
+	var/mob/living/carbon/human/resomi/H = owner
+	add_game_logs("Disables running on the tables mod at [AREACOORD(H)].", H)
+	H.pass_flags &= ~PASSTABLE
+	active = FALSE
+	background_icon_state = "bg_default"
+	UpdateButtonIcon()
