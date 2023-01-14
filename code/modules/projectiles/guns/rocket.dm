@@ -10,6 +10,7 @@
 	force = 5.0
 	flags = CONDUCT
 	origin_tech = "combat=6"
+	resomi_allowed = FALSE
 	var/missile_speed = 2
 	var/missile_range = 30
 	var/max_rockets = 1

@@ -99,6 +99,7 @@
 	can_bayonet = TRUE
 	knife_x_offset = 26
 	knife_y_offset = 12
+	resomi_allowed = FALSE
 
 /obj/item/gun/projectile/automatic/c20r/New()
 	..()
@@ -159,6 +160,7 @@
 	var/obj/item/gun/projectile/revolver/grenadelauncher/underbarrel
 	burst_size = 3
 	fire_delay = 2
+	resomi_allowed = FALSE
 
 /obj/item/gun/projectile/automatic/m90/New()
 	..()
@@ -224,6 +226,7 @@
 	can_suppress = 0
 	burst_size = 4
 	fire_delay = 1
+	resomi_allowed = FALSE
 
 //ARG Assault Rifle//
 /obj/item/gun/projectile/automatic/ar
@@ -240,6 +243,7 @@
 	can_suppress = 0
 	burst_size = 3
 	fire_delay = 1
+	resomi_allowed = FALSE
 
 //AK-814 Soviet Assault Rifle
 /obj/item/gun/projectile/automatic/ak814
@@ -258,6 +262,7 @@
 	knife_y_offset = 10
 	burst_size = 2
 	fire_delay = 1
+	resomi_allowed = FALSE
 
 // Bulldog shotgun //
 /obj/item/gun/projectile/automatic/shotgun/bulldog
@@ -275,6 +280,7 @@
 	burst_size = 1
 	fire_delay = 0
 	actions_types = list()
+	resomi_allowed = FALSE
 
 /obj/item/gun/projectile/automatic/shotgun/bulldog/New()
 	..()

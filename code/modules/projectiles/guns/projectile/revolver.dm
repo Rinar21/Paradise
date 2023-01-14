@@ -5,6 +5,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/gunshots/1rev.ogg'
+	resomi_allowed = FALSE
 
 /obj/item/gun/projectile/revolver/New()
 	..()
@@ -95,6 +96,7 @@
 	fire_sound = 'sound/weapons/gunshots/1rev38.ogg'
 	unique_rename = 1
 	unique_reskin = 1
+	resomi_allowed = TRUE
 
 /obj/item/gun/projectile/revolver/detective/New()
 	..()
@@ -219,6 +221,7 @@
 	origin_tech = "combat=2;materials=2"
 	mag_type = /obj/item/ammo_box/magazine/internal/rus357
 	var/spun = 0
+	resomi_allowed = TRUE
 
 
 /obj/item/gun/projectile/revolver/russian/New()
