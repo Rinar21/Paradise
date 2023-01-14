@@ -394,7 +394,7 @@
 	speech_verb = "chirping"
 	ask_verb = "tweets"
 	exclaim_verbs = "screeching"
-	colour = "alien"
+	colour = "resomi"
 	key = "e"
 	flags = RESTRICTED | WHITELISTED
 	syllables = list(
