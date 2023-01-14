@@ -6,7 +6,7 @@
 	tail = "resomitail"
 	unarmed_type = /datum/unarmed_attack/claws
 	eyes = "resomi_eyes_s"
-	species_traits = list(IS_WHITELISTED, SMALL_BODY)
+	species_traits = list(IS_WHITELISTED, SMALL_BODY, SMALL_FINGERS)
 	blurb = "A race of feathered raptors who developed on a cold world, almost \
 	outside of the Goldilocks zone. Extremely fragile, they developed hunting skills \
 	that emphasized taking out their prey without themselves getting hit. They are an \
@@ -15,10 +15,12 @@
 	damage_overlays = 'icons/mob/human_races/masks/dam_mask_resomi.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_resomi.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_resomi.dmi'
+
 	tox_mod = 1.35
 	brute_mod = 1.35
 	burn_mod =  1.35
 	speed_mod = -0.83
+
 	scream_verb = "Чирикает!"
 	female_giggle_sound = 'sound/voice/resomi_giggle.ogg'
 	male_giggle_sound = 'sound/voice/resomi_giggle.ogg'

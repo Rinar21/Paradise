@@ -1721,6 +1721,10 @@ Eyes need to have significantly high darksight to shine unless the mob has the X
 			to_chat(src, "<span class='warning'>Your fingers don't fit in the trigger guard!</span>")
 			return FALSE
 
+		if((SMALL_FINGERS in dna.species.species_traits) && (G.resomi_allowed == 0))
+			to_chat(src, "<span class='warning'>You're too small to use this weapon!</span>")
+			return FALSE
+
 	if(mind && mind.martial_art && mind.martial_art.no_guns) //great dishonor to famiry
 		to_chat(src, "<span class='warning'>[mind.martial_art.no_guns_message]</span>")
 		return FALSE
