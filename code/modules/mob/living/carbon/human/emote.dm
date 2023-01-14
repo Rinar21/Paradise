@@ -1186,6 +1186,9 @@
 					emotelist += "\n<u>Специфические эмоуты расы Vulpkanin</u> :- wag(s), swag(s), growl(s)-none/mob, howl(s)-none/mob"
 				if("Nian")
 					emotelist += "\n<u>Специфические эмоуты расы Nian</u> :- aflap(s), flap(s), flutter(s)"
+				if("Resomi")
+					emotelist += "\n<u>Специфические эмоуты расы Nian</u> :- wag(s), swag(s)"
+
 
 			if(ismachineperson(src))
 				emotelist += "\n<u>Специфические эмоуты машин</u> :- beep(s)-none/mob, buzz(es)-none/mob, no-none/mob, ping(s)-none/mob, yes-none/mob, buzz2-none/mob"

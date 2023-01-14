@@ -45,7 +45,7 @@
 	body_temperature = 314.15
 
 	reagent_tag = PROCESS_ORG
-	bodyflags = HAS_TAIL | HAS_SKIN_COLOR | HAS_BODY_MARKINGS
+	bodyflags = HAS_TAIL | HAS_SKIN_COLOR | HAS_BODY_MARKINGS | TAIL_WAGGING
 
 	disliked_food = FRUIT | VEGETABLES | GRAIN
 
@@ -81,12 +81,26 @@
 		"tail" =   list("path" = /obj/item/organ/external/tail/resomi))
 
 /datum/species/resomi/on_species_gain(mob/living/carbon/human/H)
-	..()
-	H.verbs |= /mob/living/carbon/human/proc/emote_flap
+	..()	
+	H.verbs |= /mob/living/carbon/human/proc/emote_wag
+	H.verbs |= /mob/living/carbon/human/proc/emote_swag
+
 	var/datum/action/innate/running/run = locate() in H.actions
 	if(!run)
 		run = new
 		run.Grant(H)
+
+/datum/species/resomi/on_species_loss(mob/living/carbon/human/H)
+	..()
+	H.verbs -= /mob/living/carbon/human/proc/emote_wag
+	H.verbs -= /mob/living/carbon/human/proc/emote_swag
+
+	var/datum/action/innate/running/run = locate() in H.actions
+	if(run)
+		run.Remove(H)
+
+/datum/species/resomi/handle_death(gibbed, mob/living/carbon/human/H)
+	H.stop_tail_wagging()
 
 /datum/species/resomi/get_species_runechat_color(mob/living/carbon/human/H)
 	return H.m_colours["body"]
