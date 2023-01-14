@@ -12,6 +12,7 @@
 	can_suppress = 0
 	clumsy_check = 0
 	needs_permit = 0
+	resomi_allowed = TRUE
 
 /obj/item/gun/projectile/automatic/toy/process_chamber(eject_casing = 0, empty_chamber = 1)
 	..()
@@ -28,6 +29,7 @@
 	burst_size = 1
 	fire_delay = 0
 	actions_types = list()
+	resomi_allowed = TRUE
 
 /obj/item/gun/projectile/automatic/toy/pistol/update_icon()
 	..()
@@ -37,6 +39,7 @@
 	name = "foam force riot pistol"
 	desc = "RIOT! Ages 8 and up."
 	mag_type = /obj/item/ammo_box/magazine/toy/pistol/riot
+	resomi_allowed = TRUE
 
 /obj/item/gun/projectile/automatic/toy/pistol/riot/New()
 	magazine = new /obj/item/ammo_box/magazine/toy/pistol/riot(src)
@@ -48,6 +51,7 @@
 	icon_state = "enforcer"
 	mag_type = /obj/item/ammo_box/magazine/toy/enforcer
 	can_flashlight = TRUE
+	resomi_allowed = TRUE
 
 /obj/item/gun/projectile/automatic/toy/pistol/enforcer/update_icon()
 	..()
@@ -72,6 +76,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/toy
 	clumsy_check = 0
 	needs_permit = 0
+	resomi_allowed = TRUE
 
 /obj/item/gun/projectile/shotgun/toy/process_chamber()
 	..()
@@ -87,6 +92,7 @@
 	fire_sound = 'sound/items/syringeproj.ogg'
 	slot_flags = SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
+	resomi_allowed = TRUE
 
 /obj/item/gun/projectile/automatic/c20r/toy
 	name = "donksoft SMG"
@@ -96,6 +102,7 @@
 	can_suppress = 0
 	needs_permit = 0
 	mag_type = /obj/item/ammo_box/magazine/toy/smgm45
+	resomi_allowed = TRUE
 
 /obj/item/gun/projectile/automatic/c20r/toy/riot
 	mag_type = /obj/item/ammo_box/magazine/toy/smgm45/riot
@@ -111,6 +118,7 @@
 	can_suppress = 0
 	needs_permit = 0
 	mag_type = /obj/item/ammo_box/magazine/toy/m762
+	resomi_allowed = TRUE
 
 /obj/item/gun/projectile/automatic/l6_saw/toy/riot
 	mag_type = /obj/item/ammo_box/magazine/toy/m762/riot
@@ -127,6 +135,7 @@
 	fire_sound = 'sound/weapons/gunshots/gunshot.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/toy/tommygun
 	w_class = WEIGHT_CLASS_SMALL
+	resomi_allowed = TRUE
 
 /obj/item/gun/projectile/automatic/sniper_rifle/toy
 	name = "donksoft sniper rifle"
@@ -137,6 +146,7 @@
 	needs_permit = FALSE
 	zoomable = FALSE
 	mag_type = /obj/item/ammo_box/magazine/toy/sniper_rounds
+	resomi_allowed = TRUE
 
 /obj/item/gun/projectile/automatic/sniper_rifle/toy/update_icon()
 	if(magazine)

@@ -98,6 +98,7 @@
 	magin_sound = 'sound/weapons/gun_interactions/hpistol_magin.ogg'
 	magout_sound = 'sound/weapons/gun_interactions/hpistol_magout.ogg'
 	can_suppress = 0
+	resomi_allowed = FALSE
 
 /obj/item/gun/projectile/automatic/pistol/deagle/update_icon()
 	..()

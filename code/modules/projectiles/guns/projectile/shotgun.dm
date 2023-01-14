@@ -13,6 +13,7 @@
 	fire_sound = 'sound/weapons/gunshots/1shotgun_old.ogg'
 	var/recentpump = 0 // to prevent spammage
 	weapon_weight = WEAPON_HEAVY
+	resomi_allowed = FALSE
 
 /obj/item/gun/projectile/shotgun/attackby(obj/item/A, mob/user, params)
 	. = ..()

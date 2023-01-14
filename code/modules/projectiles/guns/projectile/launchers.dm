@@ -9,6 +9,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/grenadelauncher
 	fire_sound = 'sound/weapons/gunshots/1grenlauncher.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
+	resomi_allowed = FALSE
 
 /obj/item/gun/projectile/revolver/grenadelauncher/attackby(var/obj/item/A, mob/user, params)
 	..()
@@ -41,6 +42,7 @@
 	burst_size = 1
 	fire_delay = 0
 	actions_types = list()
+	resomi_allowed = FALSE
 
 
 /obj/item/gun/projectile/automatic/gyropistol/process_chamber(eject_casing = 0, empty_chamber = 1)
