@@ -20,7 +20,7 @@
 	brute_mod = 1.35
 	burn_mod =  1.35
 	speed_mod = -0.83
-
+	holder_type = /obj/item/holder/human
 	scream_verb = "Чирикает!"
 	female_giggle_sound = 'sound/voice/resomi_giggle.ogg'
 	male_giggle_sound = 'sound/voice/resomi_giggle.ogg'

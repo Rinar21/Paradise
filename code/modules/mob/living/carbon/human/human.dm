@@ -1236,6 +1236,8 @@
 
 	if(!(dna.species.bodyflags & HAS_SKIN_TONE))
 		s_tone = 0
+	if(dna.species.holder_type)
+		holder_type = dna.species.holder_type
 
 	var/list/thing_to_check = list(slot_wear_mask, slot_head, slot_shoes, slot_gloves, slot_l_ear, slot_r_ear, slot_glasses, slot_l_hand, slot_r_hand, slot_neck)
 	var/list/kept_items[0]

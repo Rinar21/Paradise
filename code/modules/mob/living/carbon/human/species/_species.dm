@@ -14,7 +14,7 @@
 	var/eyes = "eyes_s"                                  // Icon for eyes.
 	var/blurb = "A completely nondescript species."      // A brief lore summary for use in the chargen screen.
 	var/butt_sprite = "human"
-
+	var/holder_type 
 	var/datum/species/primitive_form = null          // Lesser form, if any (ie. monkey for humans)
 	var/datum/species/greater_form = null             // Greater form, if any, ie. human for monkeys.
 	/// Name of tail image in species effects icon file.

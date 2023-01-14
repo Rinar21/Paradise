@@ -754,6 +754,14 @@ GLOBAL_DATUM_INIT(fire_overlay, /image, image("icon" = 'icons/goonstation/effect
 /obj/item/proc/get_part_rating()
 	return 0
 
+/obj/item/proc/update_held_icon()
+	if(ismob(src.loc))
+		var/mob/M = src.loc
+		if(M.l_hand == src)
+			M.update_inv_l_hand()
+		else if(M.r_hand == src)
+			M.update_inv_r_hand()
+
 /obj/item/proc/update_slot_icon()
 	if(!ismob(loc))
 		return
