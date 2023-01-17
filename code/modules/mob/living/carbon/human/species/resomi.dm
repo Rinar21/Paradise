@@ -2,6 +2,7 @@
 	name = "Resomi"
 	name_plural = "Resomi"
 	icobase = 'icons/mob/human_races/r_resomi.dmi'
+	deform = 'icons/mob/human_races/r_def_resomi.dmi'
 	language = "Scheshi"
 	tail = "resomitail"
 	unarmed_type = /datum/unarmed_attack/claws
@@ -30,7 +31,6 @@
 	male_laugh_sound = 'sound/voice/resomi_laugh.ogg'
 	female_cough_sounds = 'sound/voice/resomi_cough.ogg'
 	male_cough_sounds = 'sound/voice/resomi_cough.ogg'
-	default_bodyacc = "Resomi Tail"
 	blood_color = "#d514f7"
 	base_color = "#001144"
 

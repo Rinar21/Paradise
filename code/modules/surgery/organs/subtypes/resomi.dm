@@ -33,7 +33,7 @@
 
 /obj/item/organ/external/tail/resomi
 	species_type = /datum/species/resomi
-	name = "Resomi tail"
+	name = "resomi tail"
 	icon_name = "resomitail_s"
 	max_damage = 20
 	min_broken_damage = 15
