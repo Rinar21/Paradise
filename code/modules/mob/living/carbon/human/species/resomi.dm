@@ -109,8 +109,8 @@
 	name = "Running"
 	desc = "Run on the tables"
 	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUNNED
-	icon_icon = 'icons/obj/structures.dmi'
-	button_icon_state = "glass_table"
+	icon_icon = 'icons/mob/actions/actions.dmi'
+	button_icon_state = "resomitable"
 
 /datum/action/innate/running/Activate()
 	var/mob/living/carbon/human/resomi/H = owner
