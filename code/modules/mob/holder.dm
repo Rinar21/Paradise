@@ -186,13 +186,32 @@ var/list/holder_mob_icon_cache = list()
 
 /mob/living/MouseDrop(var/mob/living/carbon/human/over_object)
 	if(istype(over_object) && Adjacent(over_object) && (usr == src || usr == over_object) && over_object.a_intent == INTENT_HELP)
-		get_scooped(over_object, (usr == src))
-		over_object.regenerate_icons()
-		return
+		if(scoop_check(over_object))
+			get_scooped(over_object, (usr == src))
+			log_admin("[key_name(over_object)] scooped [key_name(src)] at [loc]")
+			over_object.regenerate_icons()
+			return
 	return ..()
 
 /mob/living/proc/scoop_check(var/mob/living/scooper)
-	return 1
+	if(scoop_check(scooper))
+		return 1
+	else
+		return 0
 
 /mob/living/carbon/human/scoop_check(var/mob/living/scooper)
-	return (scooper.mob_size > src.mob_size && (a_intent == INTENT_HELP || src.incapacitated()))
+	if(SMALL_BODY in scooper.dna.species.species_traits)
+		to_chat(scooper, "SMALL_BODY in scooper")
+		return 0
+	if(!(SMALL_BODY in src.dna.species.species_traits))
+		to_chat(scooper, "SMALL_BODY in src")
+		return 0
+	if((scooper.a_intent != INTENT_HELP))
+		to_chat(scooper, "scooper intent check")
+		return 0
+	if((src.a_intent != INTENT_HELP))
+		to_chat(scooper, "src intent check")
+		return 0
+	else
+		to_chat(scooper, "success")
+		return 1
