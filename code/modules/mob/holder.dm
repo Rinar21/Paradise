@@ -19,19 +19,17 @@ var/list/holder_mob_icon_cache = list()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/holder/proc/update_state()
-//inf	if(last_holder != loc)
-//inf		for(var/mob/M in contents)
-//inf			unregister_all_movement(last_holder, M)
+/obj/item/holder/process()
 
 	if(istype(loc,/turf) || !(contents.len))
+
 		for(var/mob/M in contents)
-			var/atom/movable/mob_container = M
-			mob_container.forceMove(loc)
+
+			var/atom/movable/mob_container
+			mob_container = M
+			mob_container.forceMove(get_turf(src))
+
 		qdel(src)
-//inf	else if(last_holder != loc)
-//inf		for(var/mob/M in contents)
-//inf			register_all_movement(loc, M)
 
 	last_holder = loc
 
