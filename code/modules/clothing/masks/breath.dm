@@ -23,7 +23,8 @@
 		"Farwa" = 'icons/mob/species/monkey/mask.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/mask.dmi',
 		"Neara" = 'icons/mob/species/monkey/mask.dmi',
-		"Stok" = 'icons/mob/species/monkey/mask.dmi'
+		"Stok" = 'icons/mob/species/monkey/mask.dmi',
+		"Resomi" = 'icons/mob/species/resomi/mask.dmi'
 	)
 
 /obj/item/clothing/mask/breath/attack_self(var/mob/user)

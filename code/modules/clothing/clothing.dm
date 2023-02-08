@@ -290,7 +290,8 @@ BLIND     // can't see anything
 
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/gloves.dmi',
-		"Drask" = 'icons/mob/species/drask/gloves.dmi'
+		"Drask" = 'icons/mob/species/drask/gloves.dmi',
+		"Resomi" ='icons/mob/species/resomi/gloves.dmi'
 		)
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
@@ -430,7 +431,8 @@ BLIND     // can't see anything
 		"Farwa" = 'icons/mob/species/monkey/mask.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/mask.dmi',
 		"Neara" = 'icons/mob/species/monkey/mask.dmi',
-		"Stok" = 'icons/mob/species/monkey/mask.dmi'
+		"Stok" = 'icons/mob/species/monkey/mask.dmi',
+		"Resomi" = 'icons/mob/species/resomi/mask.dmi'
 		)
 
 //Proc that moves gas/breath masks out of the way
@@ -520,7 +522,8 @@ BLIND     // can't see anything
 		"Farwa" = 'icons/mob/species/monkey/shoes.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/shoes.dmi',
 		"Neara" = 'icons/mob/species/monkey/shoes.dmi',
-		"Stok" = 'icons/mob/species/monkey/shoes.dmi'
+		"Stok" = 'icons/mob/species/monkey/shoes.dmi',
+		"Resomi" = 'icons/mob/species/Resomi/shoes.dmi',
 		)
 
 /obj/item/clothing/shoes/attackby(obj/item/I, mob/user, params)

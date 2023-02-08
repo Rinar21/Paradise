@@ -18,7 +18,8 @@
 		"Farwa" = 'icons/mob/species/monkey/mask.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/mask.dmi',
 		"Neara" = 'icons/mob/species/monkey/mask.dmi',
-		"Stok" = 'icons/mob/species/monkey/mask.dmi'
+		"Stok" = 'icons/mob/species/monkey/mask.dmi',
+		"Resomi" = 'icons/mob/species/resomi/mask.dmi'
 	)
 
 // Clumsy folks can't take the mask off themselves.
@@ -105,7 +106,8 @@
 		"Farwa" = 'icons/mob/species/monkey/mask.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/mask.dmi',
 		"Neara" = 'icons/mob/species/monkey/mask.dmi',
-		"Stok" = 'icons/mob/species/monkey/mask.dmi'
+		"Stok" = 'icons/mob/species/monkey/mask.dmi',
+		"Resomi" = 'icons/mob/species/resomi/mask.dmi'
 		)
 
 /obj/item/clothing/mask/muzzle/tapegag/dropped(mob/user)
@@ -139,7 +141,8 @@
 		"Farwa" = 'icons/mob/species/monkey/mask.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/mask.dmi',
 		"Neara" = 'icons/mob/species/monkey/mask.dmi',
-		"Stok" = 'icons/mob/species/monkey/mask.dmi'
+		"Stok" = 'icons/mob/species/monkey/mask.dmi',
+		"Resomi" = 'icons/mob/species/resomi/mask.dmi'
 		)
 
 /obj/item/clothing/mask/muzzle/safety/shock
@@ -241,7 +244,8 @@
 		"Farwa" = 'icons/mob/species/monkey/mask.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/mask.dmi',
 		"Neara" = 'icons/mob/species/monkey/mask.dmi',
-		"Stok" = 'icons/mob/species/monkey/mask.dmi'
+		"Stok" = 'icons/mob/species/monkey/mask.dmi',
+		"Resomi" = 'icons/mob/species/resomi/mask.dmi'
 		)
 
 
@@ -267,7 +271,8 @@
 		"Farwa" = 'icons/mob/species/monkey/mask.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/mask.dmi',
 		"Neara" = 'icons/mob/species/monkey/mask.dmi',
-		"Stok" = 'icons/mob/species/monkey/mask.dmi'
+		"Stok" = 'icons/mob/species/monkey/mask.dmi',
+		"Resomi" = 'icons/mob/species/resomi/mask.dmi'
 		)
 
 /obj/item/clothing/mask/fakemoustache/attack_self(mob/user)
@@ -471,7 +476,8 @@
 		"Farwa" = 'icons/mob/species/monkey/mask.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/mask.dmi',
 		"Neara" = 'icons/mob/species/monkey/mask.dmi',
-		"Stok" = 'icons/mob/species/monkey/mask.dmi'
+		"Stok" = 'icons/mob/species/monkey/mask.dmi',
+		"Resomi" = 'icons/mob/species/resomi/mask.dmi'
 		)
 	actions_types = list(/datum/action/item_action/adjust)
 

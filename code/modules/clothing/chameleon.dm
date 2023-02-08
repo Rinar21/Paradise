@@ -433,7 +433,8 @@
 		"Farwa" = 'icons/mob/species/monkey/mask.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/mask.dmi',
 		"Neara" = 'icons/mob/species/monkey/mask.dmi',
-		"Stok" = 'icons/mob/species/monkey/mask.dmi'
+		"Stok" = 'icons/mob/species/monkey/mask.dmi',
+		"Resomi" = 'icons/mob/species/resomi/mask.dmi'
 	)
 
 	var/obj/item/voice_changer/voice_changer

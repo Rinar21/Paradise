@@ -107,6 +107,7 @@
 
 /mob/living/carbon/human/resomi/Initialize(mapload)
 	. = ..(mapload, /datum/species/resomi)
+	fire_dmi = 'icons/mob/species/resomi/OnFire.dmi'
 
 /mob/living/carbon/human/diona/Initialize(mapload)
 	. = ..(mapload, /datum/species/diona)
