@@ -489,6 +489,16 @@
 				return
 			m_type = 1
 
+		if("wingopen")
+			if((dna.species.bodyflags & HAS_WING) && ismoth(src))
+				message = "раскрывает крылья."
+				open_wings()
+
+		if("wingclose")
+			if((dna.species.bodyflags & HAS_WING) && ismoth(src))
+				message = "складывает крылья."
+				update_wing_layer()
+
 		if("scratch")
 			if(!restrained())
 				message = "чеш[pluralize_ru(src.gender,"е","у")]тся."
@@ -604,6 +614,10 @@
 			if(miming)
 				m_type = 1
 
+		if("lowerantennae")
+			message = "прижимает усики к голове."
+			m_type = 2
+
 		if("flip", "flips")
 			m_type = 1
 			if(!restrained())
@@ -673,6 +687,9 @@
 		if("eyebrow")
 			message = "приподнима[pluralize_ru(src.gender,"ет","ют")] бровь."
 			m_type = 1
+			if(ismoth(src))
+				message = "поднимает усики."
+				m_type = 2
 
 		if("chuckle", "chuckles")
 			if(miming)

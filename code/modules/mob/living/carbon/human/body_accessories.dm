@@ -35,14 +35,18 @@ GLOBAL_LIST_INIT(body_accessory_by_species, list())
 
 	var/icon = null
 	var/icon_state = ""
+	var/open_icon = null
+	var/open_icon_state = ""
 
 	var/animated_icon = null
 	var/animated_icon_state = ""
+	var/open_wing = ""
 
 	var/blend_mode = null
 
 	var/pixel_x_offset = 0
 	var/pixel_y_offset = 0
+	var/open_wings_pixel_x_offset = -22
 
 	var/list/allowed_species = list()
 	/// If true, adds an underlay (in addition to the regular overlay!) to the character sprite, with the state "[icon_state]_BEHIND".
@@ -128,6 +132,7 @@ GLOBAL_LIST_INIT(body_accessory_by_species, list())
 //Nian
 /datum/body_accessory/wing
 	icon = 'icons/mob/sprite_accessories/moth/moth_wings.dmi'
+	open_icon = 'icons/mob/sprite_accessories/moth/open_wings.dmi'
 	animated_icon = null
 	name = "Plain Wings"
 	icon_state = "plain"
@@ -139,6 +144,7 @@ GLOBAL_LIST_INIT(body_accessory_by_species, list())
 /datum/body_accessory/wing/monarch
 	name = "Monarch Wings"
 	icon_state = "monarch"
+	open_icon_state = "open_monarch"
 
 /datum/body_accessory/wing/luna
 	name = "Luna Wings"
@@ -199,6 +205,7 @@ GLOBAL_LIST_INIT(body_accessory_by_species, list())
 /datum/body_accessory/wing/oakworm
 	name = "Oak Worm Wings"
 	icon_state = "oakworm"
+	open_icon_state = "open_oakworm"
 
 /datum/body_accessory/wing/jungle
 	name = "Jungle Wings"
@@ -207,6 +214,7 @@ GLOBAL_LIST_INIT(body_accessory_by_species, list())
 /datum/body_accessory/wing/witchwing
 	name = "Witch Wing Wings"
 	icon_state = "witchwing"
+	open_icon_state = "open_witchwing"
 
 /datum/body_accessory/wing/plasmafire
 	name = "Plasmafire Wings"

@@ -469,3 +469,18 @@
 	set name = "~ Махать крыльями агрессивно "
 	set category = "Эмоции"
 	usr.user_triggered_emote("aflap")
+
+/mob/living/carbon/human/proc/emote_lowerantennae()
+	set name = "~ Опустить усики"
+	set category = "Эмоции"
+	usr.user_triggered_emote("lowerantennae")
+
+/mob/living/carbon/human/proc/emote_wingopen()
+	set name = "< Открыть крылья >"
+	set category = "Эмоции"
+	usr.user_triggered_emote("wingopen")
+
+/mob/living/carbon/human/proc/emote_wingclose()
+	set name = "< Сложить крылья >"
+	set category = "Эмоции"
+	usr.user_triggered_emote("wingclose")

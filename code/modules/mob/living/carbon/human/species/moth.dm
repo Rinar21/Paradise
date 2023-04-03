@@ -79,6 +79,9 @@
 /datum/species/moth/on_species_gain(mob/living/carbon/human/H)
 	..()
 	H.verbs |= /mob/living/carbon/human/proc/emote_flap
+	H.verbs |= /mob/living/carbon/human/proc/emote_lowerantennae
+	H.verbs |= /mob/living/carbon/human/proc/emote_wingopen
+	H.verbs |= /mob/living/carbon/human/proc/emote_wingclose
 	var/datum/action/innate/cocoon/cocoon = locate() in H.actions
 	if(!cocoon)
 		cocoon = new
@@ -91,6 +94,9 @@
 /datum/species/moth/on_species_loss(mob/living/carbon/human/H)
 	..()
 	H.verbs -= /mob/living/carbon/human/proc/emote_flap
+	H.verbs |= /mob/living/carbon/human/proc/emote_lowerantennae
+	H.verbs |= /mob/living/carbon/human/proc/emote_wingopen
+	H.verbs |= /mob/living/carbon/human/proc/emote_wingclose
 	var/datum/action/innate/cocoon/cocoon = locate() in H.actions
 	if(cocoon)
 		cocoon.Remove(H)

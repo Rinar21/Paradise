@@ -354,6 +354,18 @@
 	linked_emote ="aflap"
 	name = "Агрессивно махать крыльями"
 
+/datum/keybinding/emote/carbon/human/lowerantennae
+	linked_emote = "lowerantennae"
+	name = "Опустить усики"
+
+/datum/keybinding/emote/carbon/human/moth/wingopen
+	linked_emote = "wingopen"
+	name = "Открыть крылья"
+
+/datum/keybinding/emote/carbon/human/moth/wingclose
+	linked_emote = "wingclose"
+	name = "Сложить крылья"
+
 /datum/keybinding/emote/carbon/human/quill
 	linked_emote ="quill"
 	name = "Шуршать перьями"

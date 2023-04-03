@@ -1354,6 +1354,44 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	remove_overlay(TAIL_LAYER)
 	update_tail_layer() //just trigger a full update for normal stationary sprites
 
+/mob/living/carbon/human/proc/open_wings()
+	remove_overlay(WING_UNDERLIMBS_LAYER)
+	remove_overlay(WING_LAYER)
+
+	if(!bodypart_wing)
+		return
+	if(!istype(bodypart_wing.body_accessory, /datum/body_accessory/wing))
+		if(dna.species.optional_body_accessory)
+			return
+		else
+			bodypart_wing.body_accessory = GLOB.body_accessory_by_name[dna.species.default_bodyacc]
+
+	var/icon/accessory_s = new/icon("icon" = bodypart_wing.body_accessory.open_icon, "icon_state" = bodypart_wing.body_accessory.open_icon_state)
+	var/mutable_appearance/wings = mutable_appearance(bodypart_wing.body_accessory.open_icon, bodypart_wing.body_accessory.open_icon_state, layer = -WING_LAYER)
+	wings.pixel_x = bodypart_wing.body_accessory.open_wings_pixel_x_offset
+	wings.pixel_y = bodypart_wing.body_accessory.pixel_y_offset
+	overlays_standing[WING_LAYER] = wings
+
+	if(bodypart_wing.body_accessory.has_behind)
+		var/mutable_appearance/under_wing = mutable_appearance(bodypart_wing.body_accessory.open_icon, "[bodypart_wing.body_accessory.open_icon_state]_BEHIND", layer = -WING_UNDERLIMBS_LAYER)
+		under_wing.pixel_x = bodypart_wing.body_accessory.open_wings_pixel_x_offset
+		under_wing.pixel_y = bodypart_wing.body_accessory.pixel_y_offset
+		overlays_standing[WING_UNDERLIMBS_LAYER] = under_wing
+		var/icon/tempicon = new/icon(accessory_s,dir=NORTH)
+		tempicon.Flip(SOUTH)
+		accessory_s.Insert(tempicon,dir=SOUTH)
+		bodypart_wing.force_icon = accessory_s
+		bodypart_wing.icon_name = null
+
+	bodypart_wing.get_icon()
+	apply_overlay(WING_UNDERLIMBS_LAYER)
+	apply_overlay(WING_LAYER)
+
+/mob/living/carbon/human/proc/close_wings()
+	remove_overlay(WING_UNDERLIMBS_LAYER)
+	remove_overlay(WING_LAYER)
+	update_wing_layer()
+
 /mob/living/carbon/human/proc/update_int_organs()
 	remove_overlay(INTORGAN_LAYER)
 
