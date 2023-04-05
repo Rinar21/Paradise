@@ -136,6 +136,7 @@ GLOBAL_LIST_INIT(body_accessory_by_species, list())
 	animated_icon = null
 	name = "Plain Wings"
 	icon_state = "plain"
+	open_icon_state = "open_plain"
 	allowed_species = list("Nian")
 	has_behind = TRUE
 
@@ -149,58 +150,72 @@ GLOBAL_LIST_INIT(body_accessory_by_species, list())
 /datum/body_accessory/wing/luna
 	name = "Luna Wings"
 	icon_state = "luna"
+	open_icon_state = "open_luna"
 
 /datum/body_accessory/wing/atlas
 	name = "Atlas Wings"
 	icon_state = "atlas"
+	open_icon_state = "open_atlas"
 
 /datum/body_accessory/wing/reddish
 	name = "Reddish Wings"
 	icon_state = "redish"
+	open_icon_state = "open_redish"
 
 /datum/body_accessory/wing/royal
 	name = "Royal Wings"
 	icon_state = "royal"
+	open_icon_state = "open_royal"
 
 /datum/body_accessory/wing/gothic
 	name = "Gothic Wings"
 	icon_state = "gothic"
+	open_icon_state = "open_gothic"
 
 /datum/body_accessory/wing/lovers
 	name = "Lovers Wings"
 	icon_state = "lovers"
+	open_icon_state = "open_lovers"
 
 /datum/body_accessory/wing/whitefly
 	name = "White Fly Wings"
 	icon_state = "whitefly"
+	open_icon_state = "open_whitefly"
 
 /datum/body_accessory/wing/burnt_off
 	name = "Burnt Off Wings"
 	icon_state = "burnt_off"
+	open_icon_state = "open_burnt_off"
 
 /datum/body_accessory/wing/firewatch
 	name = "Firewatch Wings"
 	icon_state = "firewatch"
+	open_icon_state = "open_firewatch"
 
 /datum/body_accessory/wing/deathhead
 	name = "Deathshead Wings"
 	icon_state = "deathhead"
+	open_icon_state = "open_deathhead"
 
 /datum/body_accessory/wing/poison
 	name = "Poison Wings"
 	icon_state = "poison"
+	open_icon_state = "open_poison"
 
 /datum/body_accessory/wing/ragged
 	name = "Ragged Wings"
 	icon_state = "ragged"
+	open_icon_state = "open_ragged"
 
 /datum/body_accessory/wing/moonfly
 	name = "Moon Fly Wings"
 	icon_state = "moonfly"
+	open_icon_state = "open_moonfly"
 
 /datum/body_accessory/wing/snow
 	name = "Snow Wings"
 	icon_state = "snow"
+	open_icon_state = "open_snow"
 
 /datum/body_accessory/wing/oakworm
 	name = "Oak Worm Wings"
@@ -210,6 +225,7 @@ GLOBAL_LIST_INIT(body_accessory_by_species, list())
 /datum/body_accessory/wing/jungle
 	name = "Jungle Wings"
 	icon_state = "jungle"
+	open_icon_state = "open_jungle"
 
 /datum/body_accessory/wing/witchwing
 	name = "Witch Wing Wings"
@@ -219,11 +235,14 @@ GLOBAL_LIST_INIT(body_accessory_by_species, list())
 /datum/body_accessory/wing/plasmafire
 	name = "Plasmafire Wings"
 	icon_state = "plasmafire"
+	open_icon_state = "open_plasmafire"
 
 /datum/body_accessory/wing/brown
 	name = "Brown Wings"
 	icon_state = "brown"
+	open_icon_state = "open_brown"
 
 /datum/body_accessory/wing/feathery
 	name = "Feathery Wings"
 	icon_state = "feathery"
+	open_icon_state = "open_feathery"

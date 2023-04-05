@@ -497,7 +497,7 @@
 		if("wingclose")
 			if((dna.species.bodyflags & HAS_WING) && ismoth(src))
 				message = "складывает крылья."
-				update_wing_layer()
+				close_wings()
 
 		if("scratch")
 			if(!restrained())
