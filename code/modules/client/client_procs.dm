@@ -324,6 +324,9 @@
 	// Check if the client has or has not accepted TOS
 	check_tos_consent()
 
+	// Setup widescreen
+	view = prefs.viewrange
+
 	// This has to go here to avoid issues
 	// If you sleep past this point, you will get SSinput errors as well as goonchat errors
 	// DO NOT STUFF RANDOM SQL QUERIES BELOW THIS POINT WITHOUT USING `INVOKE_ASYNC()` OR SIMILAR
@@ -354,6 +357,10 @@
 	connection_realtime = world.realtime
 	connection_timeofday = world.timeofday
 	log_client_to_db(tdata)
+
+	generate_clickcatcher()
+	apply_clickcatcher()
+
 	. = ..()	//calls mob.Login()
 
 
@@ -380,9 +387,6 @@
 		to_chat(src,"<span class='notice'>You have disabled karma gains.") // reminds those who have it disabled
 	else
 		to_chat(src,"<span class='notice'>You have enabled karma gains.")
-
-	generate_clickcatcher()
-	apply_clickcatcher()
 
 	if(show_update_prompt)
 		show_update_notice()
@@ -1351,6 +1355,11 @@
 	qdel(query)
 	// If we are here, they have not accepted, and need to read it
 	return FALSE
+
+/// Returns the biggest number from client.view so we can do easier maths
+/client/proc/maxview()
+	var/list/screensize = getviewsize(view)
+	return max(screensize[1], screensize[2])
 
 #undef LIMITER_SIZE
 #undef CURRENT_SECOND

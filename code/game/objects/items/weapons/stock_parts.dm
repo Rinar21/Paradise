@@ -27,7 +27,7 @@
 	else if(works_from_distance)
 		if(!istype(T))
 			return
-		if(!(T in view(user)))
+		if(get_dist(src, T) <= (user.client.maxview() + 2))
 			return
 		if(T.component_parts)
 			T.exchange_parts(user, src)
