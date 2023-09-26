@@ -13,6 +13,12 @@
 	caliber = "9mm"
 	projectile_type = /obj/item/projectile/bullet/weakbullet4
 
+/obj/item/ammo_casing/fortynr
+	desc = "A 40nr bullet casing."
+	materials = list(MAT_METAL = 1100)
+	caliber = "40nr"
+	projectile_type = /obj/item/projectile/bullet/weakbullet3/fortynr
+
 /obj/item/ammo_casing/a762
 	desc = "A 7.62mm bullet casing."
 	icon_state = "762-casing"
@@ -25,6 +31,15 @@
 /obj/item/ammo_casing/a762/enchanted
 	materials = list(MAT_METAL = 1000)
 	projectile_type = /obj/item/projectile/bullet/weakbullet3
+
+/obj/item/ammo_casing/ftt762
+	desc = "A fusty 7.62mm TT bullet casing."
+	icon_state = "r-casing"
+	materials = list(MAT_METAL = 1000)
+	caliber = "ftt762"
+	projectile_type = /obj/item/projectile/bullet/ftt762
+	muzzle_flash_strength = MUZZLE_FLASH_STRENGTH_STRONG
+	muzzle_flash_range = MUZZLE_FLASH_RANGE_NORMAL
 
 /obj/item/ammo_casing/a50
 	desc = "A .50AE bullet casing."
@@ -163,6 +178,20 @@
 	throw_speed = 3
 	muzzle_flash_color = null
 
+/obj/item/ammo_casing/caseless/rocket
+	name = "\improper PM-9HE"
+	desc = "An 84mm High Explosive rocket. Fire at people and pray."
+	caliber = "84mm"
+	w_class = WEIGHT_CLASS_NORMAL //thats the rocket!
+	icon_state = "84mm-he"
+	projectile_type = /obj/item/projectile/bullet/a84mm_he
+
+/obj/item/ammo_casing/caseless/rocket/hedp
+	name = "\improper PM-9HEDP"
+	desc = "An 84mm High Explosive Dual Purpose rocket. Pointy end toward mechs and unarmed civilians."
+	icon_state = "84mm-hedp"
+	projectile_type = /obj/item/projectile/bullet/a84mm_hedp
+
 /obj/item/ammo_casing/shotgun
 	name = "shotgun slug"
 	desc = "A 12 gauge lead slug."
@@ -182,6 +211,9 @@
 	pellets = 6
 	variance = 17
 
+/obj/item/ammo_casing/shotgun/buckshot/nuclear
+	projectile_type = /obj/item/projectile/bullet/pellet/nuclear
+
 /obj/item/ammo_casing/shotgun/rubbershot
 	name = "rubber shot"
 	desc = "A shotgun casing filled with densely-packed rubber balls, used to incapacitate crowds from a distance."
@@ -197,6 +229,15 @@
 	icon_state = "bshell"
 	materials = list(MAT_METAL = 1000)
 	projectile_type = /obj/item/projectile/bullet/weakbullet
+	muzzle_flash_strength = MUZZLE_FLASH_STRENGTH_NORMAL
+	muzzle_flash_range = MUZZLE_FLASH_RANGE_NORMAL
+
+/obj/item/ammo_casing/shotgun/fakebeanbag
+	name = "beanbag shell"
+	desc = "A weak beanbag slug for riot control."
+	description_antag = "Специальный патрон для усыпления жертв. Крайне эффективен против целей с алкоголем внутри. Любой стан по противнику после выстрела дополнительно приводит ко сну, не позволяя ему кричать о помощи."
+	icon_state = "bshell"
+	projectile_type = /obj/item/projectile/bullet/weakbullet/booze
 	muzzle_flash_strength = MUZZLE_FLASH_STRENGTH_NORMAL
 	muzzle_flash_range = MUZZLE_FLASH_RANGE_NORMAL
 
@@ -276,6 +317,11 @@
 	variance = 25
 	muzzle_flash_color = LIGHT_COLOR_FIRE
 
+/obj/item/ammo_casing/shotgun/incendiary/dragonsbreath/nuclear
+	projectile_type = /obj/item/projectile/bullet/incendiary/shell/dragonsbreath/nuclear
+	pellets = 6
+	variance = 20
+
 /obj/item/ammo_casing/shotgun/ion
 	name = "ion shell"
 	desc = "An advanced shotgun shell which uses a subspace ansible crystal to produce an effect similar to a standard ion rifle. \
@@ -321,16 +367,13 @@
 /obj/item/ammo_casing/shotgun/dart/attackby()
 	return
 
-/obj/item/ammo_casing/shotgun/dart/bioterror
-	desc = "A shotgun dart filled with deadly toxins."
-
-/obj/item/ammo_casing/shotgun/dart/bioterror/New()
-	..()
-	reagents.add_reagent("neurotoxin", 6)
-	reagents.add_reagent("spore", 6)
-	reagents.add_reagent("capulettium_plus", 6) //;HELP OPS IN MAINT
-	reagents.add_reagent("coniine", 6)
-	reagents.add_reagent("sodium_thiopental", 6)
+/obj/item/ammo_casing/shotgun/bioterror
+	name = "bioterror shell"
+	desc = "A shotgun shell filled with deadly toxins."
+	icon_state = "bioshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/bioterror
+	pellets = 4
+	variance = 17
 
 /obj/item/ammo_casing/shotgun/tranquilizer
 	name = "tranquilizer darts"
@@ -340,6 +383,14 @@
 	projectile_type = /obj/item/projectile/bullet/dart/syringe/tranquilizer
 	muzzle_flash_strength = MUZZLE_FLASH_STRENGTH_NORMAL
 	muzzle_flash_range = MUZZLE_FLASH_RANGE_NORMAL
+
+/obj/item/ammo_casing/shotgun/flechette
+	name = "flechette"
+	desc = "A shotgun casing filled with tiny steel darts, used to penetrate armor. Beehive incoming!"
+	icon_state = "flechette"
+	projectile_type = /obj/item/projectile/bullet/pellet/flechette
+	pellets = 4
+	variance = 13
 
 /obj/item/ammo_casing/a556
 	desc = "A 5.56mm bullet casing."
@@ -356,12 +407,12 @@
 	muzzle_flash_strength = MUZZLE_FLASH_STRENGTH_NORMAL
 	muzzle_flash_range = MUZZLE_FLASH_RANGE_NORMAL
 
-/obj/item/ammo_casing/shotgun/fakebeanbag
-	name = "beanbag shell"
-	desc = "A weak beanbag shell."
-	icon_state = "bshell"
-	projectile_type = /obj/item/projectile/bullet/weakbullet/booze
-	muzzle_flash_strength = MUZZLE_FLASH_STRENGTH_NORMAL
+/obj/item/ammo_casing/a545/fusty
+	desc = "A fusty 5.45x39mm bullet casing."
+	caliber = "f545"
+	materials = list(MAT_METAL = 1000)
+	projectile_type = /obj/item/projectile/bullet/f545
+	muzzle_flash_strength = MUZZLE_FLASH_STRENGTH_STRONG
 	muzzle_flash_range = MUZZLE_FLASH_RANGE_NORMAL
 
 /obj/item/ammo_casing/rocket
@@ -405,7 +456,7 @@
 /obj/item/ammo_casing/caseless/foam_dart
 	name = "foam dart"
 	desc = "It's nerf or nothing! Ages 8 and up."
-	icon = 'icons/obj/guns/toy.dmi'
+	icon = 'icons/obj/weapons/toy.dmi'
 	icon_state = "foamdart"
 	materials = list(MAT_METAL = 10)
 	caliber = "foam_force"
@@ -434,10 +485,9 @@
 		FD.damage_type = BRUTE
 		update_icon()
 	else if((istype(A, /obj/item/pen)) && modified && !FD.pen)
-		if(!user.unEquip(A))
+		if(!user.drop_transfer_item_to_loc(A, FD))
 			return
 		harmful = TRUE
-		A.loc = FD
 		FD.log_override = FALSE
 		FD.pen = A
 		FD.damage = 5

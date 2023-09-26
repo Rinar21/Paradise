@@ -19,7 +19,8 @@
 					parallax,
 					discord_id,
 					discord_name,
-					keybindings
+					keybindings,
+					viewrange
 					FROM [format_table_name("player")]
 					WHERE ckey=:ckey"}, list(
 						"ckey" = C.ckey
@@ -51,6 +52,7 @@
 		discord_id = query.item[17]
 		discord_name = query.item[18]
 		keybindings = init_keybindings(raw = query.item[19])
+		viewrange = query.item[20]
 
 	qdel(query)
 
@@ -102,7 +104,8 @@
 					lastchangelog=:lastchangelog,
 					clientfps=:clientfps,
 					parallax=:parallax,
-					keybindings=:keybindings
+					keybindings=:keybindings,
+					viewrange=:viewrange
 					WHERE ckey=:ckey"}, list(
 						// OH GOD THE PARAMETERS
 						"ooccolour" = ooccolor,
@@ -121,6 +124,7 @@
 						"clientfps" = clientfps,
 						"parallax" = parallax,
 						"keybindings" = json_encode(keybindings_overrides),
+						"viewrange" = viewrange,
 						"ckey" = C.ckey
 					)
 					)
@@ -132,10 +136,11 @@
 	qdel(query)
 	return 1
 
-/datum/preferences/proc/load_character(client/C,slot)
+/datum/preferences/proc/load_character(client/C, slot)
 	saved = FALSE
 
-	if(!slot)	slot = default_slot
+	if(!slot)
+		slot = default_slot
 	slot = sanitize_integer(slot, 1, max_save_slots, initial(default_slot))
 	if(slot != default_slot)
 		default_slot = slot
@@ -147,6 +152,9 @@
 			qdel(firstquery)
 			return
 		qdel(firstquery)
+
+	if(!C) // If the client disconnected during the query, try again later.
+		return TRUE
 
 	// Let's not have this explode if you sneeze on the DB
 	var/datum/db_query/query = SSdbcore.NewQuery({"SELECT

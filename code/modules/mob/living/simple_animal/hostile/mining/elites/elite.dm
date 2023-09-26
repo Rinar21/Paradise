@@ -6,7 +6,7 @@
 #define REVIVE_COOLDOWN_MULT_ANTAG 2
 #define REVIVE_HEALTH_MULT 0.2
 #define REVIVE_HEALTH_MULT_ANTAG 0.3
-#define FULL_STRENGHT_TIME 30 MINUTES
+#define STRENGHT_INCREASE_TIME 60 MINUTES
 
 //Elite mining mobs
 /mob/living/simple_animal/hostile/asteroid/elite
@@ -32,6 +32,7 @@
 	var/scale_with_time = TRUE
 	var/reviver = null
 	var/dif_mult = 1 // Scales with number of enemies
+	var/dif_mult_dmg = 1
 	var/chosen_attack = 1
 	var/list/attack_action_types = list()
 	var/obj/loot_drop = null
@@ -73,7 +74,7 @@
 	. = ..()
 	if(ismineralturf(target))
 		var/turf/simulated/mineral/M = target
-		M.gets_drilled()
+		M.attempt_drill()
 	if(istype(target, /obj/mecha))
 		var/obj/mecha/M = target
 		M.take_damage(mech_damage, BRUTE, "melee", 1)
@@ -82,7 +83,7 @@
 		if(L.stat != DEAD)
 			if(!client && ranged && ranged_cooldown <= world.time)
 				OpenFire()
-		else
+		else if(L.health < -400)
 			L.gib()
 
 
@@ -112,13 +113,14 @@
 			adjustBruteLoss(25)
 
 /mob/living/simple_animal/hostile/asteroid/elite/proc/scale_stats(var/list/activators)
-	dif_mult = enemies_count_scale ** length(activators)
-	if(scale_with_time && world.time > FULL_STRENGHT_TIME)
-		dif_mult *= (world.time / (FULL_STRENGHT_TIME))
+	dif_mult = enemies_count_scale ** (length(activators)-1)
+	dif_mult_dmg = (dif_mult + 1) * 0.5
+	if(scale_with_time && world.time > STRENGHT_INCREASE_TIME)
+		dif_mult *= 1.4
 	maxHealth = initial(maxHealth) * dif_mult
 	health = initial(health) * dif_mult
-	melee_damage_lower = initial(melee_damage_lower) * (dif_mult+1) / 0.5
-	melee_damage_upper = initial(melee_damage_upper) * (dif_mult+1) / 0.5
+	melee_damage_lower = initial(melee_damage_lower) * dif_mult_dmg
+	melee_damage_upper = initial(melee_damage_upper) * dif_mult_dmg
 
 /mob/living/simple_animal/hostile/asteroid/elite/can_die()
 	return ..() && health <= 0
@@ -240,8 +242,8 @@ While using this makes the system rely on OnFire, it still gives options for tim
 			if(boosted)
 				mychild.playsound_local(get_turf(mychild), 'sound/magic/cult_spell.ogg', 40, 0)
 				to_chat(mychild, "<span class='warning'>Someone has activated your tumor.  You will be returned to fight shortly, get ready!</span>")
-			addtimer(CALLBACK(src, .proc/return_elite), 3 SECONDS)
-			INVOKE_ASYNC(src, .proc/arena_checks)
+			addtimer(CALLBACK(src, PROC_REF(return_elite)), 3 SECONDS)
+			INVOKE_ASYNC(src, PROC_REF(arena_checks))
 		if(TUMOR_INACTIVE)
 			if(HAS_TRAIT(src, TRAIT_ELITE_CHALLENGER))
 				user.visible_message("<span class='warning'>[user] reaches for [src] with [user.p_their()] arm, but nothing happens.</span>",
@@ -254,7 +256,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 			for(var/mob/living/carbon/human/fighter in range(12, src.loc))
 				make_activator(fighter)
 			if(!boosted)
-				addtimer(CALLBACK(src, .proc/spawn_elite), 3 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(spawn_elite)), 3 SECONDS)
 				return
 			visible_message("<span class='danger'>Something within [src] stirs...</span>")
 			var/list/candidates = SSghost_spawns.poll_candidates("Do you want to play as a lavaland elite?", ROLE_ELITE, TRUE, 10 SECONDS, source = src)
@@ -267,7 +269,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 					Хоть и оппонент снаряжен шахтерской экипировкой и различными артефактами, у вас есть мощные способности, которые обычно были ограничены ИИ.\n\
 					Если вы захотите победить, вам придется использовать свои способности с умом. Вам лучше ознакомиться с ними всеми так быстро, насколько возможно.\n\
 					Good luck!</b>")
-				addtimer(CALLBACK(src, .proc/spawn_elite, elitemind), 10 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(spawn_elite), elitemind), 10 SECONDS)
 			else
 				visible_message("<span class='warning'>The stirring stops, and nothing emerges.  Perhaps try again later.</span>")
 				activity = TUMOR_INACTIVE
@@ -285,7 +287,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		mychild.sentience_act()
 		notify_ghosts("\A [mychild] has been awakened in \the [get_area(src)]!", enter_link="<a href=?src=[UID()];follow=1>(Click to help)</a>", source = mychild, action = NOTIFY_FOLLOW)
 	icon_state = "tumor_popped"
-	INVOKE_ASYNC(src, .proc/arena_checks)
+	INVOKE_ASYNC(src, PROC_REF(arena_checks))
 
 /obj/structure/elite_tumor/proc/return_elite()
 	mychild.forceMove(loc)
@@ -297,7 +299,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		mychild.health = mychild.maxHealth
 		mychild.grab_ghost()
 		notify_ghosts("\A [mychild] has been challenged in \the [get_area(src)]!", enter_link="<a href=?src=[UID()];follow=1>(Click to help)</a>", source = mychild, action = NOTIFY_FOLLOW)
-	INVOKE_ASYNC(src, .proc/arena_checks)
+	INVOKE_ASYNC(src, PROC_REF(arena_checks))
 
 /obj/structure/elite_tumor/Initialize(mapload)
 	. = ..()
@@ -317,7 +319,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 /obj/structure/elite_tumor/proc/make_activator(mob/user)
 	activators += user
 	ADD_TRAIT(user, TRAIT_ELITE_CHALLENGER, "activation")
-	RegisterSignal(user, COMSIG_PARENT_QDELETING, .proc/clear_activator)
+	RegisterSignal(user, COMSIG_PARENT_QDELETING, PROC_REF(clear_activator))
 
 /obj/structure/elite_tumor/proc/clear_activator(mob/source)
 	SIGNAL_HANDLER
@@ -357,10 +359,10 @@ While using this makes the system rely on OnFire, it still gives options for tim
 /obj/structure/elite_tumor/proc/arena_checks()
 	if(activity != TUMOR_ACTIVE || QDELETED(src))
 		return
-	INVOKE_ASYNC(src, .proc/fighters_check)  //Checks to see if our fighters died.
-	INVOKE_ASYNC(src, .proc/arena_trap)  //Gets another arena trap queued up for when this one runs out.
-	INVOKE_ASYNC(src, .proc/border_check)  //Checks to see if our fighters got out of the arena somehow.
-	addtimer(CALLBACK(src, .proc/arena_checks), 5 SECONDS)
+	INVOKE_ASYNC(src, PROC_REF(arena_trap))  //Gets another arena trap queued up for when this one runs out.
+	INVOKE_ASYNC(src, PROC_REF(border_check))  //Checks to see if our fighters got out of the arena somehow.
+	INVOKE_ASYNC(src, PROC_REF(fighters_check))  //Checks to see if our fighters died.
+	addtimer(CALLBACK(src, PROC_REF(arena_checks)), 5 SECONDS)
 
 /obj/structure/elite_tumor/proc/fighters_check()
 	if(QDELETED(mychild) || mychild.stat == DEAD)
@@ -412,14 +414,14 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	var/lootloc = loc
 	if(boosted)
 		lootloc = new /obj/structure/closet/crate/necropolis/tendril(loc)
-		if(prob(75))
-			new /obj/item/tumor_shard(lootloc)
-			to_chat(mychild, "<span class='warning'>Dont leave your body, if you want to be revived.</span>")
+		new /obj/item/tumor_shard(lootloc)
+		to_chat(mychild, "<span class='warning'>Dont leave your body, if you want to be revived.</span>")
 		SSblackbox.record_feedback("tally", "Player controlled Elite loss", 1, mychild.name)
 	else
 		SSblackbox.record_feedback("tally", "AI controlled Elite loss", 1, mychild.name)
 	new mychild.loot_drop(lootloc)
 	mychild.dif_mult = 1
+	mychild.dif_mult_dmg = 1
 	qdel(src)
 
 /obj/structure/elite_tumor/proc/onEliteWon()
@@ -522,4 +524,4 @@ While using this makes the system rely on OnFire, it still gives options for tim
 #undef REVIVE_COOLDOWN_MULT_ANTAG
 #undef REVIVE_HEALTH_MULT
 #undef REVIVE_HEALTH_MULT_ANTAG
-#undef FULL_STRENGHT_TIME
+#undef STRENGHT_INCREASE_TIME

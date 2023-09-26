@@ -28,7 +28,7 @@
 	health = 1400
 	melee_damage_lower = 35
 	melee_damage_upper = 35
-	armour_penetration = 50
+	armour_penetration = 40
 	attacktext = "slashes its arms at"
 	attack_sound = 'sound/effects/hit_punch.ogg'
 	throw_message = "doesn't affect the sturdiness of"
@@ -57,7 +57,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/scale_stats(list/activators)
 	. = ..()
-	charge_damage *= dif_mult
+	charge_damage = charge_damage * dif_mult_dmg
 
 /datum/action/innate/elite_attack/legionnaire_charge
 	name = "Legionnaire Charge"
@@ -115,7 +115,7 @@
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/Move()
 	if(charging)
 		return FALSE
-	return ..()
+	. = ..()
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/MiddleClickOn(atom/A)
 	. = ..()
@@ -136,7 +136,7 @@
 		T = get_step(T, dir_to_target)
 	playsound(src, 'sound/misc/demon_attack1.ogg', 200, 1)
 	visible_message("<span class='danger'>[src] prepares to charge!</span>")
-	addtimer(CALLBACK(src, .proc/legionnaire_charge_to, dir_to_target, 0), 2)
+	addtimer(CALLBACK(src, PROC_REF(legionnaire_charge_to), dir_to_target, 0), 2)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge_to(move_dir, times_ran, list/hit_targets = list())
 	if(times_ran >= 6)
@@ -145,7 +145,7 @@
 	var/turf/T = get_step(get_turf(src), move_dir)
 	if(ismineralturf(T))
 		var/turf/simulated/mineral/M = T
-		M.gets_drilled()
+		M.attempt_drill()
 	if(T.density)
 		charging = FALSE
 		return
@@ -179,7 +179,7 @@
 			L.Weaken(0.1 SECONDS)
 			L.adjustBruteLoss(charge_damage_first)
 
-	addtimer(CALLBACK(src, .proc/legionnaire_charge_to, move_dir, (times_ran + 1), hit_targets), 0.3)
+	addtimer(CALLBACK(src, PROC_REF(legionnaire_charge_to), move_dir, (times_ran + 1), hit_targets), 0.3)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/head_detach(target)
 	ranged_cooldown = world.time + 1 SECONDS * revive_multiplier()
@@ -206,7 +206,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/onHeadDeath()
 	myhead = null
-	addtimer(CALLBACK(src, .proc/regain_head), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(regain_head)), 5 SECONDS)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/regain_head()
 	has_head = TRUE
@@ -315,7 +315,7 @@
 	var/obj/item/projectile/legionnaire/P = new(startloc)
 	P.preparePixelProjectile(marker, marker, src)
 	P.firer = src
-	P.damage *= dif_mult
+	P.damage = P.damage * dif_mult_dmg
 	if(target)
 		P.original = target
 	P.fire()

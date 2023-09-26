@@ -404,29 +404,29 @@ Note that amputating the affected organ does in fact remove the infection from t
 				target_organ = pick(candidate_organs)
 
 		if(target_organ)
-			target_organ.germ_level++
+			target_organ.germ_level += owner.dna.species.germs_growth_rate
 
 		//spread the infection to child and parent organs
 		if(children)
 			for(var/obj/item/organ/external/child in children)
 				if(child.germ_level < germ_level && !child.is_robotic())
 					if(child.germ_level < INFECTION_LEVEL_ONE * 2 || prob(30))
-						child.germ_level++
+						child.germ_level += owner.dna.species.germs_growth_rate
 
 		if(parent)
 			if(parent.germ_level < germ_level && !parent.is_robotic())
 				if(parent.germ_level < INFECTION_LEVEL_ONE * 2 || prob(30))
-					parent.germ_level++
+					parent.germ_level += owner.dna.species.germs_growth_rate
 
 	if(germ_level >= INFECTION_LEVEL_THREE)
 		necrotize()
-		germ_level++
+		germ_level += owner.dna.species.germs_growth_rate
 		owner.adjustToxLoss(1)
 
 //Updates brute_damn and burn_damn from wound damages. Updates BLEEDING status.
 /obj/item/organ/external/proc/check_fracture(damage)
-	if(config.bones_can_break && brute_dam + burn_dam + damage > min_broken_damage && !is_robotic())
-		if(prob(damage))
+	if(CONFIG_GET(flag/bones_can_break) && brute_dam + burn_dam + damage > min_broken_damage && !is_robotic())
+		if(prob(damage * FRAGILITY(owner)))
 			fracture()
 			add_attack_logs(owner, null, "Suffered fracture to [src](Damage: [damage], Organ HP: [max_damage - (brute_dam + burn_dam) ])")
 
@@ -475,7 +475,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		status &= ~ORGAN_SPLINTED //oh no, we actually need surgery now!
 		owner.visible_message("<span class='danger'>[owner] screams in pain as [owner.p_their()] splint pops off their [name]!</span>","<span class='userdanger'>You scream in pain as your splint pops off your [name]!</span>")
 		owner.emote("scream")
-		owner.Stun(2)
+		owner.Stun(4 SECONDS)
 		owner.handle_splints()
 
 
@@ -559,6 +559,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			qdel(src) // If you flashed away to ashes, YOU FLASHED AWAY TO ASHES
 			return null
 
+
 /obj/item/organ/external/proc/disembowel(spillage_zone = "chest")
 	if(!owner)
 		return
@@ -628,12 +629,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		holder.visible_message(\
 			"\The [holder.handcuffed.name] falls off of [holder.name].",\
 			"\The [holder.handcuffed.name] falls off you.")
-		holder.unEquip(holder.handcuffed)
+		holder.drop_item_ground(holder.handcuffed)
 	if(holder.legcuffed && (body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT)))
 		holder.visible_message(\
 			"\The [holder.legcuffed.name] falls off of [holder.name].",\
 			"\The [holder.legcuffed.name] falls off you.")
-		holder.unEquip(holder.legcuffed)
+		holder.drop_item_ground(holder.legcuffed)
 
 /obj/item/organ/external/proc/fracture()
 	if(is_robotic())
@@ -648,15 +649,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
 			"You hear a sickening crack.")
 		playsound(owner, "bonebreak", 150, 1)
-		if(owner.reagents.has_reagent("morphine"))
-			return
-		if(owner.reagents.has_reagent("syntmorphine"))
-			return
-		if(owner.reagents.has_reagent("hydrocodone"))
-			return
-		if(owner.stat == UNCONSCIOUS)
-			return
-		if(owner.dna.species && !(NO_PAIN in owner.dna.species.species_traits))
+		if(owner.has_pain())
 			owner.emote("scream")
 
 	status |= ORGAN_BROKEN

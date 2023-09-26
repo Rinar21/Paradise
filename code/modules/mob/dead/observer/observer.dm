@@ -44,7 +44,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		/mob/dead/observer/proc/open_spawners_menu)
 
 	// Our new boo spell.
-	AddSpell(new /obj/effect/proc_holder/spell/targeted/click/boo(null))
+	AddSpell(new /obj/effect/proc_holder/spell/boo(null))
 
 	can_reenter_corpse = flags & GHOST_CAN_REENTER
 	started_as_observer = flags & GHOST_IS_OBSERVER
@@ -166,6 +166,7 @@ Works together with spawning an observer, noted above.
 		else
 			GLOB.non_respawnable_keys[ckey] = 1
 		ghost.key = key
+		SEND_SIGNAL(src, COMSIG_MOB_GHOSTIZE, ghost)
 		return ghost
 
 /*
@@ -208,7 +209,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(warningmsg)
 		// Not respawnable
 		var/mob/dead/observer/ghost = ghostize(0)	// 0 parameter stops them re-entering their body
-		ghost.timeofdeath = world.time	// Because the living mob won't have a time of death and we want the respawn timer to work properly.
+		ghost?.timeofdeath = world.time	// Because the living mob won't have a time of death and we want the respawn timer to work properly.
 	else
 		// Respawnable
 		ghostize(1)
@@ -461,7 +462,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(isobserver(usr)) //Make sure they're an observer!
 		var/list/dest = getpois(mobs_only=TRUE) //Fill list, prompt user with list
 		var/datum/async_input/A = input_autocomplete_async(usr, "Enter a mob name: ", dest)
-		A.on_close(CALLBACK(src, .proc/jump_to_mob))
+		A.on_close(CALLBACK(src, PROC_REF(jump_to_mob)))
 
 /mob/dead/observer/proc/jump_to_mob(mob/M)
 	if(!M || !isobserver(usr))
@@ -591,13 +592,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	..()
 //END TELEPORT HREF CODE
 
-/mob/dead/observer/verb/toggle_anonsay()
-	set name = "Toggle Anonymous Dead-chat"
-	set category = "Ghost"
-	set desc = "Toggles showing your key in dead chat."
-	client.prefs.toggles2 ^= PREFTOGGLE_2_ANONDCHAT
-	to_chat(src, "As a ghost, your key will [(client.prefs.toggles2 & PREFTOGGLE_2_ANONDCHAT) ? "no longer" : "now"] be shown when you speak in dead chat.</span>")
-	client.prefs.save_preferences(src)
 
 /mob/dead/observer/verb/toggle_ghostsee()
 	set name = "Toggle Ghost Vision"

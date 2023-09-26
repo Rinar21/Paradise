@@ -36,7 +36,7 @@
 
 	var/hat_offset_y = -8
 	var/hat_offset_y_rest = -19
-	var/hat_icon_file = 'icons/mob/head.dmi'
+	var/hat_icon_file = 'icons/mob/clothing/head.dmi'
 	var/hat_icon_state
 	var/hat_alpha
 	var/hat_color
@@ -173,7 +173,7 @@
 	. = ..()
 
 /mob/living/simple_animal/pet/slugcat/proc/speared()
-	icon_state = "[icon_state]_spear"
+	icon_state = "[initial(icon_state)]_spear"
 
 	var/obj/item/twohanded/spear = inventory_hand
 
@@ -233,14 +233,13 @@
 			to_chat(user, "<span class='warning'>Нельзя надеть больше одного головного убора на голову [src.name]!</span>")
 		return 0
 
-	if(user && !user.unEquip(item_to_add))
+	if(user && !user.drop_transfer_item_to_loc(item_to_add, src))
 		to_chat(user, "<span class='warning'>[item_to_add.name] застрял в ваших руках, вы не можете его надеть на голову [src.name]!</span>")
 		return 0
 
 	user.visible_message("<span class='notice'>[user] надевает [item_to_add].name на голову [real_name].</span>",
 		"<span class='notice'>Вы надеваете [item_to_add.name] на голову [real_name].</span>",
 		"<span class='italics'>Вы слышите как что-то нацепили.</span>")
-	item_to_add.forceMove(src)
 	inventory_head = item_to_add
 	regenerate_icons()
 
@@ -253,7 +252,8 @@
 			return TRUE
 
 		to_chat(user, "<span class='warning'>Вы сняли [inventory_head.name] с головы [src.name].</span>")
-		user.put_in_hands(inventory_head)
+		drop_item_ground(inventory_head)
+		user.put_in_hands(inventory_head, ignore_anim = FALSE)
 
 		null_hat()
 
@@ -266,7 +266,7 @@
 
 /mob/living/simple_animal/pet/slugcat/proc/drop_hat()
 	if(inventory_head)
-		unEquip(inventory_head)
+		drop_item_ground(inventory_head)
 		null_hat()
 		regenerate_icons()
 
@@ -295,7 +295,7 @@
 			to_chat(user, "<span class='warning'>Лапки [src.name] заняты [inventory_hand.name]!</span>")
 		return 0
 
-	if(user && !user.unEquip(item_to_add))
+	if(user && !user.drop_item_ground(item_to_add))
 		to_chat(user, "<span class='warning'>[item_to_add.name] застрял в ваших руках, вы не можете его дать [src.name]!</span>")
 		return 0
 
@@ -322,7 +322,8 @@
 			return TRUE
 
 		to_chat(user, "<span class='warning'>Вы забрали [inventory_hand.name] с лап [src].</span>")
-		user.put_in_hands(inventory_hand)
+		drop_item_ground(inventory_hand)
+		user.put_in_hands(inventory_hand, ignore_anim = FALSE)
 
 		null_hand()
 
@@ -335,7 +336,7 @@
 
 /mob/living/simple_animal/pet/slugcat/proc/drop_hand()
 	if(inventory_hand)
-		unEquip(inventory_hand)
+		drop_item_ground(inventory_hand)
 		null_hand()
 		regenerate_icons()
 

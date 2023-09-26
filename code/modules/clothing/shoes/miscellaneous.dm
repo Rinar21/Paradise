@@ -59,7 +59,7 @@
 
 /obj/item/clothing/shoes/galoshes/dry/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, .proc/on_step)
+	RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, PROC_REF(on_step))
 
 /obj/item/clothing/shoes/galoshes/dry/proc/on_step()
 	SIGNAL_HANDLER
@@ -80,7 +80,7 @@
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg' = 1, 'sound/effects/clownstep2.ogg' = 1), 50, falloff_exponent = 20) //die off quick please
 
-/obj/item/clothing/shoes/clown_shoes/equipped(mob/user, slot)
+/obj/item/clothing/shoes/clown_shoes/equipped(mob/user, slot, initial)
 	. = ..()
 	if(slot == slot_shoes && enabled_waddle)
 		user.AddElement(/datum/element/waddling)
@@ -157,8 +157,7 @@
 		if(O)
 			to_chat(user, "<span class='notice'>В креплении уже есть нож.</span>")
 		else
-			user.drop_item()
-			C.forceMove(src)
+			user.drop_transfer_item_to_loc(C, src)
 			to_chat(user, "<span class='notice'>Вы убрали [C] в [src].</span>")
 
 /obj/item/clothing/shoes/workboots/mining/verb/verb_remove_knife()
@@ -174,12 +173,12 @@
 		var/obj/item/kitchen/knife/combat/survival/O = locate() in src
 		if(O)
 			to_chat(user, "<span class='notice'>Вы извлекли [O] из [src].</span>")
+			O.forceMove_turf()
 			if(istype(loc, /mob))
 				var/mob/M = loc
 				if(M.get_active_hand() == null)
-					M.put_in_hands(O)
+					M.put_in_hands(O, ignore_anim = FALSE)
 					return
-			O.forceMove(get_turf(src))
 		else
 			to_chat(user, "<span class='warning'>Крепление пустое.</span>")
 	else
@@ -402,6 +401,22 @@
  	icon_state = "brown_wrap"
  	item_state = "brown_wrap"
 
+/obj/item/clothing/shoes/footwraps/goliath
+	name = "goliath hide footwraps"
+	desc = "These wraps, made from goliath hide, make your feet feel snug and secure, while still being breathable and light."
+	icon_state = "footwraps_goliath"
+	item_state = "footwraps_goliath"
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 0)
+	resistance_flags = FIRE_PROOF
+
+/obj/item/clothing/shoes/footwraps/dragon
+	name = "ash drake hide footwraps"
+	desc = "These wraps, made from ash drake hide, make your feet feel snug and secure, while still being breathable and light."
+	icon_state = "footwraps_dragon"
+	item_state = "footwraps_dragon"
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 0, "bio" = 10, "rad" = 0, "fire" = 15, "acid" = 0)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+
 /obj/item/clothing/shoes/bhop
 	name = "jump boots"
 	desc = "A specialized pair of combat boots with a built-in propulsion system for rapid foward movement."
@@ -416,6 +431,7 @@
 	var/jumpspeed = 3
 	var/recharging_rate = 60 //default 6 seconds between each dash
 	var/recharging_time = 0 //time until next dash
+	var/datum/callback/last_jump = null
 
 /obj/item/clothing/shoes/bhop/ui_action_click(mob/user, action)
 	if(!ishuman(user))
@@ -430,9 +446,13 @@
 
 	var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
 
+	if(last_jump) //in case we are trying to perfom jumping while first jump was not complete
+		last_jump.Invoke()
 	var/isflying = user.flying
 	user.flying = TRUE
-	if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = CALLBACK(src, .proc/after_jump, user, isflying)))
+	var/after_jump_callback = CALLBACK(src, PROC_REF(after_jump), user, isflying)
+	if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = after_jump_callback))
+		last_jump = after_jump_callback
 		playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
 		user.visible_message("<span class='warning'>[usr] dashes forward into the air!</span>")
 		recharging_time = world.time + recharging_rate
@@ -442,6 +462,7 @@
 
 /obj/item/clothing/shoes/bhop/proc/after_jump(mob/user, isflying)
 	user.flying = isflying
+	last_jump = null
 
 /obj/item/clothing/shoes/bhop/clown
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge! Ctrl-click to toggle the waddle dampeners!"
@@ -463,7 +484,7 @@
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg' = 1, 'sound/effects/clownstep2.ogg' = 1), 50, falloff_exponent = 20) //die off quick please
 
-/obj/item/clothing/shoes/bhop/clown/equipped(mob/user, slot)
+/obj/item/clothing/shoes/bhop/clown/equipped(mob/user, slot, initial)
 	. = ..()
 	if(slot == slot_shoes && enabled_waddle)
 		user.AddElement(/datum/element/waddling)
@@ -494,3 +515,21 @@
 /obj/item/clothing/shoes/ducky/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/squeaktoy.ogg' = 1), 50, falloff_exponent = 20) //die off quick please
+
+/obj/item/clothing/shoes/pathtreads
+	name = "pathfinder treads"
+	desc = "Massive boots made from chitin, they look hand-crafted."
+	icon_state = "pathtreads"
+	item_state = "pathtreads"
+	body_parts_covered = LEGS|FEET
+	resistance_flags = FIRE_PROOF
+	heat_protection = LEGS|FEET
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	cold_protection = LEGS|FEET
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+
+/obj/item/clothing/shoes/mr_chang_sandals
+	name = "Flashy slippers"
+	desc = "Made of wood. Used to support world's economics stable."
+	icon_state = "mr_chang_sandals"
+	item_state = "mr_chang_sandals"

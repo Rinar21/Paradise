@@ -5,7 +5,7 @@
 	speak_emote = list("intones")
 	tts_seed = "Earth"
 	bubble_icon = "guardian"
-	response_help  = "passes through"
+	response_help  = "gently pets"
 	response_disarm = "flails at"
 	response_harm   = "punches"
 	icon = 'icons/mob/guardian.dmi'
@@ -16,6 +16,7 @@
 	a_intent = INTENT_HARM
 	can_change_intents = 0
 	stop_automated_movement = 1
+	universal_speak = TRUE
 	flying = TRUE
 	attack_sound = 'sound/weapons/punch1.ogg'
 	minbodytemp = 0
@@ -28,6 +29,7 @@
 	obj_damage = 40
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	move_resist = MOVE_FORCE_STRONG
 	AIStatus = AI_OFF
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/ectoplasm = 1)
 	var/summoned = FALSE
@@ -71,13 +73,13 @@
 	if(summoner)
 		if(summoner.stat == DEAD || (!summoner.check_death_method() && summoner.health <= HEALTH_THRESHOLD_DEAD) || QDELETED(summoner))
 			summoner.remove_guardian_actions()
-			to_chat(src, "<span class='danger'>Ваш призыватель умер!</span>")
-			visible_message("<span class='danger'>[src] умирает вместе с носителем!</span>")
+			to_chat(src, span_danger("Ваш призыватель умер!"))
+			visible_message(span_danger("[src] умирает вместе с носителем!"))
 			ghostize()
 			qdel(src)
 	snapback()
 	if(summoned && !summoner && !admin_spawned)
-		to_chat(src, "<span class='danger'>Каким-то образом у вас нет призывателя! Вы исчезаете!</span>")
+		to_chat(src, span_danger("Каким-то образом у вас нет призывателя! Вы исчезаете!"))
 		ghostize()
 		qdel(src)
 
@@ -88,7 +90,7 @@
 			return
 		else
 			to_chat(src, "<span class='holoparasite'>Вас откинуло назад, так как превышена дальность связи! Ваша дальность всего [range] метров от [summoner.real_name]!</span>")
-			visible_message("<span class='danger'>\The [src] вернулся к носителю.</span>")
+			visible_message(span_danger("\The [src] вернулся к носителю."))
 			if(istype(summoner.loc, /obj/effect))
 				Recall(TRUE)
 			else
@@ -101,7 +103,7 @@
 
 /mob/living/simple_animal/hostile/guardian/AttackingTarget()
 	if(!is_deployed() && a_intent == INTENT_HARM)
-		to_chat(src, "<span class='danger'>Вы должны показать себя для атаки!</span>")
+		to_chat(src, span_danger("Вы должны показать себя для атаки!"))
 		return FALSE
 	else if(!is_deployed() && a_intent == INTENT_HELP)
 		return FALSE
@@ -109,7 +111,7 @@
 		return ..()
 
 /mob/living/simple_animal/hostile/guardian/Move() //Returns to summoner if they move out of range
-	..()
+	. = ..()
 	snapback()
 
 /mob/living/simple_animal/hostile/guardian/death(gibbed)
@@ -117,7 +119,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	to_chat(summoner, "<span class='danger'>Ваш [name] как-то умер!</span>")
+	to_chat(summoner, span_danger("Ваш [name] как-то умер!"))
 	summoner.death()
 
 
@@ -137,11 +139,13 @@
 		if(loc == summoner)
 			return
 		summoner.adjustBruteLoss(damage)
-		if(damage)
-			to_chat(summoner, "<span class='danger'>Ваш [name] под атакой! Вы получаете урон!</span>")
-			summoner.visible_message("<span class='danger'>Кровь хлещет из [summoner] ибо [src] получает урон!</span>")
+		if(damage <= 0)
+			return
+		if(damage > 0)
+			to_chat(summoner, span_danger("Ваш [name] под атакой! Вы получаете урон!"))
+			summoner.visible_message(span_danger("Кровь хлещет из [summoner] ибо [src] получает урон!"))
 		if(summoner.stat == UNCONSCIOUS)
-			to_chat(summoner, "<span class='danger'>Your body can't take the strain of sustaining [src] in this condition, it begins to fall apart!</span>")
+			to_chat(summoner, span_danger("Your body can't take the strain of sustaining [src] in this condition, it begins to fall apart!"))
 			summoner.adjustCloneLoss(damage/2)
 
 /mob/living/simple_animal/hostile/guardian/ex_act(severity, target)
@@ -157,8 +161,8 @@
 
 /mob/living/simple_animal/hostile/guardian/gib()
 	if(summoner)
-		to_chat(summoner, "<span class='danger'>Ваш [src] взорвался!</span>")
-		summoner.Weaken(10)// your fermillier has died! ROLL FOR CON LOSS!
+		to_chat(summoner, span_danger("Ваш [src] взорвался!"))
+		summoner.Weaken(20 SECONDS)// your fermillier has died! ROLL FOR CON LOSS!
 	ghostize()
 	qdel(src)
 
@@ -172,7 +176,7 @@
 		forceMove(get_turf(summoner))
 		new /obj/effect/temp_visual/guardian/phase(loc)
 		reset_perspective()
-		cooldown = world.time + 30
+		cooldown = world.time + 10
 
 /mob/living/simple_animal/hostile/guardian/proc/Recall(forced = FALSE)
 	if(!summoner || loc == summoner || (cooldown > world.time && !forced))
@@ -181,7 +185,7 @@
 	new /obj/effect/temp_visual/guardian/phase/out(get_turf(src))
 	forceMove(summoner)
 	buckled = null
-	cooldown = world.time + 30
+	cooldown = world.time + 10
 
 /mob/living/simple_animal/hostile/guardian/proc/Communicate(message)
 	var/input
@@ -193,33 +197,27 @@
 		return
 
 	// Show the message to the host and to the guardian.
-	to_chat(summoner, "<span class='changeling'><i>[src]:</i> [input]</span>")
-	to_chat(src, "<span class='changeling'><i>[src]:</i> [input]</span>")
+	to_chat(summoner, "<span class='alien'><i>[src]:</i> [input]</span>")
+	to_chat(src, "<span class='alien'><i>[src]:</i> [input]</span>")
 	add_say_logs(src, input, summoner, "Guardian")
 
 	// Show the message to any ghosts/dead players.
 	for(var/mob/M in GLOB.dead_mob_list)
 		if(M && M.client && M.stat == DEAD && !isnewplayer(M))
-			to_chat(M, "<span class='changeling'><i>Guardian Communication from <b>[src]</b> ([ghost_follow_link(src, ghost=M)]): [input]</i>")
-
-//override set to true if message should be passed through instead of going to host communication
-/mob/living/simple_animal/hostile/guardian/say(message, override = FALSE)
-	if(admin_spawned || override)//if it's an admin-spawned guardian without a host it can still talk normally
-		return ..(message)
-	Communicate(message)
+			to_chat(M, "<span class='alien'><i>Guardian Communication from <b>[src]</b> ([ghost_follow_link(src, ghost=M)]): [input]</i>")
 
 
 /mob/living/simple_animal/hostile/guardian/proc/ToggleMode()
-	to_chat(src, "<span class='danger'>У вас нет другого режима!</span>")
+	to_chat(src, span_danger("У вас нет другого режима!"))
 
 
 /mob/living/simple_animal/hostile/guardian/proc/ToggleLight()
 	if(!light_on)
 		set_light(luminosity_on)
-		to_chat(src, "<span class='notice'>Вы активировали свет.</span>")
+		to_chat(src, span_notice("Вы активировали свет."))
 	else
 		set_light(0)
-		to_chat(src, "<span class='notice'>Вы выключили свет.</span>")
+		to_chat(src, span_notice("Вы выключили свет."))
 	light_on = !light_on
 
 ////////Creation
@@ -253,7 +251,7 @@
 		if(G.summoner == user)
 			to_chat(user, "У вас уже есть [mob_name]!")
 			return
-	if(user.mind && (user.mind.changeling || user.mind.vampire))
+	if(user.mind && (ischangeling(user) || isvampire(user)))
 		to_chat(user, "[ling_failure]")
 		return
 	if(used == TRUE)
@@ -262,7 +260,7 @@
 	used = TRUE // Set this BEFORE the popup to prevent people using the injector more than once, polling ghosts multiple times, and receiving multiple guardians.
 	var/choice = alert(user, "[confirmation_message]",, "Да", "Нет")
 	if(choice == "Нет")
-		to_chat(user, "<span class='warning'>Вы решили не использовать [name].</span>")
+		to_chat(user, span_warning("Вы решили не использовать [name]."))
 		used = FALSE
 		return
 	to_chat(user, "[use_message]")
@@ -275,7 +273,7 @@
 	else
 		guardian_type = input(user, "Выберите тип [mob_name]", "Создание [mob_name] ") as null|anything in possible_guardians
 		if(!guardian_type)
-			to_chat(user, "<span class='warning'>Вы решили не использовать [name].</span>")
+			to_chat(user, span_warning("Вы решили не использовать [name]."))
 			used = FALSE
 			return
 
@@ -292,7 +290,7 @@
 /obj/item/guardiancreator/examine(mob/user, distance)
 	. = ..()
 	if(used)
-		. += "<span class='notice'>[used_message]</span>"
+		. += span_notice("[used_message]")
 
 /obj/item/guardiancreator/proc/spawn_guardian(mob/living/user, key, guardian_type)
 	var/pickedtype = /mob/living/simple_animal/hostile/guardian/punch
@@ -358,8 +356,8 @@
 	theme = "tech"
 	mob_name = "Голопаразит"
 	confirmation_message =  "Инъектор все еще содержит голопаразитов. Вы хотите использовать его?"
-	use_message = "Вы начинаете подавать питание на инжектор..."
-	used_message = "Инжектор уже был использован."
+	use_message = "Вы начинаете подавать питание на инъектор..."
+	used_message = "Инъектор уже был использован."
 	failure_message = "<B>...ОШИБКА. ПОСЛЕДОВАТЕЛЬНОСТЬ ЗАГРУЗКИ ПРЕРВАНА. AI НЕ УДАЛОСЬ ИНИЦИАЛИЗИРОВАТЬ. ОБРАТИТЕСЬ В СЛУЖБУ ПОДДЕРЖКИ ИЛИ ПОВТОРИТЕ ПОПЫТКУ ПОЗЖЕ.</B>"
 	ling_failure = "Голопаразиты отпрянули в ужасе. Они не хотят иметь ничего общего с таким существом, как вы."
 	color_list = list("Rose" = "#F62C6B",
@@ -391,7 +389,7 @@
 	random = FALSE
 
 /obj/item/guardiancreator/biological
-	name = "Скопление яиц скарабаеев"
+	name = "Скопление яиц скарабеев"
 	desc = "Паразитический вид, который при рождении будет гнездиться в ближайшем живом существе. Хотя это и не очень полезно для вашего здоровья, они будут защищать свой новый улей насмерть."
 	icon = 'icons/obj/fish_items.dmi'
 	icon_state = "eggs"
@@ -434,7 +432,7 @@
 	info = {"<b>Cписок видов голопаразитов</b><br>
 
  <br>
- <b>Хаос</b>: Телепортирует врагов при ударе(не всегда), телепортация приводит к вводу в Вас ЛСД. Поджигает врагов при прикосновении. Автоматически тушит носителя. Имеет в арсенале заклинание, накладывающее на всех в огромном радиусе оглушающие галлюцинации с быстрой перезарядкой.<br>
+ <b>Хаос</b>: Телепортирует врагов при ударе(не всегда), телепортация приводит к вашим легким галлюцинациям. Поджигает врагов при прикосновении. Автоматически тушит носителя. Имеет в арсенале заклинание, накладывающее на всех в огромном радиусе оглушающие галлюцинации с быстрой перезарядкой.<br>
  <br>
  <b>Стандарт</b>: Сокрушительные атаки ближнего боя способные пробивать стены, экстремально высокая прочность, имеет ауру замедления на врагов. Может кричать на врагов при ударе.<br>
  <br>
@@ -446,11 +444,11 @@
  <br>
  <b>Ассасин</b>: Катастрофически высокий урон грубым уроном и ядом, может входить в невидимость для нанесения удара ещё большей силы, игнорирующего броню. Совершенно нет никакой защиты, а в невидимости получает даже больше урона чем это возможно.<br>
  <br>
- <b>Налетчик</b>: Слабая атака и средняя броня, невероятно быстр, имеет повышенную скорость атаки по людям и имеет особый рывок, который при столкновении пробивает броню и опрокидывает жертву.<br>
+ <b>Налетчик</b>: Слабая атака с двойной скоростью атаки, средняя броня, невероятно быстр, имеет особый рывок, который при столкновении пробивает броню и опрокидывает жертву.<br>
  <br>
- <b>Молния</b>: Слабая атака и средняя броня, имеет цепь молнии между собой и хозяином, что дезинтегрирует любую цель при нахождении в ней. С малым шансом накладывает эту молнию при ударе, наносящую огромный урон.<br>
+ <b>Молния</b>: Слабая атака и средняя броня, имеет цепь молнии между собой и хозяином, что дезинтегрирует любую цель при нахождении в ней. Может метать молнии во врагов.<br>
  <br>
- <b>Защитник</b>: При нарушении дальности связи хозяин призывается к нему, а не наоборот. Имеет два режима: низкая атака с высокой защитой, и режим ультра-защиты, практически полностью нивелирующий входящий урон. В режиме ультра-защиты способен пережить даже взрыв бомбы, лишь слегка ранив хозяина.<br>
+ <b>Защитник</b>: При нарушении дальности связи хозяин призывается к нему, а не наоборот. Имеет два режима: низкая атака с высокой защитой, и режим ультра-защиты, практически полностью нивелирующий входящий и исходящий урон. В режиме ультра-защиты способен пережить даже взрыв бомбы, лишь слегка ранив хозяина. Может ставить силовые барьеры, через которые могут пройти только вы и ваш подопечный.<br>
 "}
 
 /obj/item/paper/guardian/update_icon()
@@ -460,8 +458,6 @@
 /obj/item/storage/box/syndie_kit/guardian
 	name = "Набор инжектора голопаразита"
 
-/obj/item/storage/box/syndie_kit/guardian/New()
-	..()
+/obj/item/storage/box/syndie_kit/guardian/populate_contents()
 	new /obj/item/guardiancreator/tech/choose(src)
 	new /obj/item/paper/guardian(src)
-	return

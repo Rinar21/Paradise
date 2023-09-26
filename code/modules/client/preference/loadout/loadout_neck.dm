@@ -57,7 +57,7 @@
 //Cloaks
 /datum/gear/neck/cloak
 	display_name = "cloak, grey"
-	path = /obj/item/clothing/neck/cloak
+	path = /obj/item/clothing/neck/cloak/grey
 
 /datum/gear/neck/cloak/job
 	subtype_path = /datum/gear/neck/cloak/job
@@ -106,7 +106,7 @@
 /datum/gear/neck/cloak/security
 	display_name = "cloak, security officer"
 	path = /obj/item/clothing/neck/cloak/security
-	allowed_roles = list("Head of Security", "Security Officer", "Warden", "Security Cadet", "Security Pod Pilot")
+	allowed_roles = list("Head of Security", "Security Officer", "Warden", "Security Pod Pilot")
 
 /datum/gear/neck/cloak/job/head_of_personnel
 	display_name = "cloak, head of personnel"
@@ -139,5 +139,5 @@
 /datum/gear/neck/poncho/security
 	display_name = "poncho, corporate"
 	path = /obj/item/clothing/neck/poncho/security
-	allowed_roles = list("Head of Security", "Security Officer", "Warden", "Security Cadet", "Security Pod Pilot")
+	allowed_roles = list("Head of Security", "Security Officer", "Warden", "Security Pod Pilot")
 

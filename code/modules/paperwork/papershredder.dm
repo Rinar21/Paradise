@@ -5,7 +5,7 @@
 	icon_state = "papershredder0"
 	density = 1
 	anchored = 1
-	var/max_paper = 10
+	var/max_paper = 15
 	var/paperamount = 0
 	var/list/shred_amounts = list(
 		/obj/item/photo = 1,
@@ -14,12 +14,14 @@
 		/obj/item/newspaper = 3,
 		/obj/item/card/id = 3,
 		/obj/item/paper_bundle = 3,
-		/obj/item/folder = 4
+		/obj/item/folder = 4,
+		/obj/item/book = 5
 		)
 
-/obj/machinery/papershredder/attackby(obj/item/W, mob/user)
+/obj/machinery/papershredder/attackby(obj/item/W, mob/user, params)
 
 	if(istype(W, /obj/item/storage))
+		add_fingerprint(user)
 		empty_bin(user, W)
 		return
 	else
@@ -42,17 +44,28 @@
 					SP.throw_at(get_edge_target_turf(src, pick(GLOB.alldirs)), 1, 1)
 				paperamount = max_paper
 			update_icon()
+			add_fingerprint(user)
 			return
 	..()
 
 	return
+
+/obj/machinery/papershredder/wrench_act(mob/user, obj/item/I)
+	. = TRUE
+	if(!I.use_tool(src, user, 0, volume = I.tool_volume))
+		return
+	anchored = !anchored
+	if(anchored)
+		WRENCH_ANCHOR_MESSAGE
+	else
+		WRENCH_UNANCHOR_MESSAGE
 
 /obj/machinery/papershredder/verb/empty_contents()
 	set name = "Empty bin"
 	set category = "Object"
 	set src in range(1)
 
-	if(usr.stat || usr.restrained() || usr.weakened || usr.paralysis || usr.lying || usr.stunned)
+	if(usr.stat || usr.restrained() || !usr.incapacitated() || usr.lying)
 		return
 
 	if(!paperamount)
@@ -95,13 +108,14 @@
 	return new /obj/item/shredded_paper(get_turf(src))
 
 /obj/machinery/papershredder/update_icon()
-	icon_state = "papershredder[clamp(round(paperamount/2), 0, 5)]"
-
+	icon_state = "papershredder[clamp(round(paperamount/3), 0, 5)]"
 
 /obj/item/shredded_paper/attackby(obj/item/W as obj, mob/user)
 	if(resistance_flags & ON_FIRE)
+		add_fingerprint(user)
 		return
 	if(is_hot(W, user))
+		add_fingerprint(user)
 		user.visible_message("<span class='danger'>\The [user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
 		"<span class='danger'>You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 		fire_act()

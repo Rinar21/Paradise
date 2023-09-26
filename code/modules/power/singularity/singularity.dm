@@ -1,7 +1,7 @@
 /obj/singularity
 	name = "gravitational singularity"
 	desc = "A gravitational singularity."
-	icon = 'icons/obj/singularity.dmi'
+	icon = 'icons/obj/engines_and_power/singularity.dmi'
 	icon_state = "singularity_s1"
 	anchored = 1
 	density = 1
@@ -104,8 +104,8 @@
 	return
 
 
-/obj/singularity/Bumped(atom/A)
-	consume(A)
+/obj/singularity/Bumped(atom/movable/moving_atom)
+	consume(moving_atom)
 	return
 
 
@@ -156,7 +156,7 @@
 	switch(temp_allowed_size)
 		if(STAGE_ONE)
 			current_size = STAGE_ONE
-			icon = 'icons/obj/singularity.dmi'
+			icon = 'icons/obj/engines_and_power/singularity.dmi'
 			icon_state = "singularity_s1"
 			pixel_x = 0
 			pixel_y = 0
@@ -437,9 +437,9 @@
 						to_chat(H, "<span class='notice'>You look directly into the [src.name], good thing you had your protective eyewear on!</span>")
 						return
 
-		M.apply_effect(3, STUN)
-		M.visible_message("<span class='danger'>[M] stares blankly at the [src.name]!</span>", \
-						"<span class='userdanger'>You look directly into the [src.name] and feel weak.</span>")
+		M.Stun(6 SECONDS)
+		M.visible_message("<span class='danger'>[M] stares blankly at [src]!</span>", \
+						"<span class='userdanger'>You look directly into [src] and feel weak.</span>")
 	return
 
 

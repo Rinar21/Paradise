@@ -23,6 +23,7 @@
 	var/simulated = TRUE //filter for actions - used by lighting overlays
 	var/atom_say_verb = "says"
 	var/bubble_icon = "default" ///what icon the mob uses for speechbubbles
+	var/bubble_emote_icon = "emote" ///what icon the mob uses for emotebubbles
 	var/dont_save = FALSE // For atoms that are temporary by necessity - like lighting overlays
 
 	///Chemistry.
@@ -183,6 +184,16 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
 	dir = newdir
 
+
+/atom/proc/set_angle(degrees)
+	var/matrix/M = matrix()
+	M.Turn(degrees)
+	// If we aint 0, make it NN transform
+	if(degrees)
+		appearance_flags |= PIXEL_SCALE
+	transform = M
+
+
 /*
 	Sets the atom's pixel locations based on the atom's `dir` variable, and what pixel offset arguments are passed into it
 	If no arguments are supplied, `pixel_x` or `pixel_y` will be set to 0
@@ -226,7 +237,7 @@
 			var/atom/movable/M = A
 			if(istype(M.loc, /mob/living))
 				var/mob/living/L = M.loc
-				L.unEquip(M)
+				L.drop_item_ground(M)
 			M.forceMove(src)
 
 /atom/proc/assume_air(datum/gas_mixture/giver)
@@ -252,7 +263,8 @@
 /atom/proc/on_reagent_change()
 	return
 
-/atom/proc/Bumped(atom/movable/AM)
+/atom/proc/Bumped(atom/movable/moving_atom)
+	SEND_SIGNAL(src, COMSIG_ATOM_BUMPED, moving_atom)
 	return
 
 /// Convenience proc to see if a container is open for chemistry handling
@@ -472,7 +484,7 @@
 
 /atom/proc/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	if(density && !has_gravity(AM)) //thrown stuff bounces off dense stuff in no grav, unless the thrown stuff ends up inside what it hit(embedding, bola, etc...).
-		addtimer(CALLBACK(src, .proc/hitby_react, AM), 2)
+		addtimer(CALLBACK(src, PROC_REF(hitby_react), AM), 2)
 
 /atom/proc/hitby_react(atom/movable/AM)
 	if(AM && isturf(AM.loc))
@@ -619,6 +631,12 @@
 	if(fingerprintshidden)
 		A.fingerprintshidden |= fingerprintshidden.Copy()    //admin
 	A.fingerprintslast = fingerprintslast
+
+/**
+* Proc thats checks if mobs can leave fingerprints and fibers on the atom
+*/
+/atom/proc/has_prints()
+	return FALSE
 
 GLOBAL_LIST_EMPTY(blood_splatter_icons)
 
@@ -936,15 +954,15 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 	if(length(speech_bubble_hearers))
 		var/image/I = image('icons/mob/talk.dmi', src, "[bubble_icon][say_test(message)]", FLY_LAYER)
 		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-		INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, speech_bubble_hearers, 30)
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, I, speech_bubble_hearers, 30)
 
-/atom/proc/select_voice(mob/user, silent_target = FALSE)
+/atom/proc/select_voice(mob/user, silent_target = FALSE, override = FALSE)
 	if(!ismob(src) && !user)
 		return null
 	var/tts_test_str = "Так звучит мой голос."
 
 	var/tts_seeds
-	if(user && check_rights(R_ADMIN, 0, user))
+	if(user && (check_rights(R_ADMIN, 0, user) || override))
 		tts_seeds = SStts.tts_seeds_names
 	else
 		tts_seeds = SStts.get_available_seeds(src)
@@ -958,11 +976,14 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 		INVOKE_ASYNC(GLOBAL_PROC, /proc/tts_cast, null, user, tts_test_str, new_tts_seed, FALSE)
 	return new_tts_seed
 
-/atom/proc/change_voice(mob/user)
+/atom/proc/change_voice(mob/user, override = FALSE)
 	set waitfor = FALSE
-	var/new_tts_seed = select_voice(user)
+	var/new_tts_seed = select_voice(user, override = override)
 	if(!new_tts_seed)
 		return null
+	return update_tts_seed(new_tts_seed)
+
+/atom/proc/update_tts_seed(new_tts_seed)
 	tts_seed = new_tts_seed
 	return new_tts_seed
 
@@ -1142,3 +1163,8 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 	if(length(list_to_use))
 		return list_to_use[case_id] || name
 	return name
+
+
+//OOP
+/atom/proc/update_pipe_vision()
+	return

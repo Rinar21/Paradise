@@ -43,7 +43,7 @@
 /obj/item/mmi/robotic_brain/clockwork/proc/try_to_transfer(mob/living/target, mob/user, obj/item/victim_brain)
 	if(ishuman(target))
 		for(var/obj/item/I in target)
-			target.unEquip(I)
+			target.drop_item_ground(I)
 	if(target.client == null)
 		target.dust()
 		get_ghost(target, user)
@@ -70,7 +70,7 @@
 
 /obj/item/mmi/robotic_brain/clockwork/proc/init_transfer(mob/living/attacker, obj/item/victim_brain, mob/living/target_body)
 	if(!isclocker(attacker))
-		attacker.Weaken(5)
+		attacker.Weaken(10 SECONDS)
 		attacker.emote("scream")
 		to_chat(attacker, "<span class='userdanger'>Your body is wracked with debilitating pain!</span>")
 		to_chat(attacker, "<span class='clocklarge'>\"Don't even try.\"</span>")

@@ -160,6 +160,14 @@
 		if(href_list["remove_inv"])
 			var/remove_from = href_list["remove_inv"]
 			switch(remove_from)
+				if("collar")
+					if(!pcollar)
+						return
+					var/collar = pcollar
+					drop_item_ground(collar)
+					usr.put_in_hands(collar, ignore_anim = FALSE)
+					regenerate_icons()
+
 				if("ears")
 					if(ears)
 						if(available_channels.len)
@@ -179,6 +187,9 @@
 				to_chat(usr, "<span class='warning'>You have nothing in your hand to put on its [add_to].</span>")
 				return
 			switch(add_to)
+				if("collar")
+					add_collar(usr.get_active_hand(), usr)
+
 				if("ears")
 					if(ears)
 						to_chat(usr, "<span class='warning'>It's already wearing something.</span>")
@@ -194,8 +205,7 @@
 
 						var/obj/item/radio/headset/headset_to_add = item_to_add
 
-						usr.drop_item()
-						headset_to_add.forceMove(src)
+						usr.drop_transfer_item_to_loc(headset_to_add, src)
 						ears = headset_to_add
 						to_chat(usr, "You fit the headset onto [src].")
 
@@ -623,9 +633,8 @@
 			stolen_item = C.r_hand
 
 		if(stolen_item)
-			C.unEquip(stolen_item)
+			C.drop_transfer_item_to_loc(stolen_item, src)
 			held_item = stolen_item
-			stolen_item.loc = src
 			visible_message("[src] grabs the [held_item] out of [C]'s hand!", "<span class='notice'>You snag the [held_item] out of [C]'s hand!</span>", "You hear the sounds of wings flapping furiously.")
 			return held_item
 

@@ -21,14 +21,19 @@
 	delay_web = 20
 	melee_damage_lower = 10
 	melee_damage_upper = 15
-	melee_damage_type = TOX
 	web_type = /obj/structure/spider/terrorweb/green
-	special_abillity = list(/obj/effect/proc_holder/spell/aoe_turf/terror/healing_lesser)
+	special_abillity = list(/obj/effect/proc_holder/spell/aoe/terror_healing)
 	spider_intro_text = "Будучи Лекарем Ужаса, ваша задача исцелять других пауков и откладывать яйца. Чем больше трупов вы поглотили, тем эффективнее исцеление, однако, для откладывания яиц, вам также необходимы трупы."
-	var/feedings_to_lay = 6
+	var/feedings_to_lay = 3
 	var/datum/action/innate/terrorspider/greeneggs/greeneggs_action
-	tts_seed = "Mortred"
+	tts_seed = "Jolene"
 
+/mob/living/simple_animal/hostile/poison/terror_spider/healer/strong
+	maxHealth = 220
+	health = 220
+	regeneration = 3
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 
 /mob/living/simple_animal/hostile/poison/terror_spider/healer/New()
 	..()
@@ -96,9 +101,8 @@
 		..()
 		return
 	var/inject_target = pick("chest","head")
-	if(L.stunned || L.can_inject(null, FALSE, inject_target, FALSE))
-		if(L.eye_blurry < 60)
-			L.AdjustEyeBlurry(10)
+	if(L.IsStunned() || L.can_inject(null, FALSE, inject_target, FALSE))
+		L.AdjustEyeBlurry(20 SECONDS, 0, 120 SECONDS)
 		// instead of having a venom that only lasts seconds, we just add the eyeblur directly.
 		visible_message("<span class='danger'>[src] buries its fangs deep into the [inject_target] of [target]!</span>")
 	else
@@ -112,13 +116,13 @@
 		if(L.stat != DEAD)
 			if(fed <= 1)
 				new /obj/effect/temp_visual/heal(get_turf(L), "#00ff00")
-				L.adjustBruteLoss(-3)
+				L.adjustBruteLoss(-4)
 			if(fed == 2)
 				new /obj/effect/temp_visual/heal(get_turf(L), "#0077ff")
-				L.adjustBruteLoss(-5)
+				L.adjustBruteLoss(-6)
 			if(fed >= 3)
 				new /obj/effect/temp_visual/heal(get_turf(L), "#ff0000")
-				L.adjustBruteLoss(-7)
+				L.adjustBruteLoss(-8)
 
 /obj/structure/spider/terrorweb/green
 	name = "slimy web"
@@ -126,5 +130,5 @@
 
 /obj/structure/spider/terrorweb/green/web_special_ability(mob/living/carbon/C)
 	if(istype(C))
-		if(C.eye_blurry < 60)
-			C.AdjustEyeBlurry(30)
+		if(C.AmountEyeBlurry() < 120 SECONDS)
+			C.AdjustEyeBlurry(30 SECONDS, 0, 60 SECONDS)

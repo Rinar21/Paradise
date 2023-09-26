@@ -28,7 +28,7 @@
 	health = 1300
 	melee_damage_lower = 20
 	melee_damage_upper = 20
-	armour_penetration = 50
+	armour_penetration = 30
 	light_power = 5
 	light_range = 2
 	light_color = "#FF0000"
@@ -54,7 +54,7 @@
 /mob/living/simple_animal/hostile/asteroid/elite/herald/death()
 	. = ..()
 	if(!is_mirror)
-		addtimer(CALLBACK(src, .proc/become_ghost), 0.8 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(become_ghost)), 0.8 SECONDS)
 		if(my_mirror)
 			QDEL_NULL(my_mirror)
 
@@ -130,7 +130,7 @@
 		var/obj/item/projectile/herald/H = new(startloc)
 		H.preparePixelProjectile(marker, marker, src)
 		H.firer = src
-		H.damage *= dif_mult
+		H.damage = H.damage * dif_mult_dmg
 		if(target)
 			H.original = target
 		H.fire(set_angle)
@@ -141,7 +141,7 @@
 		var/obj/item/projectile/herald/teleshot/H = new(startloc)
 		H.preparePixelProjectile(marker, marker, startloc)
 		H.firer = src
-		H.damage *= dif_mult
+		H.damage = H.damage * dif_mult_dmg
 		if(target)
 			H.original = target
 		H.fire(set_angle)
@@ -154,15 +154,16 @@
 	say("Молись")
 	SLEEP_CHECK_DEATH(0.5 SECONDS)// no point blank instant shotgun.
 	shoot_projectile(target_turf, angle_to_target, FALSE, TRUE)
-	addtimer(CALLBACK(src, .proc/shoot_projectile, target_turf, angle_to_target, FALSE, TRUE), 0.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(shoot_projectile), target_turf, angle_to_target, FALSE, TRUE), 0.2 SECONDS)
 	if(health < maxHealth * 0.5 && !is_mirror)
 		playsound(get_turf(src), 'sound/magic/clockwork/invoke_general.ogg', 2 SECONDS, TRUE)
-		addtimer(CALLBACK(src, .proc/shoot_projectile, target_turf, angle_to_target, FALSE, TRUE), 1 SECONDS)
-		addtimer(CALLBACK(src, .proc/shoot_projectile, target_turf, angle_to_target, FALSE, TRUE), 1.2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(shoot_projectile), target_turf, angle_to_target, FALSE, TRUE), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(shoot_projectile), target_turf, angle_to_target, FALSE, TRUE), 1.2 SECONDS)
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/proc/herald_circleshot(offset)
 	var/static/list/directional_shot_angles = list(1, 45, 90, 135, 180, 225, 270, 315) //Trust me, use 1. It really doesn't like zero.
 	for(var/i in directional_shot_angles)
+		playsound(get_turf(src), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
 		shoot_projectile(get_turf(src), i + offset, FALSE, FALSE)
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/proc/unenrage()
@@ -175,10 +176,10 @@
 	if(!is_mirror)
 		icon_state = "herald_enraged"
 	playsound(get_turf(src), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
-	addtimer(CALLBACK(src, .proc/herald_circleshot, 0), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(herald_circleshot), 0), 0.5 SECONDS)
 	if(health < maxHealth * 0.5 && !is_mirror)
-		addtimer(CALLBACK(src, .proc/herald_circleshot, 22.5), 1.5 SECONDS)
-	addtimer(CALLBACK(src, .proc/unenrage), 20)
+		addtimer(CALLBACK(src, PROC_REF(herald_circleshot), 22.5), 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(unenrage)), 20)
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/proc/herald_teleshot(target)
 	ranged_cooldown = world.time + 3 SECONDS * revive_multiplier()
@@ -227,7 +228,7 @@
 	name = "death bolt"
 	icon_state = "chronobolt"
 	damage = 15
-	armour_penetration = 30
+	armour_penetration = 35
 	speed = 2
 
 /obj/item/projectile/herald/teleshot
@@ -249,7 +250,7 @@
 	. = ..()
 	if(ismineralturf(target))
 		var/turf/simulated/mineral/M = target
-		M.gets_drilled()
+		M.attempt_drill()
 
 /obj/item/projectile/herald/teleshot/on_hit(atom/target, blocked = FALSE)
 	. = ..()

@@ -40,11 +40,7 @@
 		/obj/item/clothing/suit/armor/riot/knight
 	)
 
-/obj/item/storage/garmentbag/captains
-
-/obj/item/storage/garmentbag/captains/New()
-	. = ..()
-	contents = list()
+/obj/item/storage/garmentbag/captains/populate_contents()
 	new /obj/item/clothing/head/caphat/parade(src)
 	new /obj/item/clothing/head/caphat/blue(src)
 	new /obj/item/clothing/head/caphat/office(src)
@@ -67,12 +63,9 @@
 	new /obj/item/clothing/shoes/brown(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/clothing/shoes/laceup/cap(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/captain(src)
 
-/obj/item/storage/garmentbag/hop
-
-/obj/item/storage/garmentbag/hop/New()
-	. = ..()
-	contents = list()
+/obj/item/storage/garmentbag/hop/populate_contents()
 	new /obj/item/clothing/head/hopcap(src)
 	new /obj/item/clothing/neck/mantle/head_of_personnel(src)
 	new /obj/item/clothing/neck/cloak/head_of_personnel(src)
@@ -87,16 +80,13 @@
 	new /obj/item/clothing/under/rank/head_of_personnel_whimsy(src)
 	new /obj/item/clothing/under/rank/head_of_personnel_alt(src)
 	new /obj/item/clothing/under/rank/head_of_personnel_f(src)
-	new /obj/item/clothing/shoes/leather(src)	//added here delited on maps
+	new /obj/item/clothing/shoes/leather(src)	//added here deleted on maps
 	new /obj/item/clothing/shoes/brown(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/hop(src)
 
-/obj/item/storage/garmentbag/hos
-
-/obj/item/storage/garmentbag/hos/New()
-	. = ..()
-	contents = list()
+/obj/item/storage/garmentbag/hos/populate_contents()
 	new /obj/item/clothing/head/HoS(src)
 	new /obj/item/clothing/head/HoS/beret(src)
 	new /obj/item/clothing/suit/armor/hos(src)
@@ -108,12 +98,9 @@
 	new /obj/item/clothing/under/rank/head_of_security/corp(src)
 	new /obj/item/clothing/under/rank/head_of_security/skirt(src)
 	new /obj/item/clothing/under/rank/head_of_security/alt(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/security/hos(src)
 
-/obj/item/storage/garmentbag/warden
-
-/obj/item/storage/garmentbag/warden/New()
-	. = ..()
-	contents = list()
+/obj/item/storage/garmentbag/warden/populate_contents()
 	new /obj/item/clothing/head/warden(src)
 	new /obj/item/clothing/head/beret/sec/warden(src)
 	new /obj/item/clothing/suit/armor/vest/warden/alt(src)
@@ -123,11 +110,7 @@
 	new /obj/item/clothing/under/rank/warden/corp(src)
 	new /obj/item/clothing/under/rank/warden/skirt(src)
 
-/obj/item/storage/garmentbag/blueshield
-
-/obj/item/storage/garmentbag/blueshield/New()
-	. = ..()
-	contents = list()
+/obj/item/storage/garmentbag/blueshield/populate_contents()
 	new /obj/item/clothing/head/beret/centcom/officer(src)
 	new /obj/item/clothing/head/beret/centcom/officer/navy(src)
 	new /obj/item/clothing/neck/cloak/blueshield(src)
@@ -139,11 +122,7 @@
 	new /obj/item/clothing/shoes/jackboots/jacksandals(src)
 	new /obj/item/clothing/accessory/blue(src)
 
-/obj/item/storage/garmentbag/ntrep
-
-/obj/item/storage/garmentbag/ntrep/New()
-	. = ..()
-	contents = list()
+/obj/item/storage/garmentbag/ntrep/populate_contents()
 	new /obj/item/clothing/head/ntrep(src)
 	new /obj/item/clothing/neck/cloak/nanotrasen_representative(src)
 	new /obj/item/clothing/under/lawyer/oldman(src)
@@ -154,24 +133,34 @@
 	new /obj/item/clothing/shoes/sandal/fancy(src)
 	new /obj/item/clothing/shoes/centcom(src)
 
-/obj/item/storage/garmentbag/detective
-
-/obj/item/storage/garmentbag/detective/New()
-	. = ..()
-	contents = list()
+/obj/item/storage/garmentbag/detective/populate_contents()
 	new /obj/item/clothing/head/det_hat(src)
+	new /obj/item/clothing/head/det_hat/black(src)
+	new /obj/item/clothing/head/det_hat/brown(src)
+	new /obj/item/clothing/head/det_hat/grey(src)
 	new /obj/item/clothing/suit/storage/det_suit(src)
+	new /obj/item/clothing/suit/storage/det_suit/black(src)
 	new /obj/item/clothing/suit/storage/det_suit/forensics/blue(src)
 	new /obj/item/clothing/suit/storage/det_suit/forensics/red(src)
+	new /obj/item/clothing/suit/storage/det_suit/forensics/blaser(src)
+	new /obj/item/clothing/suit/storage/det_suit/forensics/blaser/brown(src)
+	new /obj/item/clothing/suit/storage/det_suit/forensics/blaser/grey(src)
 	new /obj/item/clothing/suit/armor/vest/det_suit(src)
 	new /obj/item/clothing/under/det(src)
+	new /obj/item/clothing/under/det/skirt(src)
+	new /obj/item/clothing/under/det/alt_a(src)
+	new /obj/item/clothing/under/det/alt_a/skirt(src)
+	new /obj/item/clothing/under/det/alt_b(src)
 	new /obj/item/clothing/shoes/brown(src)
 	new /obj/item/clothing/accessory/black(src)
+	new /obj/item/clothing/suit/suspenders(src)
+	new /obj/item/clothing/suit/wcoat(src)
+	new /obj/item/clothing/accessory/blue(src)
+	new /obj/item/clothing/accessory/red(src)
+	new /obj/item/clothing/shoes/black(src)
 
-/obj/item/storage/garmentbag/magistrate
 
-/obj/item/storage/garmentbag/magistrate/New()
-	. = ..()
+/obj/item/storage/garmentbag/magistrate/populate_contents()
 	new /obj/item/clothing/head/powdered_wig(src)
 	new /obj/item/clothing/head/justice_wig(src)
 	new /obj/item/clothing/suit/judgerobe(src)
@@ -180,11 +169,7 @@
 	new /obj/item/clothing/gloves/color/white(src)
 	new /obj/item/clothing/shoes/centcom(src)
 
-/obj/item/storage/garmentbag/RD
-
-/obj/item/storage/garmentbag/RD/New()
-	. = ..()
-	contents = list()
+/obj/item/storage/garmentbag/RD/populate_contents()
 	new /obj/item/clothing/head/bio_hood/scientist(src)
 	new /obj/item/clothing/head/beret/purple/rd(src)
 	new /obj/item/clothing/neck/mantle/research_director(src)
@@ -194,12 +179,9 @@
 	new /obj/item/clothing/under/rank/research_director(src)
 	new /obj/item/clothing/gloves/color/latex(src)
 	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/medical/science/rd(src)
 
-/obj/item/storage/garmentbag/CMO
-
-/obj/item/storage/garmentbag/CMO/New()
-	. = ..()
-	contents = list()
+/obj/item/storage/garmentbag/CMO/populate_contents()
 	new /obj/item/clothing/head/bio_hood/cmo(src)
 	new /obj/item/clothing/head/beret/elo(src)
 	new /obj/item/clothing/neck/mantle/chief_medical_officer(src)
@@ -209,12 +191,10 @@
 	new /obj/item/clothing/under/rank/chief_medical_officer(src)
 	new /obj/item/clothing/gloves/color/latex/nitrile(src)
 	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/brown	(src)
+	new /obj/item/clothing/shoes/brown(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/medical/cmo(src)
 
-/obj/item/storage/garmentbag/engineering_chief
-
-/obj/item/storage/garmentbag/engineering_chief/New()
-	. = ..()
+/obj/item/storage/garmentbag/engineering_chief/populate_contents()
 	new /obj/item/clothing/head/beret/ce(src)
 	new /obj/item/clothing/head/beret/eng(src)
 	new /obj/item/clothing/head/hardhat/white(src)
@@ -225,12 +205,9 @@
 	new /obj/item/clothing/under/rank/chief_engineer(src)
 	new /obj/item/clothing/under/rank/chief_engineer/skirt(src)
 	new /obj/item/clothing/shoes/brown(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/engineering/ce(src)
 
-/obj/item/storage/garmentbag/chaplain
-
-/obj/item/storage/garmentbag/chaplain/New()
-	. = ..()
-	contents = list()
+/obj/item/storage/garmentbag/chaplain/populate_contents()
 	new /obj/item/clothing/head/bishopmitre(src)
 	new /obj/item/clothing/head/blackbishopmitre(src)
 	new /obj/item/clothing/head/witchhunter_hat(src)
@@ -247,15 +224,14 @@
 	new /obj/item/clothing/under/rank/chaplain(src)
 	new /obj/item/clothing/shoes/black(src)
 
-/obj/item/storage/garmentbag/quartermaster
-
-/obj/item/storage/garmentbag/quartermaster/New()
-	. = ..()
-	contents = list()
+/obj/item/storage/garmentbag/quartermaster/populate_contents()
 	new /obj/item/clothing/head/soft(src)
 	new /obj/item/clothing/neck/cloak/quartermaster(src)
 	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/suit/storage/qm(src)
 	new /obj/item/clothing/under/rank/cargo(src)
 	new /obj/item/clothing/under/rank/cargo/skirt(src)
+	new /obj/item/clothing/under/rank/cargo/official(src)
 	new /obj/item/clothing/gloves/fingerless(src)
 	new /obj/item/clothing/shoes/brown(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/cargo/qm(src)

@@ -549,14 +549,20 @@ Returns 1 if the chain up to the area contains the given typepath
 
 	return 1
 
-/proc/is_blocked_turf(turf/T, exclude_mobs)
-	if(T.density)
-		return 1
-	for(var/i in T)
-		var/atom/A = i
-		if(A.density && (!exclude_mobs || !ismob(A)))
-			return 1
-	return 0
+
+/proc/is_blocked_turf(turf/target_turf, exclude_mobs)
+	if(target_turf.density)
+		return TRUE
+
+	if(locate(/mob/living/silicon/ai) in target_turf) //Prevents jaunting onto the AI core cheese, AI should always block a turf due to being a dense mob even when unanchored
+		return TRUE
+
+	for(var/atom/target in target_turf)
+		if(target.density && (!exclude_mobs || !ismob(target)))
+			return TRUE
+
+	return FALSE
+
 
 /proc/get_step_towards2(var/atom/ref , var/atom/trg)
 	var/base_dir = get_dir(ref, get_step_towards(ref,trg))
@@ -586,11 +592,17 @@ Returns 1 if the chain up to the area contains the given typepath
 
 	else return get_step(ref, base_dir)
 
-//Takes: Anything that could possibly have variables and a varname to check.
-//Returns: 1 if found, 0 if not.
-/proc/hasvar(var/datum/A, var/varname)
-	if(A.vars.Find(lowertext(varname))) return 1
-	else return 0
+
+/**
+ * Takes: Anything that could possibly have variables and a varname to check.
+ * Returns: `TRUE` if found, `FALSE` if not.
+ */
+/proc/has_variable(datum/check, varname)
+	if(check.vars.Find(lowertext(varname)))
+		return TRUE
+
+	return FALSE
+
 
 //Returns: all the areas in the world
 /proc/return_areas()
@@ -1034,8 +1046,8 @@ Returns 1 if the chain up to the area contains the given typepath
 	var/turf/T = get_turf(AM) //use AM's turfs, as it's coords are the same as AM's AND AM's coords are lost if it is inside another atom
 	if(!T)
 		return null
-	var/final_x = T.x + rough_x
-	var/final_y = T.y + rough_y
+	var/final_x = clamp(T.x + rough_x, 1, world.maxx)
+	var/final_y = clamp(T.y + rough_y, 1, world.maxy)
 
 	if(final_x || final_y)
 		return locate(final_x, final_y, T.z)
@@ -1887,7 +1899,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 	return pois
 
-/proc/flash_color(mob_or_client, flash_color="#960000", flash_time=20)
+/proc/flash_color(mob_or_client, flash_color=COLOR_CULT_RED, flash_time=20)
 	var/client/C
 	if(istype(mob_or_client, /mob))
 		var/mob/M = mob_or_client
@@ -2051,3 +2063,41 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 			return "TTS Local"
 		if(CHANNEL_TTS_RADIO)
 			return "TTS Radio"
+
+/proc/get_compass_dir(atom/start, atom/end) //get_dir() only considers an object to be north/south/east/west if there is zero deviation. This uses rounding instead. // Ported from CM-SS13
+	if(!start || !end)
+		return 0
+	if(!start.z || !end.z)
+		return 0 //Atoms are not on turfs.
+
+	var/dy = end.y - start.y
+	var/dx = end.x - start.x
+	if(!dy)
+		return (dx >= 0) ? 4 : 8
+
+	var/angle = arctan(dx / dy)
+	if(dy < 0)
+		angle += 180
+	else if(dx < 0)
+		angle += 360
+
+	switch(angle) //diagonal directions get priority over straight directions in edge cases
+		if (22.5 to 67.5)
+			return NORTHEAST
+		if (112.5 to 157.5)
+			return SOUTHEAST
+		if (202.5 to 247.5)
+			return SOUTHWEST
+		if (292.5 to 337.5)
+			return NORTHWEST
+		if (0 to 22.5)
+			return NORTH
+		if (67.5 to 112.5)
+			return EAST
+		if (157.5 to 202.5)
+			return SOUTH
+		if (247.5 to 292.5)
+			return WEST
+		else
+			return NORTH
+

@@ -174,11 +174,12 @@
 		user.unset_machine()
 		return
 
+	add_fingerprint(user)
 	ui_interact(user)
 
 /obj/machinery/computer/security/attack_ai(mob/user)
 	if(isAI(user))
-		to_chat(user, "<span class='notice'>You realise its kind of stupid to access a camera console when you have the entire camera network at your metaphorical fingertips</span>")
+		to_chat(user, span_notice("You realise its kind of stupid to access a camera console when you have the entire camera network at your metaphorical fingertips"))
 		return
 
 	ui_interact(user)

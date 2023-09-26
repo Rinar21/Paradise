@@ -8,6 +8,7 @@
 	icon = 'icons/obj/hypo.dmi'
 	item_state = "hypo"
 	icon_state = "hypo"
+	belt_icon = "hypospray"
 	amount_per_transfer_from_this = 5
 	volume = 30
 	possible_transfer_amounts = list(1,2,3,4,5,10,15,20,25,30)
@@ -75,6 +76,7 @@
 	name = "medical hypospray"
 	desc = "A general use medical hypospray for quick injection of chemicals. There is a safety button by the trigger."
 	icon_state = "medivend_hypo"
+	belt_icon = "medical_hypospray"
 	safety_hypo = TRUE
 
 /obj/item/reagent_containers/hypospray/safety/ert
@@ -161,6 +163,7 @@
 	desc = "A rapid and safe way to stabilize patients in critical condition for personnel without advanced medical knowledge."
 	icon_state = "autoinjector"
 	item_state = "autoinjector"
+	belt_icon = "autoinjector"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = null
 	volume = 10
@@ -205,7 +208,7 @@
 											"Completely Green" = image(icon = src.icon, icon_state = "greeninjector"),
 											"Green" = image(icon = src.icon, icon_state = "autoinjector"),
 											"Gray" = image(icon = src.icon, icon_state = "stimpen"))
-			var/choice = show_radial_menu(user, src, injector_icons, custom_check = CALLBACK(src, .proc/check_reskin, user))
+			var/choice = show_radial_menu(user, src, injector_icons, custom_check = CALLBACK(src, PROC_REF(check_reskin), user))
 			if(!choice || W.loc != user || src.loc != user)
 				return
 			if(C.uses <= 0)
@@ -281,13 +284,14 @@
 	name = "survival medipen"
 	desc = "A medipen for surviving in the harshest of environments, heals and protects from environmental hazards. <br><span class='boldwarning'>WARNING: Do not inject more than one pen in quick succession.</span>"
 	icon_state = "stimpen"
+	belt_icon = "survival_medipen"
 	volume = 42
 	amount_per_transfer_from_this = 42
 	list_reagents = list("salbutamol" = 10, "teporone" = 15, "epinephrine" = 10, "lavaland_extract" = 2, "weak_omnizine" = 5) //Short burst of healing, followed by minor healing from the saline
 
 /obj/item/reagent_containers/hypospray/autoinjector/nanocalcium
-	name = "nanocalcium autoinjector"
-	desc = "After a short period of time the nanites will slow the body's systems and assist with bone repair. Nanomachines son."
+	name = "protoype nanite autoinjector"
+	desc = "After a short period of time the nanites will slow the body's systems and assist with body repair. Nanomachines son."
 	icon_state = "bonepen"
 	amount_per_transfer_from_this = 30
 	volume = 30

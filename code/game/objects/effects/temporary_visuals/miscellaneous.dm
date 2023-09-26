@@ -98,6 +98,15 @@
 	. = ..()
 	icon_state = SSticker.cultdat?.wraith_jaunt_out_animation
 
+/obj/effect/temp_visual/dir_setting/holy_shift
+	name = "blood"
+	icon = 'icons/mob/mob.dmi'
+	icon_state = "holy_shift"
+	duration = 12
+
+/obj/effect/temp_visual/dir_setting/holy_shift/out
+	icon_state = "holy_shift_out"
+
 /obj/effect/temp_visual/dir_setting/tailsweep
 	icon_state = "tailsweep"
 	duration = 4
@@ -218,7 +227,7 @@
 
 /obj/effect/temp_visual/kinetic_blast
 	name = "kinetic explosion"
-	icon = 'icons/obj/projectiles.dmi'
+	icon = 'icons/obj/weapons/projectiles.dmi'
 	icon_state = "kinetic_blast"
 	layer = ABOVE_MOB_LAYER
 	duration = 4
@@ -389,3 +398,36 @@
 		qdel(beta)
 	. = ..()
 
+/obj/effect/temp_visual/bsg_kaboom
+	name = "bluespace explosion"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "explosionfast"
+	color = "blue"
+	pixel_x = -32
+	pixel_y = -32
+	duration = 42
+
+/obj/effect/temp_visual/bsg_kaboom/Initialize(mapload)
+	. = ..()
+	new /obj/effect/warp_effect/bsg(loc)
+
+/obj/effect/warp_effect/bsg
+
+/obj/effect/warp_effect/bsg/Initialize(mapload)
+	. = ..()
+	var/matrix/M = matrix() * 0.5
+	transform = M
+	animate(src, transform = M * 8, time = 0.8 SECONDS, alpha = 0)
+	QDEL_IN(src, 0.8 SECONDS)
+
+/obj/effect/temp_visual/love_heart
+	name = "love heart"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "heart"
+	duration = 2.5 SECONDS
+
+/obj/effect/temp_visual/love_heart/Initialize(mapload)
+	. = ..()
+	pixel_x = rand(-10,10)
+	pixel_y = rand(-10,10)
+	animate(src, pixel_y = pixel_y + 32, alpha = 0, time = duration)

@@ -32,7 +32,7 @@
 	ninja.adjustStaminaLoss(-75)
 	ninja.lying = 0
 	ninja.update_canmove()
-	ninja.SetStuttering(0, force)
+	ninja.SetStuttering(0)
 	ninja.reagents.add_reagent("synaptizine", 20)
 	ninja.reagents.add_reagent("stimulative_agent", 20)
 	add_attack_logs(ninja, null, "Activated ninja-boost(adrenaline).")
@@ -45,7 +45,7 @@
 			ninja_action.action_ready = FALSE
 			ninja_action.toggle_button_on_off()
 		break
-	addtimer(CALLBACK(src, .proc/ninjaboost_after), 70)
+	addtimer(CALLBACK(src, PROC_REF(ninjaboost_after)), 70)
 
 /**
  * Proc called to inject the ninja with radium.

@@ -50,9 +50,9 @@
 		to_chat(user, "[src] is bolted to the floor! You can't detach it like this.")
 		return
 	playsound(loc, I.usesound, 50, 1)
-	to_chat(user, "<span class='notice'>You begin to unfasten [src]...</span>")
+	to_chat(user, span_notice("You begin to unfasten [src]..."))
 	if(do_after(user, 40 * I.toolspeed * gettoolspeedmod(user), target = src))
-		user.visible_message("[user] unfastens [src].", "<span class='notice'>You have unfastened [src].</span>", "You hear ratchet.")
+		user.visible_message("[user] unfastens [src].", span_notice("You have unfastened [src]."), "You hear ratchet.")
 		new /obj/item/pipe_gsensor(loc)
 		qdel(src)
 
@@ -113,7 +113,7 @@
 	multitool_menu = new /datum/multitool_menu/idtag/freq/air_sensor(src)
 
 /obj/machinery/computer/general_air_control
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_screen = "tank"
 	icon_keyboard = "atmos_key"
 	circuit = /obj/item/circuitboard/air_management
@@ -462,7 +462,7 @@
 	src.updateUsrDialog()
 
 /obj/machinery/computer/general_air_control/fuel_injection
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_screen = "atmos"
 	circuit = /obj/item/circuitboard/injector_control
 

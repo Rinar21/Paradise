@@ -10,7 +10,7 @@
 
 
 /proc/format_table_name(table as text)
-	return sqlfdbktableprefix + table
+	return CONFIG_GET(string/feedback_tableprefix) + table
 
 /*
  * Text sanitization
@@ -39,10 +39,10 @@
 	return t
 
 /proc/sanitize_censored_patterns(var/t)
-	if(!config || !config.twitch_censor || !config.twich_censor_list)
+	if(!global.config || !CONFIG_GET(flag/twitch_censor) || !GLOB.twitch_censor_list)
 		return t
 
-	var/text = sanitize_simple(t, config.twich_censor_list)
+	var/text = sanitize_simple(t, GLOB.twitch_censor_list)
 	if(t != text)
 		message_admins("CENSOR DETECTION: [ADMIN_FULLMONTY(usr)] inputs: \"[html_encode(t)]\"")
 		log_adminwarn("CENSOR DETECTION: [key_name_log(usr)] inputs: \"[t]\"")
@@ -535,6 +535,7 @@
 		text = replacetext(text, "\[cell\]",	"<td>")
 		text = replacetext(text, "\[logo\]",	"&ZeroWidthSpace;<img src = ntlogo.png>")
 		text = replacetext(text, "\[slogo\]",	"&ZeroWidthSpace;<img src = syndielogo.png>")
+		text = replacetext(text, "\[ussplogo\]", "&ZeroWidthSpace;<img src = ussplogo.png>")
 		text = replacetext(text, "\[time\]",	"[station_time_timestamp()]") // TO DO
 		text = replacetext(text, "\[date\]",	"[GLOB.current_date_string]")
 		text = replacetext(text, "\[station\]", "[station_name()]")
@@ -621,6 +622,7 @@
 	text = replacetext(text, "<td>",					"\[cell\]")
 	text = replacetext(text, "<img src = ntlogo.png>",	"\[logo\]")
 	text = replacetext(text, "<img src = syndielogo.png>",	"\[slogo\]")
+	text = replacetext(text, "<img src = ussplogo.png>",	"\[ussplogo\]")
 	return text
 
 /datum/html/split_holder
@@ -757,3 +759,8 @@
 	. = base
 	if(rest)
 		. += .(rest)
+
+/// Removes characters incompatible with file names.
+/proc/sanitize_filename(text)
+	var/static/regex/regex = regex(@{""|[\\\n\t/?%*:|<>]|\.\."}, "g")
+	return regex.Replace(text, "")

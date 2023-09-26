@@ -110,10 +110,12 @@
 // Various gene procs
 /obj/item/reagent_containers/food/snacks/grown/attack_self(mob/user)
 	if(seed && seed.get_gene(/datum/plant_gene/trait/squash))
-		squash(user)
+		if(!do_after(user, 1 SECONDS, target = user))
+			return
+		squash(user, user)
 	..()
 
-/obj/item/reagent_containers/food/snacks/grown/throw_impact(atom/hit_atom)
+/obj/item/reagent_containers/food/snacks/grown/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..()) //was it caught by a mob?
 		if(seed)
 			log_action(thrownby, hit_atom, "Thrown [src] at")
@@ -175,7 +177,7 @@
 
 // For item-containing growns such as eggy or gatfruit
 /obj/item/reagent_containers/food/snacks/grown/shell/attack_self(mob/user)
-	user.unEquip(src)
+	user.temporarily_remove_item_from_inventory(src)
 	if(trash)
 		var/obj/item/T = generate_trash()
 		user.put_in_hands(T)
@@ -202,4 +204,12 @@
 		genes_str = english_list(plant_gene_names)
 
 	add_attack_logs(user, target, "[what_done] ([reagent_str] | [genes_str])")
+
+
+/obj/item/reagent_containers/food/snacks/grown/extinguish_light(force = FALSE)
+	if(!force)
+		return
+	if(seed.get_gene(/datum/plant_gene/trait/glow/shadow))
+		return
+	set_light(0)
 

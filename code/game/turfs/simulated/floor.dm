@@ -185,9 +185,9 @@ GLOBAL_LIST_INIT(icons_to_ignore_at_floor_init, list("damaged1","damaged2","dama
 		if(P.pipe_type != -1) // ANY PIPE
 			user.visible_message( \
 				"[user] starts sliding [P] along \the [src].", \
-				"<span class='notice'>You slide [P] along \the [src].</span>", \
-				"You hear the scrape of metal against something.")
-			user.drop_item()
+				span_notice("You slide [P] along \the [src]."), \
+				span_italics("You hear the scrape of metal against something."))
+			user.drop_from_active_hand()
 
 			if(P.is_bent_pipe())  // bent pipe rotation fix see construction.dm
 				P.dir = 5
@@ -237,12 +237,16 @@ GLOBAL_LIST_INIT(icons_to_ignore_at_floor_init, list("damaged1","damaged2","dama
 		burnt = 0
 		current_overlay = null
 		if(user && !silent)
-			to_chat(user, "<span class='danger'>You remove the broken plating.</span>")
+			to_chat(user, span_danger("You remove the broken plating."))
 	else
 		if(user && !silent)
-			to_chat(user, "<span class='danger'>You remove the floor tile.</span>")
+			to_chat(user, span_danger("You remove the floor tile."))
 		if(floor_tile && make_tile)
-			new floor_tile(src)
+			var/obj/item/stack/stack_dropped = new floor_tile(src)
+			if(user)
+				var/obj/item/stack/stack_offhand = user.get_inactive_hand()
+				if(istype(stack_dropped) && istype(stack_offhand) && stack_offhand.can_merge(stack_dropped, inhand = TRUE))
+					user.put_in_hands(stack_dropped, ignore_anim = FALSE)
 	return make_plating()
 
 /turf/simulated/floor/singularity_pull(S, current_size)
@@ -376,4 +380,22 @@ GLOBAL_LIST_INIT(icons_to_ignore_at_floor_init, list("damaged1","damaged2","dama
 				new our_rcd.window_type(src)
 			ChangeTurf(our_rcd.floor_type) // Platings go under windows.
 			return RCD_ACT_SUCCESSFULL
+		if(RCD_MODE_FIRELOCK)
+			if(our_rcd.checkResource(8, user))
+				to_chat(user, "Building Firelock...")
+				playsound(get_turf(our_rcd), 'sound/machines/click.ogg', 50, 1)
+				if(do_after(user, 50 * our_rcd.toolspeed * gettoolspeedmod(user), target = src))
+					if(locate(/obj/machinery/door/firedoor) in src)
+						return RCD_NO_ACT
+					if(!our_rcd.useResource(8, user))
+						return RCD_ACT_FAILED
+					playsound(get_turf(our_rcd), our_rcd.usesound, 50, 1)
+					new our_rcd.firelock_type(src)
+					add_attack_logs(user, src, "Constructed firelock with RCD")
+					return RCD_ACT_SUCCESSFULL
+				to_chat(user, span_warning("ERROR! Construction interrupted!"))
+				return RCD_ACT_FAILED
+			to_chat(user, span_warning("ERROR! Not enough matter in unit to construct this Firelock!"))
+			playsound(get_turf(our_rcd), 'sound/machines/click.ogg', 50, 1)
+			return RCD_ACT_FAILED
 	return RCD_NO_ACT

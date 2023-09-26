@@ -24,7 +24,7 @@
 	visor_flags_inv = HIDEGLASSES|HIDENAME
 	icon = 'icons/obj/clothing/species/plasmaman/hats.dmi'
 	species_restricted = list("Plasmaman")
-	sprite_sheets = list("Plasmaman" = 'icons/mob/species/plasmaman/helmet.dmi')
+	sprite_sheets = list("Plasmaman" = 'icons/mob/clothing/species/plasmaman/helmet.dmi')
 
 /obj/item/clothing/head/helmet/space/plasmaman/New()
 	..()
@@ -89,11 +89,13 @@
 		var/datum/action/A=X
 		A.UpdateButtonIcon()
 
-/obj/item/clothing/head/helmet/space/plasmaman/extinguish_light()
+/obj/item/clothing/head/helmet/space/plasmaman/extinguish_light(force = FALSE)
 	if(on)
 		toggle_light()
 
-/obj/item/clothing/head/helmet/space/plasmaman/equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/head/helmet/space/plasmaman/equipped(mob/living/carbon/human/user, slot, initial)
+	. = ..()
+
 	if(HUDType && slot == slot_head)
 		var/datum/atom_hud/H = GLOB.huds[HUDType]
 		H.add_hud_to(user)
@@ -272,7 +274,7 @@
 	desc = "An envirohelmet specially designed for only the most pious of plasmamen. Deus Vult"
 	icon_state = "chap_envirohelm"
 	item_state = "chap_envirohelm"
-	armor = list(melee = 20, bullet = 7, laser = 2, energy = 2, bomb = 2, bio = 100, rad = 0, fire = 100, acid = 80)
+	armor = list("melee" = 20, "bullet" = 7, "laser" = 2, "energy" = 2, "bomb" = 2, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 80)
 
 /obj/item/clothing/head/helmet/space/plasmaman/white
 	name = "white plasma envirosuit helmet"
@@ -337,7 +339,7 @@
 	desc = "A plasmaman envirohelm that reeks of bureaucracy."
 	icon_state = "hop_envirohelm"
 	item_state = "hop_envirohelm"
-	armor = list("melee" = 25, "bullet" = 15, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 25, "bullet" = 15, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 50)
 	HUDType = DATA_HUD_SECURITY_BASIC
 	examine_extensions = list(EXAMINE_HUD_SKILLS)
 
@@ -346,7 +348,7 @@
 	desc = "A plasmaman envirohelm designed with the insignia and markings befitting a captain."
 	icon_state = "cap_envirohelm"
 	item_state = "cap_envirohelm"
-	armor = list("melee" = 25, "bullet" = 15, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 25, "bullet" = 15, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 50)
 	HUDType = DATA_HUD_SECURITY_BASIC
 	examine_extensions = list(EXAMINE_HUD_SKILLS)
 
@@ -356,7 +358,8 @@
 	icon_state = "bs_envirohelm"
 	item_state = "bs_envirohelm"
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30,"energy" = 10, "bomb" = 25, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 50)
-	HUDType = DATA_HUD_DIAGNOSTIC
+	HUDType = DATA_HUD_MEDICAL_ADVANCED
+	examine_extensions = list(EXAMINE_HUD_MEDICAL)
 
 /obj/item/clothing/head/helmet/space/plasmaman/wizard
 	name = "wizard plasma envirosuit helmet"
@@ -365,6 +368,6 @@
 	item_state = "wizard_envirohelm"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	magical = TRUE

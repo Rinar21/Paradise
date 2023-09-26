@@ -17,6 +17,8 @@
 	outdoors = TRUE
 	ambientsounds = MINING_SOUNDS
 	flags = NONE
+	min_ambience_cooldown = 70 SECONDS
+	max_ambience_cooldown = 220 SECONDS
 
 /area/mine/dangerous/explored/golem
 	name = "Small Asteroid"
@@ -33,6 +35,9 @@
 	outdoors = TRUE
 	ambientsounds = MINING_SOUNDS
 	flags = NONE
+	sound_environment = SOUND_AREA_ASTEROID
+	min_ambience_cooldown = 70 SECONDS
+	max_ambience_cooldown = 220 SECONDS
 
 /area/mine/unexplored/cere
 	sound_environment = SOUND_AREA_ASTEROID
@@ -71,14 +76,14 @@
 	name = "Mining Station Storage"
 
 /area/mine/production
-	name = "Mining Station Starboard Wing"
+	name = "Mining Station Production Wing"
 	icon_state = "mining_production"
 
 /area/mine/abandoned
 	name = "Abandoned Mining Station"
 
 /area/mine/living_quarters
-	name = "Mining Station Port Wing"
+	name = "Mining Station Living Wing"
 	icon_state = "mining_living"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
@@ -135,6 +140,8 @@
 	power_light = FALSE
 	requires_power = TRUE
 	ambientsounds = MINING_SOUNDS
+	min_ambience_cooldown = 70 SECONDS
+	max_ambience_cooldown = 220 SECONDS
 
 /area/lavaland/underground
 	name = "Lavaland Caves"
@@ -146,6 +153,8 @@
 	power_equip = FALSE
 	power_light = FALSE
 	ambientsounds = MINING_SOUNDS
+	min_ambience_cooldown = 70 SECONDS
+	max_ambience_cooldown = 220 SECONDS
 
 /area/lavaland/surface/outdoors
 	name = "Lavaland Wastes"

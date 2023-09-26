@@ -70,14 +70,13 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	parallax_movedir = NORTH
 	sound_environment = SOUND_ENVIRONMENT_ROOM
-
-/area/shuttle/arrival
+/*
+/area/shuttle/arrival //dont have this, but at once...
 	name = "\improper Arrival Shuttle"
-	parallax_movedir = EAST
 
 /area/shuttle/arrival/pre_game
 	icon_state = "shuttle2"
-
+*/
 /area/shuttle/arrival/station
 	icon_state = "shuttle"
 
@@ -103,13 +102,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Escape Pod Three"
 	icon_state = "shuttle"
 	nad_allowed = TRUE
-	parallax_movedir = EAST
 
 /area/shuttle/pod_4
 	name = "\improper Escape Pod Four"
 	icon_state = "shuttle"
 	nad_allowed = TRUE
-	parallax_movedir = EAST
 
 /area/shuttle/escape_pod1
 	name = "\improper Escape Pod One"
@@ -247,7 +244,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/shuttle/administration
 	name = "\improper Nanotrasen Vessel"
 	icon_state = "shuttlered"
-	parallax_movedir = EAST
+	parallax_movedir = WEST
 
 /area/shuttle/administration/centcom
 	name = "\improper Nanotrasen Vessel Centcom"
@@ -387,7 +384,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/shuttle/trade/sol
 	name = "Sol Freighter"
-	parallax_movedir = EAST
+	parallax_movedir = WEST
 
 /area/shuttle/freegolem
 	name = "Free Golem Ship"
@@ -404,6 +401,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	requires_power = FALSE
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = TRUE
+	ambientsounds = null
 
 // === end remove
 
@@ -548,6 +546,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "cave"
 	requires_power = FALSE
 	outdoors = TRUE
+	min_ambience_cooldown = 70 SECONDS
+	max_ambience_cooldown = 220 SECONDS
 
 /area/asteroid/artifactroom
 	name = "\improper Asteroid - Artifact"
@@ -584,6 +584,14 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/tdome/tdomeobserve
 	name = "\improper Thunderdome (Observer.)"
 	icon_state = "purple"
+
+/area/tdome/newtdome
+	name = "\improper New Thunderdome Arena"
+	icon_state = "thunder"
+
+/area/tdome/newtdome/CQC
+	name = "\improper New Thunderdome Arena - Close Combat"
+	icon_state = "thunderCQC"
 
 /area/exploration/methlab
 	name = "\improper Abandoned Drug Lab"
@@ -642,6 +650,15 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/trader_station/sol
 	name = "Jupiter Station 6"
+
+/area/ussp_centcom
+	name = "USSP central committee"
+	icon_state = "red"
+	requires_power = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+
+/area/ussp_centcom/secretariat
+	name = "Soviet secretariat"
 
 //Labor camp
 /area/mine/laborcamp
@@ -1476,7 +1493,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/engine/engine_smes
 	name = "\improper Engineering SMES"
 	icon_state = "engine_smes"
-	requires_power = FALSE //This area only covers the batteries and they deal with their own power
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/engine/engineering
@@ -1660,6 +1676,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/medical
 	ambientsounds = MEDICAL_SOUNDS
 	sound_environment = SOUND_AREA_STANDARD_STATION
+	min_ambience_cooldown = 90 SECONDS
+	max_ambience_cooldown = 180 SECONDS
 
 /area/medical/medbay
 	name = "\improper Medbay"
@@ -1828,7 +1846,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/brig/prison_break()
 	for(var/obj/structure/closet/secure_closet/brig/temp_closet in src)
 		temp_closet.locked = 0
-		temp_closet.icon_state = temp_closet.icon_closed
+		temp_closet.update_icon()
 	for(var/obj/machinery/door_timer/temp_timer in src)
 		temp_timer.releasetime = 1
 	..()
@@ -1847,7 +1865,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/prison/prison_break()
 	for(var/obj/structure/closet/secure_closet/brig/temp_closet in src)
 		temp_closet.locked = 0
-		temp_closet.icon_state = temp_closet.icon_closed
+		temp_closet.update_icon()
 	for(var/obj/machinery/door_timer/temp_timer in src)
 		temp_timer.releasetime = 1
 	..()
@@ -2257,6 +2275,48 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Derelict Arrival Centre"
 	icon_state = "yellow"
 
+/area/derelict/church
+	name = "\improper Derelict Church"
+	icon_state = "chapel"
+
+/area/derelict/common
+	name = "\improper Derelict Common Area"
+	icon_state = "crew_quarters"
+
+/area/derelict/asteroidbelt
+	name = "\improper Derelict Asteroids"
+	icon_state = "mining"
+	requires_power = FALSE
+	has_gravity = FALSE
+
+/area/derelict/med
+	name = "\improper Derelict Medbay"
+	icon_state = "medbay"
+
+/area/derelict/garden
+	name = "\improper Derelict Hydroponics"
+	icon_state = "hydro"
+
+/area/derelict/dining
+	name = "\improper Derelict Dining room"
+	icon_state = "kitchen"
+
+/area/derelict/dock
+	name = "\improper Derelict Docking Area"
+	icon_state = "ntrep"
+
+/area/derelict/security
+	name = "\improper Derelict Security Area"
+	icon_state = "blue"
+
+/area/derelict/rnd
+	name = "\improper Derelict Research Area"
+	icon_state = "purple"
+
+/area/derelict/engineer_area
+	name = "\improper Derelict Engineering Area"
+	icon_state = "engine_control"
+
 /area/derelict/storage/equipment
 	name = "Derelict Equipment Storage"
 
@@ -2652,6 +2712,46 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/moonoutpost19/mo19utilityroom
 	name = "MO19 Utility Room"
 	icon_state = "awaycontent6"
+
+//area for AWAY "aeterna13"
+/area/ae13
+	icon_state = "ae13"
+	always_unpowered = TRUE
+	requires_power = TRUE
+	poweralm = FALSE
+	power_environ = FALSE
+	power_equip = FALSE
+	power_light = FALSE
+	outdoors = TRUE
+	has_gravity = TRUE
+
+/area/ae13/medbay
+	name = "medbay"
+	icon_state = "ae13_ship1"
+
+/area/ae13/energy
+	name = "energy"
+	icon_state = "ae13_ship2"
+
+/area/ae13/hall
+	name = "hall"
+	icon_state = "ae13_ship3"
+
+/area/ae13/miner
+	name = "miner"
+	icon_state = "ae13_ship4"
+
+/area/ae13/epicenter
+	name = "epicenter"
+	icon_state = "ae13_ship5"
+
+/area/ae13/command
+	name = "command"
+	icon_state = "ae13_ship6"
+
+/area/ae13/asteroid
+	name = "asteroid"
+	icon_state = "ae13_asteroid"
 
 
 ////////////////////////AWAY AREAS///////////////////////////////////

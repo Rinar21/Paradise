@@ -29,7 +29,7 @@
 	health = 1000
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	armour_penetration = 30
+	armour_penetration = 40
 	attacktext = "beats down on"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	throw_message = "does nothing to the rocky hide of the"
@@ -119,7 +119,7 @@
 			new /obj/effect/temp_visual/goliath_tentacle/broodmother(t, src)
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/tentacle_patch(target)
-	ranged_cooldown = world.time + 2.5 SECONDS * revive_multiplier()
+	ranged_cooldown = world.time + 4 SECONDS * revive_multiplier()
 	var/tturf = get_turf(target)
 	if(!isturf(tturf))
 		return
@@ -137,8 +137,8 @@
 		newchild.faction = faction.Copy()
 		newchild.maxHealth *= dif_mult
 		newchild.health *= dif_mult
-		newchild.melee_damage_lower *= dif_mult
-		newchild.melee_damage_upper *= dif_mult
+		newchild.melee_damage_lower = newchild.melee_damage_lower * dif_mult_dmg
+		newchild.melee_damage_upper = newchild.melee_damage_upper * dif_mult_dmg
 		visible_message("<span class='danger'>[newchild] appears below [src]!</span>")
 		newchild.mother = src
 		children_list += newchild
@@ -149,7 +149,7 @@
 	color = "#FF0000"
 	speed = 0
 	move_to_delay = 3
-	addtimer(CALLBACK(src, .proc/reset_rage), 7 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(reset_rage)), 7 SECONDS)
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/reset_rage()
 	color = "#FFFFFF"
@@ -238,6 +238,15 @@
 	qdel(src)
 
 
+/obj/effect/temp_visual/goliath_tentacle/broodmother
+	var/damage = 25
+	var/stun_duration = 1
+	var/stun_delay = 1.5
+
+/obj/effect/temp_visual/goliath_tentacle/broodmother/tripanim()
+	icon_state = "Goliath_tentacle_wiggle"
+	deltimer(timerid)
+	timerid = addtimer(CALLBACK(src, PROC_REF(trip)), stun_delay, TIMER_STOPPABLE)
 
 //Tentacles stun WAY less compared to regular variant, to balance being able to use them much more often. Also, 10 more damage.
 /obj/effect/temp_visual/goliath_tentacle/broodmother/trip()
@@ -246,28 +255,29 @@
 		if((!QDELETED(spawner) && spawner.faction_check_mob(L)) || L.stat == DEAD)
 			continue
 		visible_message("<span class='danger'>[src] grabs hold of [L]!</span>")
-		L.Stun(1 SECONDS)
-		L.adjustBruteLoss(rand(20,25))
+		L.Stun(stun_duration)
+		L.adjustBruteLoss(damage)
 		latched = TRUE
 	if(!latched)
 		retract()
 	else
 		deltimer(timerid)
-		timerid = addtimer(CALLBACK(src, .proc/retract), 1 SECONDS, TIMER_STOPPABLE)
+		timerid = addtimer(CALLBACK(src, PROC_REF(retract)), stun_duration * 10, TIMER_STOPPABLE)
 
 /obj/effect/temp_visual/goliath_tentacle/broodmother/patch/Initialize(mapload, new_spawner)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/createpatch)
+	INVOKE_ASYNC(src, PROC_REF(createpatch))
 
 /obj/effect/temp_visual/goliath_tentacle/broodmother/patch/proc/createpatch()
-	var/tentacle_locs = spiral_range_turfs(1, get_turf(src))
+	var/tentacle_locs = spiral_range_turfs(2, get_turf(src))
 	for(var/T in tentacle_locs)
 		new /obj/effect/temp_visual/goliath_tentacle/broodmother(T, spawner)
 	var/list/directions = GLOB.cardinal.Copy()
 	for(var/i in directions)
 		var/turf/T = get_step(get_turf(src), i)
-		T = get_step(T, i)
-		new /obj/effect/temp_visual/goliath_tentacle/broodmother(T, spawner)
+		for(var/j in 1 to 2)
+			T = get_step(T, i)
+			new /obj/effect/temp_visual/goliath_tentacle/broodmother(T, spawner)
 
 // Broodmother's loot: Broodmother Tongue
 /obj/item/crusher_trophy/broodmother_tongue
@@ -299,7 +309,7 @@
 		return
 	living_user.weather_immunities += "lava"
 	to_chat(living_user, "<b>You squeeze the tongue, and some transluscent liquid shoots out all over you.</b>")
-	addtimer(CALLBACK(src, .proc/remove_lava, living_user), 20 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(remove_lava), living_user), 20 SECONDS)
 	use_time = world.time + 60 SECONDS
 
 /obj/item/crusher_trophy/broodmother_tongue/proc/remove_lava(mob/living/user)

@@ -95,7 +95,7 @@
 	/// Купил ли ниндзя боевое исскуство?
 	var/ninja_martial = FALSE
 	/// Встроенный в костюм джетпак
-	var/obj/item/tank/jetpack/suit/jetpack = /obj/item/tank/jetpack/suit/ninja
+	jetpack = /obj/item/tank/jetpack/suit/ninja
 
 	/// UI stuff ///
 	/// Флаги отвечающие за то - показываем мы или нет интерфейс заряда и концентрации ниндзя
@@ -288,9 +288,6 @@
 	// Smoke Init
 	smoke_system = new
 	smoke_system.attach(src)
-	// Jetpack initialize
-	if(jetpack && ispath(jetpack))
-		jetpack = new jetpack(src)
 
 	if(!mapload)
 
@@ -336,35 +333,6 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
-/obj/item/clothing/suit/space/space_ninja/screwdriver_act(mob/user, obj/item/I)
-	. = TRUE
-	if(!I.use_tool(src, user, 0, volume = I.tool_volume))
-		return
-	if(!jetpack)
-		to_chat(user, "<span class='warning'>[src] has no jetpack installed.</span>")
-		return
-	if(src == user.get_item_by_slot(slot_wear_suit))
-		to_chat(user, "<span class='warning'>You cannot remove the jetpack from [src] while wearing it.</span>")
-		return
-	jetpack.turn_off(user)
-	jetpack.forceMove(drop_location())
-	jetpack = null
-	to_chat(user, "<span class='notice'>You successfully remove the jetpack from [src].</span>")
-
-/obj/item/clothing/suit/space/space_ninja/equipped(mob/user, slot)
-	. = ..()
-	if(jetpack)
-		if(slot == slot_wear_suit)
-			for(var/X in jetpack.actions)
-				var/datum/action/A = X
-				A.Grant(user)
-
-/obj/item/clothing/suit/space/space_ninja/dropped(mob/user)
-	. = ..()
-	if(jetpack)
-		for(var/X in jetpack.actions)
-			var/datum/action/A = X
-			A.Remove(user)
 
 /obj/item/clothing/suit/space/space_ninja/proc/start()
 	if(!s_initialized)
@@ -411,10 +379,10 @@
 				used_power += s_acost
 			if(spirited) // If spirit form is active.
 				if(istype(ninja.r_hand, /obj/item/grab))
-					ninja.unEquip(ninja.r_hand, TRUE)
+					ninja.drop_item_ground(ninja.r_hand, force = TRUE)
 					to_chat(ninja, span_warning("You can't hold anyone that tight, when \"Spirit Form\" is active!"))
 				if(istype(ninja.l_hand, /obj/item/grab))
-					ninja.unEquip(ninja.l_hand, TRUE)
+					ninja.drop_item_ground(ninja.l_hand, force = TRUE)
 					to_chat(ninja, span_warning("You can't hold anyone that tight, when \"Spirit Form\" is active!"))
 				used_power += cell.maxcharge * s_spirit_form__percent_cost //that shit is NOT cheap
 			if(cell.charge < used_power) // Проверка на случай когда он не может отнять энергию до нуля и в итоге вечно торчит в инвизе/форме духа/хамелионе
@@ -658,7 +626,7 @@
 	var/mob/living/carbon/human/ninja = affecting
 	if(!n_scarf)
 		var/obj/item/clothing/neck/ninjascarf/new_scarf = new
-		if(!ninja.equip_to_slot_if_possible(new_scarf, slot_neck, 1))		//Уже что то надето в слоте шеи? Алярма, снимите помеху прежде чем продолжить.
+		if(!ninja.equip_to_slot_if_possible(new_scarf, slot_neck, qdel_on_fail = TRUE))		//Уже что то надето в слоте шеи? Алярма, снимите помеху прежде чем продолжить.
 			to_chat(ninja, "[span_userdanger("ERROR")]: 100220 UNABLE TO TRANSFORM HEAD GEAR\nABORTING...")
 			return FALSE
 		n_scarf = new_scarf
