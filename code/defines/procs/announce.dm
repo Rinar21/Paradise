@@ -112,11 +112,9 @@ GLOBAL_DATUM_INIT(event_announcement, /datum/announcement/priority/command/event
 	for(var/mob/M in receivers)
 		to_chat(M, message)
 		INVOKE_ASYNC(GLOBAL_PROC, /proc/tts_cast, null, M, message_tts, tts_seed, FALSE, SOUND_EFFECT_NONE, TTS_TRAIT_RATE_MEDIUM, message_sound)
-		log_debug("announcement.Message: [message]")
 	for(var/mob/M in garbled_receivers)
 		to_chat(M, garbled_message)
 		INVOKE_ASYNC(GLOBAL_PROC, /proc/tts_cast, null, M, garbled_message_tts, tts_seed, FALSE, SOUND_EFFECT_NONE, TTS_TRAIT_RATE_MEDIUM, message_sound)
-		log_debug("announcement.Message: [garbled_message]")
 
 /datum/announcement/proc/Format_Message(message, message_title, message_announcer, from)
 	var/formatted_message
@@ -177,10 +175,10 @@ GLOBAL_DATUM_INIT(event_announcement, /datum/announcement/priority/command/event
 	if(!message_sound)
 		return
 	for(var/mob/M in receivers)
-		if(config.tts_enabled)
+		if(CONFIG_GET(flag/tts_enabled))
 			var/volume = M.client.prefs.get_channel_volume(CHANNEL_TTS_RADIO)
 			if(volume > 0)
-				return
+				continue
 		SEND_SOUND(M, message_sound)
 
 /datum/announcement/proc/Log(message as text, message_title as text)

@@ -53,18 +53,19 @@
 			if("feet")
 				if(!H.shoes)
 					affecting = H.get_organ(pick("l_leg", "r_leg"))
-					H.Weaken(3)
+					H.Weaken(6 SECONDS)
 			if("l_hand", "r_hand")
 				if(!H.gloves)
 					affecting = H.get_organ(type)
-					H.Stun(3)
+					H.Stun(6 SECONDS)
 		if(affecting)
 			affecting.receive_damage(1, 0)
 	else if(ismouse(target))
 		var/mob/living/simple_animal/mouse/M = target
 		visible_message("<span class='danger'>SPLAT!</span>")
-		M.death()
-		M.splat()
+		M.apply_damage(5, "brute")
+		if (M.stat == DEAD)
+			M.splat(item = src)
 	playsound(loc, 'sound/effects/snap.ogg', 50, 1)
 	layer = MOB_LAYER - 0.2
 	armed = FALSE

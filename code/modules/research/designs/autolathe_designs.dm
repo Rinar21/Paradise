@@ -247,6 +247,7 @@
 
 /datum/design/rglass
 	name = "Reinforced Glass"
+	desc = "Metal + Glass"
 	id = "rglass"
 	build_type = AUTOLATHE | SMELTER
 	materials = list(MAT_METAL = 1000, MAT_GLASS = MINERAL_MATERIAL_AMOUNT)
@@ -267,7 +268,7 @@
 	name = "Compressed Matter Cartridge"
 	id = "rcd_ammo"
 	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 16000, MAT_GLASS=8000)
+	materials = list(MAT_METAL = 48000, MAT_GLASS=24000)
 	build_path = /obj/item/rcd_ammo
 	category = list("initial","Construction")
 
@@ -527,6 +528,14 @@
 	build_path = /obj/item/ammo_box/c38
 	category = list("initial", "Security")
 
+/datum/design/c38hp
+	name = "Speed Loader (.38 Hollow-Point)"
+	id = "c38hp"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 30000)
+	build_path = /obj/item/ammo_box/c38/hp
+	category = list("hacked", "Security")
+
 /datum/design/recorder
 	name = "Universal Recorder"
 	id = "recorder"
@@ -623,14 +632,6 @@
 	build_path = /obj/item/assembly/voice/noise
 	category = list("initial", "Miscellaneous")
 
-/datum/design/transporter
-	name = "Transporter"
-	id = "Transporter"
-	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 150, MAT_GLASS = 50)
-	build_path = /obj/item/transporter
-	category = list("initial", "Miscellaneous")
-
 /datum/design/light_tube
 	name = "Light Tube"
 	id = "light_tube"
@@ -685,6 +686,14 @@
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 1000, MAT_GLASS = 1000)
 	build_path = /obj/item/reagent_containers/applicator
+	category = list("initial", "Medical")
+
+/datum/design/iv_bag
+	name = "IV bag"
+	id = "iv_bag"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 500, MAT_GLASS = 3000)
+	build_path = /obj/item/reagent_containers/iv_bag
 	category = list("initial", "Medical")
 
 /datum/design/prox_sensor
@@ -744,14 +753,6 @@
 	build_path = /obj/item/flamethrower/full
 	category = list("hacked", "Security")
 
-/datum/design/rcd
-	name = "Rapid Construction Device (RCD)"
-	id = "rcd"
-	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 30000)
-	build_path = /obj/item/rcd
-	category = list("hacked", "Construction")
-
 /datum/design/rpd
 	name = "Rapid Pipe Dispenser (RPD)"
 	id = "rpd"
@@ -808,6 +809,22 @@
 	build_path = /obj/item/ammo_casing/shotgun
 	category = list("hacked", "Security")
 
+/datum/design/sp8box
+	name = "Ammo Box (40n&r)"
+	id = "fortynrbox"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 45000)
+	build_path = /obj/item/ammo_box/fortynr
+	category = list("hacked", "Security")
+
+/datum/design/sp8mag
+	name = "handgun magazine (40n&r)"
+	id = "fortynrmag"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 13000)
+	build_path = /obj/item/ammo_box/magazine/sp8
+	category = list("hacked", "Security")
+
 /datum/design/buckshot_shell
 	name = "Buckshot shell"
 	id = "buckshot_shell"
@@ -830,14 +847,6 @@
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 4000)
 	build_path = /obj/item/ammo_casing/shotgun/incendiary
-	category = list("hacked", "Security")
-
-/datum/design/speedloader_univ
-	name = "Speedloader"
-	id = "speedloader_univ"
-	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 500)
-	build_path = /obj/item/ammo_box/shotgun/universal
 	category = list("hacked", "Security")
 
 /datum/design/riot_dart
@@ -873,11 +882,11 @@
 	category = list("hacked", "Security")
 
 /datum/design/a357
-	name = "Speed Loader (.357)"
+	name = "Ammo Box (.357)"
 	id = "a357"
 	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 30000)
-	build_path = /obj/item/ammo_box/a357
+	materials = list(MAT_METAL = 75000)
+	build_path = /obj/item/storage/box/a357
 	category = list("hacked", "Security")
 
 /datum/design/c10mm
@@ -902,6 +911,14 @@
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 30500)
 	build_path = /obj/item/ammo_box/c9mm
+	category = list("hacked", "Security")
+
+/datum/design/knuckles
+	name = "Knuckles"
+	id = "knuckles"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 18000)
+	build_path = /obj/item/clothing/gloves/knuckles
 	category = list("hacked", "Security")
 
 /datum/design/cleaver

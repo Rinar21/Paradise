@@ -374,11 +374,14 @@
  8.Apply retractor again to specimen's torso.<br>
  9.Search through the specimen's torso with your hands to remove any superfluous organs.<br>
  10.Insert replacement gland (Retrieve one from gland storage).<br>
- 11.Cauterize the patient's torso with a cautery.<br>
- 12.Consider dressing the specimen back to not disturb the habitat. <br>
- 13.Put the specimen in the experiment machinery.<br>
- 14.Choose one of the machine options. The target will be analyzed and teleported to the selected drop-off point.<br>
- 15.You will receive one supply credit, and the subject will be counted towards your quota.<br>
+ 11.Apply bone gel to mend the ribcage.<br>
+ 12.Use the bone setter to finish mending the ribcage.<br>
+ 13.Apply bone gel to mend the ribcage once more.<br>
+ 14.Cauterize the patient's torso with a cautery.<br>
+ 15.Consider dressing the specimen back to not disturb the habitat.<br>
+ 16.Put the specimen in the experiment machinery.<br>
+ 17.Choose one of the machine options. The target will be analyzed and teleported to the selected drop-off point.<br>
+ 18.You will receive one supply credit, and the subject will be counted towards your quota.<br>
 <br>
 Congratulations! You are now trained for invasive xenobiology research!"}
 
@@ -483,9 +486,9 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	L.lastattacker = user.real_name
 	L.lastattackerckey = user.ckey
 
-	L.Stun(7)
-	L.Weaken(7)
-	L.apply_effect(STUTTER, 7)
+	L.Weaken(14 SECONDS)
+	L.Stun(14 SECONDS)
+	L.Stuttering(14 SECONDS)
 
 	L.visible_message("<span class='danger'>[user] has stunned [L] with [src]!</span>", \
 							"<span class='userdanger'>[user] has stunned you with [src]!</span>")
@@ -498,14 +501,14 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	add_attack_logs(user, L, "Stunned with [src]")
 
 /obj/item/abductor_baton/proc/SleepAttack(mob/living/L,mob/living/user)
-	if(L.stunned || L.sleeping)
+	if(L.IsStunned() || L.IsSleeping() || L.IsWeakened())
 		L.visible_message("<span class='danger'>[user] has induced sleep in [L] with [src]!</span>", \
 							"<span class='userdanger'>You suddenly feel very drowsy!</span>")
 		playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
-		L.Sleeping(60)
+		L.Sleeping(120 SECONDS)
 		add_attack_logs(user, L, "Put to sleep with [src]")
 	else
-		L.AdjustDrowsy(1)
+		L.AdjustDrowsy(2 SECONDS)
 		to_chat(user, "<span class='warning'>Sleep inducement works fully only on stunned specimens! </span>")
 		L.visible_message("<span class='danger'>[user] tried to induce sleep in [L] with [src]!</span>", \
 							"<span class='userdanger'>You suddenly feel drowsy!</span>")
@@ -519,11 +522,13 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		C.visible_message("<span class='danger'>[user] begins restraining [C] with [src]!</span>", \
 								"<span class='userdanger'>[user] begins shaping an energy field around your hands!</span>")
 		if(do_mob(user, C, 30))
-			if(!C.handcuffed)
-				C.handcuffed = new /obj/item/restraints/handcuffs/energy/used(C)
-				C.update_handcuffed()
-				to_chat(user, "<span class='notice'>You handcuff [C].</span>")
-				add_attack_logs(user, C, "Handcuffed ([src])")
+			if(C.handcuffed)
+				return
+
+			C.set_handcuffed(new /obj/item/restraints/handcuffs/cable/zipties/used(C))
+
+			to_chat(user, "<span class='notice'>You handcuff [C].</span>")
+			add_attack_logs(user, C, "Handcuffed ([src])")
 		else
 			to_chat(user, "<span class='warning'>You fail to handcuff [C].</span>")
 
@@ -537,7 +542,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		species = "<span clas=='notice'>[H.dna.species.name]</span>"
-		if(L.mind && L.mind.changeling)
+		if(ischangeling(L))
 			species = "<span class='warning'>Changeling lifeform</span>"
 		var/obj/item/organ/internal/heart/gland/temp = locate() in H.internal_organs
 		if(temp)
@@ -561,8 +566,8 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	flags = DROPDEL
 
 /obj/item/restraints/handcuffs/energy/used/dropped(mob/user)
-	user.visible_message("<span class='danger'>[user]'s [src] break in a discharge of energy!</span>", \
-							"<span class='userdanger'>[user]'s [src] break in a discharge of energy!</span>")
+	user.visible_message("<span class='danger'>[src] restraining [user] breaks in a discharge of energy!</span>", \
+							"<span class='userdanger'>[src] restraining [user] breaks in a discharge of energy!</span>")
 	do_sparks(4, 0, user.loc)
 	. = ..()
 
@@ -667,7 +672,8 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	blockTracking = 1
 	origin_tech = "materials=7;magnets=4;abductor=3"
 	flags = BLOCKHAIR
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
+	flags_inv = HIDEMASK|HIDEHEADSETS|HIDEGLASSES|HIDENAME
+	flags_cover = HEADCOVERSMOUTH|HEADCOVERSEYES
 
 // Operating Table / Beds / Lockers
 
@@ -735,8 +741,6 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	name = "alien locker"
 	desc = "Contains secrets of the universe."
 	icon_state = "abductor"
-	icon_closed = "abductor"
-	icon_opened = "abductoropen"
 	material_drop = /obj/item/stack/sheet/mineral/abductor
 	material_drop_amount = 1
 
@@ -828,8 +832,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	throw_speed = 2
 	throw_range = 8
 
-/obj/item/storage/firstaid_abductor/New()
-	..()
+/obj/item/storage/firstaid_abductor/populate_contents()
 	new /obj/item/reagent_containers/applicator/abductor/brute(src)
 	new /obj/item/reagent_containers/applicator/abductor/burn(src)
 	new /obj/item/reagent_containers/glass/bottle/abductor/rezadone(src)
@@ -837,3 +840,23 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	new /obj/item/reagent_containers/glass/bottle/abductor/salgu(src)
 	new /obj/item/reagent_containers/glass/bottle/abductor/oculine(src)
 	new /obj/item/reagent_containers/glass/bottle/abductor/pen_acid(src)
+
+/obj/item/clothing/gloves/abductor_agent
+	desc = "These gloves seems to protect the wearer from electric shock."
+	name = "high-tech insulated gloves"
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "gloves_agent"
+	item_state = "abductor_gloves_agent"
+	siemens_coefficient = 0
+	permeability_coefficient = 0.05
+	resistance_flags = NONE
+
+/obj/item/clothing/gloves/abductor_science
+	name = "high-tech science gloves"
+	desc = "High-tech sterile gloves that are stronger than latex."
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "gloves_science"
+	item_state = "abductor_gloves_science"
+	siemens_coefficient = 0.30
+	permeability_coefficient = 0.01
+	resistance_flags = NONE

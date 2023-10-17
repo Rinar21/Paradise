@@ -5,14 +5,14 @@
 	icon_state = "headset"
 	item_state = "headset"
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/ears.dmi',
-		"Vox Armalis" = 'icons/mob/species/armalis/ears.dmi',
-		"Monkey" = 'icons/mob/species/monkey/ears.dmi',
-		"Farwa" = 'icons/mob/species/monkey/ears.dmi',
-		"Wolpin" = 'icons/mob/species/monkey/ears.dmi',
-		"Neara" = 'icons/mob/species/monkey/ears.dmi',
-		"Stok" = 'icons/mob/species/monkey/ears.dmi',
-		"Resomi" = 'icons/mob/species/resomi/ears.dmi'
+		"Vox" = 'icons/mob/clothing/species/vox/ears.dmi',
+		"Vox Armalis" = 'icons/mob/clothing/species/armalis/ears.dmi',
+		"Monkey" = 'icons/mob/clothing/species/monkey/ears.dmi',
+		"Farwa" = 'icons/mob/clothing/species/monkey/ears.dmi',
+		"Wolpin" = 'icons/mob/clothing/species/monkey/ears.dmi',
+		"Neara" = 'icons/mob/clothing/species/monkey/ears.dmi',
+		"Stok" = 'icons/mob/clothing/species/monkey/ears.dmi',
+		"Resomi" = 'icons/mob/clothing/species/resomi/ears.dmi'
 	) //We read you loud and skree-er.
 	materials = list(MAT_METAL=75)
 	canhear_range = 0 // can't hear headsets from very far away
@@ -75,7 +75,7 @@
 		var/mob/living/carbon/human/H = loc
 		if(H.l_ear == src || H.r_ear == src)
 			return ..()
-	else if(isanimal(loc) || isAI(loc))
+	else if(isanimal(loc) || isAI(loc) || istype(loc, /obj/item/paicard))
 		return ..()
 
 	return FALSE
@@ -123,12 +123,14 @@
 	ks2type = /obj/item/encryptionkey/syndicate/taipan
 	freerange = TRUE
 	freqlock = FALSE
+	flags = EARBANGPROTECT
 
 /obj/item/radio/headset/syndicate/taipan
 	name = "syndicate taipan headset"
 	icon_state = "taipan_headset"
 	item_state = "taipan_headset"
 	ks1type = /obj/item/encryptionkey/syndicate/taipan
+	flags = EARBANGPROTECT
 
 /obj/item/radio/headset/syndicate/taipan/New()
 	. = ..()
@@ -399,12 +401,10 @@
 			return
 
 		if(!keyslot1)
-			user.drop_item()
-			W.loc = src
+			user.drop_transfer_item_to_loc(W, src)
 			keyslot1 = W
 		else
-			user.drop_item()
-			W.loc = src
+			user.drop_transfer_item_to_loc(W, src)
 			keyslot2 = W
 		recalculateChannels()
 	else

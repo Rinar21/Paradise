@@ -5,7 +5,7 @@
 	light_range = 3
 	desc = "Some blob creature thingy"
 	density = 0
-	opacity = 0
+	opacity = 1
 	anchored = 1
 	max_integrity = 30
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
@@ -33,6 +33,9 @@
 	if(isturf(loc)) //Necessary because Expand() is screwed up and spawns a blob and then deletes it
 		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 	return ..()
+
+/obj/structure/blob/has_prints()
+	return FALSE
 
 /obj/structure/blob/BlockSuperconductivity()
 	return atmosblock
@@ -90,6 +93,8 @@
 		var/dirn = pick(dirs)
 		dirs.Remove(dirn)
 		var/turf/T = get_step(src, dirn)
+		if(!is_location_within_transition_boundaries(T))
+			continue
 		var/obj/structure/blob/B = (locate(/obj/structure/blob) in T)
 		if(!B)
 			expand(T,1,a_color)//No blob here so try and expand
@@ -124,6 +129,8 @@
 			else	T = null
 
 	if(!T)	return 0
+	if(!is_location_within_transition_boundaries(T))
+		return
 	var/obj/structure/blob/normal/B = new /obj/structure/blob/normal(src.loc, min(obj_integrity, 30))
 	B.color = a_color
 	B.density = 1
@@ -198,7 +205,7 @@
 /obj/structure/blob/proc/adjustcolors(var/a_color)
 	if(a_color)
 		color = a_color
-	return
+
 
 /obj/structure/blob/examine(mob/user)
 	. = ..()

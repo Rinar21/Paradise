@@ -662,7 +662,7 @@
 /turf/simulated/wall/indestructible/boss/see_through,
 /area/ruin/unpowered/ash_walkers)
 "bH" = (
-/obj/structure/necropolis_gate,
+/obj/structure/necropolis_gate/ashwalker,
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
@@ -1039,7 +1039,7 @@
 	},
 /obj/structure/table/wood,
 /obj/item/twohanded/spear,
-/obj/item/storage/belt,
+/obj/item/storage/belt/mining/primitive,
 /turf/simulated/floor/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "cI" = (

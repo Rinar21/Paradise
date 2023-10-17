@@ -1,8 +1,8 @@
 /datum/event/dust/meaty/announce()
 	if(prob(16))
-		GLOB.event_announcement.Announce("Неизвестные биологические объекты были обнаружены рядом со [station_name()], пожалуйста, будьте наготове.", "ВНИМАНИЕ: НЕОПОЗНАННЫЕ ФОРМЫ ЖИЗНИ")
+		GLOB.event_announcement.Announce("Неизвестные биологические объекты были обнаружены рядом с [station_name()], пожалуйста, будьте наготове.", "ВНИМАНИЕ: НЕОПОЗНАННЫЕ ФОРМЫ ЖИЗНИ.")
 	else
-		GLOB.event_announcement.Announce("На пути станции были обнаружены мясориты.", "ВНИМАНИЕ: МЯСОРИТЫ", new_sound = 'sound/AI/meteors.ogg')
+		GLOB.event_announcement.Announce("На пути станции были обнаружены мясориты.", "ВНИМАНИЕ: МЯСОРИТЫ.", new_sound = 'sound/AI/meteors.ogg')
 
 /datum/event/dust/meaty/setup()
 	qnty = rand(45,125)
@@ -15,7 +15,7 @@
 
 /obj/effect/space_dust/meaty
 	icon = 'icons/mob/animal.dmi'
-	icon_state = "cow"
+	icon_state = "pig"
 
 	strength = 1
 	life = 3
@@ -33,4 +33,4 @@
 		else if(prob(10))
 			explosion(where, 0, pick(0,1), pick(2,3), 0, cause = src)
 	else
-		new /mob/living/simple_animal/cow(where)
+		new /mob/living/simple_animal/pig(where)

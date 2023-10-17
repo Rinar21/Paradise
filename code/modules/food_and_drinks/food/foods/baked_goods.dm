@@ -235,6 +235,67 @@
 	tastes = list("cake" = 5, "sweetness" = 1, "apple" = 1)
 	foodtype = SUGAR | GRAIN | FRUIT
 
+/obj/item/reagent_containers/food/snacks/sliceable/slimepie
+	name = "slime pie"
+	desc = "Blurp blob blup blep blop. Slicable."
+	icon_state = "slimepie"
+	slice_path = /obj/item/reagent_containers/food/snacks/slimepieslice
+	slices_num = 5
+	bitesize = 3
+	filling_color = "#00d9ff"
+	list_reagents = list("nutriment" = 20, "vitamin" = 5)
+	tastes = list("slime" = 5, "sweetness" = 1, "jelly" = 1)
+	foodtype = SUGAR | MEAT | FRUIT
+
+/obj/item/reagent_containers/food/snacks/slimepieslice
+	name = "slime pie slice"
+	desc = "Blurp blob blup blep blop."
+	icon_state = "slimepieslice"
+	trash = /obj/item/trash/plate
+	filling_color = "#00d9ff"
+	tastes = list("slime" = 5, "sweetness" = 1, "jelly" = 1)
+	foodtype = SUGAR | MEAT | FRUIT
+
+/obj/item/reagent_containers/food/snacks/sliceable/choccherrycake
+	name = "Chocolate - cherry cake"
+	desc = "Another cake. However."
+	icon_state = "choccherrycake"
+	slice_path = /obj/item/reagent_containers/food/snacks/choccherrycakeslice
+	slices_num = 6
+	bitesize = 3
+	filling_color = "#5e1706"
+	tastes = list("cherry" = 5, "sweetness" = 1, "chocolate" = 1)
+	list_reagents = list("nutriment" = 10, "sugar" = 3, "coco" = 4)
+	foodtype = SUGAR | FRUIT | GRAIN
+
+/obj/item/reagent_containers/food/snacks/choccherrycakeslice
+	name = "Chocolate - cherry cake's slice"
+	desc = "Slice of another cake. Wait, what?"
+	icon_state = "choccherrycake_s"
+	trash = /obj/item/trash/plate
+	filling_color = "#5e1706"
+	foodtype = SUGAR | FRUIT | GRAIN
+
+/obj/item/reagent_containers/food/snacks/sliceable/noel
+	name = "Buche de Noel"
+	desc = "What?"
+	icon_state = "noel"
+	trash = /obj/item/trash/tray
+	slice_path = /obj/item/reagent_containers/food/snacks/noelslice
+	slices_num = 5
+	filling_color = "#5e1706"
+	tastes = list("chocolate" = 3, "sweetness" = 2, "egg" = 1, "berries" = 2)
+	list_reagents = list("nutriment" = 6, "plantmatter" = 2, "coco" = 2, "cream" = 3, "sugar" = 3, "berryjucie" = 3)
+	foodtype = SUGAR | FRUIT | GRAIN | DAIRY
+
+/obj/item/reagent_containers/food/snacks/noelslice
+	name = "Noel's slice"
+	desc = "Slice of what?"
+	icon_state = "noel_s"
+	trash = /obj/item/trash/plate
+	filling_color = "#5e1706"
+	bitesize = 2
+	foodtype = SUGAR | FRUIT | GRAIN | DAIRY
 
 //////////////////////
 //		Cookies		//
@@ -284,7 +345,7 @@
 	tastes = list("pie" = 1)
 	foodtype = SUGAR | GRAIN | FRUIT
 
-/obj/item/reagent_containers/food/snacks/pie/throw_impact(atom/hit_atom)
+/obj/item/reagent_containers/food/snacks/pie/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..()
 	new/obj/effect/decal/cleanable/pie_smudge(loc)
 	visible_message("<span class='warning'>[src] splats.</span>","<span class='warning'>You hear a splat.</span>")
@@ -333,12 +394,12 @@
 	tastes = list("pie" = 1, "mushroom" = 1)
 	foodtype = GRAIN | VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/plump_pie/New()
-	..()
+/obj/item/reagent_containers/food/snacks/plump_pie/Initialize(mapload)
 	if(prob(10))
 		name = "exceptional plump pie"
 		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!" // What
 		reagents.add_reagent("omnizine", 5)
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/xemeatpie
 	name = "xeno-pie"
@@ -410,22 +471,69 @@
 	tastes = list("donut" = 1)
 	foodtype = JUNKFOOD
 
-/obj/item/reagent_containers/food/snacks/donut/New()
-	..()
+/obj/item/reagent_containers/food/snacks/donut/Initialize(mapload)
 	if(randomized_sprinkles && prob(30))
-		icon_state = "donut2"
-		name = "frosted donut"
-		reagents.add_reagent("sprinkles", 2)
-		donut_sprite_type = "frosted"
-		filling_color = "#FF69B4"
+		switch(rand(1,4))
+			if(1)
+				name = "chocolate donut"
+				icon_state = "donut5"
+				reagents.add_reagent("cocoa", 2)
+				filling_color = "#2e1300"
+				donut_sprite_type = "chocolate"
+			if(2)
+				name = "vanilla donut"
+				icon_state = "donut4"
+				reagents.add_reagent("vanilla", 2)
+				filling_color = "#dcd8b0"
+				donut_sprite_type = "vanilla"
+			if(3)
+				name = "berry donut"
+				icon_state = "donut3"
+				reagents.add_reagent("berryjuice", 2)
+				filling_color = "#82e4ed"
+				donut_sprite_type = "berry"
+			if(4)
+				icon_state = "donut2"
+				name = "frosted donut"
+				reagents.add_reagent("sprinkles", 2)
+				donut_sprite_type = "frosted"
+				filling_color = "#FF69B4"
+	. = ..()
+
+/obj/item/reagent_containers/food/snacks/donut/update_icon()
+	return
 
 /obj/item/reagent_containers/food/snacks/donut/sprinkles
 	name = "frosted donut"
 	icon_state = "donut2"
-	list_reagents = list("nutriment" = 3, "sugar" = 2, "sprinkles" = 2)
+	list_reagents = list("nutriment" = 3, "sugar" = 2)
 	filling_color = "#FF69B4"
 	donut_sprite_type = "frosted"
 	randomized_sprinkles = 0
+
+/obj/item/reagent_containers/food/snacks/donut/sprinkles/Initialize(mapload)
+	switch(rand(1,4))
+		if(1)
+			name = "chocolate donut"
+			icon_state = "donut5"
+			reagents.add_reagent("cocoa", 2)
+			filling_color = "#2e1300"
+			donut_sprite_type = "chocolate"
+		if(2)
+			name = "vanilla donut"
+			icon_state = "donut4"
+			reagents.add_reagent("vanilla", 2)
+			filling_color = "#dcd8b0"
+			donut_sprite_type = "vanilla"
+		if(3)
+			name = "berry donut"
+			icon_state = "donut3"
+			reagents.add_reagent("berryjuice", 2)
+			filling_color = "#82e4ed"
+			donut_sprite_type = "berry"
+		if(4)
+			reagents.add_reagent("sprinkles", 2)
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/donut/chaos
 	name = "chaos donut"
@@ -433,16 +541,38 @@
 	bitesize = 10
 	tastes = list("donut" = 3, "chaos" = 1)
 	log_eating = TRUE
+	randomized_sprinkles = 0
 
-/obj/item/reagent_containers/food/snacks/donut/chaos/New()
-	..()
+/obj/item/reagent_containers/food/snacks/donut/chaos/Initialize(mapload)
 	extra_reagent = pick("nutriment", "capsaicin", "frostoil", "krokodil", "plasma", "cocoa", "slimejelly", "banana", "berryjuice", "omnizine")
 	reagents.add_reagent("[extra_reagent]", 3)
 	if(prob(30))
-		icon_state = "donut2"
-		name = "frosted chaos donut"
-		reagents.add_reagent("sprinkles", 2)
-		filling_color = "#FF69B4"
+		switch(rand(1,4))
+			if(1)
+				name = "chocolate chaos donut"
+				icon_state = "donut5"
+				reagents.add_reagent("cocoa", 2)
+				filling_color = "#2e1300"
+				donut_sprite_type = "chocolate"
+			if(2)
+				name = "vanilla chaos donut"
+				icon_state = "donut4"
+				reagents.add_reagent("vanilla", 2)
+				filling_color = "#dcd8b0"
+				donut_sprite_type = "vanilla"
+			if(3)
+				name = "berry chaos donut"
+				icon_state = "donut3"
+				reagents.add_reagent("berryjuice", 2)
+				filling_color = "#82e4ed"
+				donut_sprite_type = "berry"
+			if(4)
+				icon_state = "donut2"
+				name = "frosted chaos donut"
+				reagents.add_reagent("sprinkles", 2)
+				donut_sprite_type = "frosted"
+				filling_color = "#FF69B4"
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/donut/jelly
 	name = "jelly donut"
@@ -450,18 +580,39 @@
 	icon_state = "jdonut1"
 	extra_reagent = "berryjuice"
 	donut_sprite_type = "jelly"
+	randomized_sprinkles = 0
 	tastes = list("jelly" = 1, "donut" = 3)
 
-/obj/item/reagent_containers/food/snacks/donut/jelly/New()
-	..()
+/obj/item/reagent_containers/food/snacks/donut/jelly/Initialize(mapload)
 	if(extra_reagent)
 		reagents.add_reagent("[extra_reagent]", 3)
 	if(prob(30))
-		icon_state = "jdonut2"
-		name = "frosted jelly Donut"
-		donut_sprite_type = "frostedjelly"
-		reagents.add_reagent("sprinkles", 2)
-		filling_color = "#FF69B4"
+		switch(rand(1,4))
+			if(1)
+				name = "chocolate jelly donut"
+				icon_state = "jdonut5"
+				reagents.add_reagent("cocoa", 2)
+				filling_color = "#2e1300"
+				donut_sprite_type = "chocolatejelly"
+			if(2)
+				name = "vanilla jelly donut"
+				icon_state = "jdonut4"
+				reagents.add_reagent("vanilla", 2)
+				filling_color = "#dcd8b0"
+				donut_sprite_type = "vanillajelly"
+			if(3)
+				name = "berry jelly donut"
+				icon_state = "jdonut3"
+				reagents.add_reagent("berryjuice", 2)
+				filling_color = "#82e4ed"
+				donut_sprite_type = "berryjelly"
+			if(4)
+				icon_state = "jdonut2"
+				name = "frosted jelly donut"
+				reagents.add_reagent("sprinkles", 2)
+				donut_sprite_type = "frostedjelly"
+				filling_color = "#FF69B4"
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly
 	name = "jelly donut"
@@ -544,12 +695,12 @@
 	tastes = list("mushroom" = 1, "biscuit" = 1)
 	foodtype = GRAIN | SUGAR | VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit/New()
-	..()
+/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit/Initialize(mapload)
 	if(prob(10))
 		name = "exceptional plump helmet biscuit"
 		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump helmet biscuit!" // Is this a reference?
 		reagents.add_reagent("omnizine", 5)
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/appletart
 	name = "golden apple streusel tart"
@@ -572,3 +723,13 @@
 	list_reagents = list("nutriment" = 1)
 	tastes = list("cracker" = 1)
 	foodtype = GRAIN
+
+/obj/item/reagent_containers/food/snacks/sundae
+	name = "Sundae"
+	desc = "Creamy satisfaction"
+	icon_state = "sundae"
+	filling_color = "#F5DEB8"
+	list_reagents = list("nutriment" = 4, "plantmatter" = 2, "bananajucie" = 4, "cream" = 3)
+	tastes = list("banana" = 1, "cherry" = 1, "cream" = 1)
+	bitesize = 5
+	foodtype = GRAIN | FRUIT

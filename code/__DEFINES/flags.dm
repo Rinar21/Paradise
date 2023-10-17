@@ -2,7 +2,7 @@
 #define NONE 0
 
 //FLAGS BITMASK
-#define STOPSPRESSUREDMAGE 		1		//This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere To successfully stop you taking all pressure damage you must have both a suit and head item with this flag.
+#define STOPSPRESSUREDMAGE 		1		// This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere To successfully stop you taking all pressure damage you must have both a suit and head item with this flag.
 #define NODROP					2		// This flag makes it so that an item literally cannot be removed at all, or at least that's how it should be. Only deleted.
 #define NOBLUDGEON  			4		// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
 #define AIRTIGHT				8		// mask allows internals
@@ -17,6 +17,8 @@
 
 #define NOSLIP					1024 	//prevents from slipping on wet floors, in space etc
 
+#define NOPICKUP				2048	// This flags makes it so an item cannot be picked in hands
+
 #define HEADBANGPROTECT			4096
 
 #define BLOCK_GAS_SMOKE_EFFECT	8192	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
@@ -24,6 +26,12 @@
 
 #define DROPDEL					16384	// When dropped, it calls qdel on itself
 
+#define BLOCKHEADHAIR 			32768	// temporarily removes the user's hair overlay. Leaves facial hair.
+#define BLOCKHAIR				65536	// temporarily removes the user's hair, facial and otherwise.
+
+#define NO_PIXEL_RANDOM_DROP	131072	// If dropped, it wont have a randomized pixel_x/pixel_y
+
+#define BLOCK_CAPSAICIN			262144 	// Prevents from passing capsaicin onto human
 
 /* Secondary atom flags, for the flags_2 var, denoted with a _2 */
 
@@ -108,9 +116,15 @@
 #define PASSBLOB		8
 #define PASSMOB			16
 #define LETPASSTHROW	32
-#define PASSFENCE 64
-#define PASS_OTHER_THINGS 128
-#define PASS_EVERYTHING PASSTABLE|PASSGLASS|PASSGRILLE|PASSBLOB|PASSMOB|LETPASSTHROW|PASSFENCE|PASS_OTHER_THINGS
+#define PASSFENCE 		64
+#define PASSDOOR		128
+#define PASS_OTHER_THINGS 256
+#define PASS_EVERYTHING PASSTABLE|PASSGLASS|PASSGRILLE|PASSBLOB|PASSMOB|LETPASSTHROW|PASSFENCE|PASSDOOR|PASS_OTHER_THINGS
+
+// for /datum/var/datum_flags
+#define DF_USE_TAG (1<<0)
+#define DF_VAR_EDITED (1<<1)
+#define DF_ISPROCESSING (1<<2)
 
 //turf-only flags
 #define NOJAUNT		1

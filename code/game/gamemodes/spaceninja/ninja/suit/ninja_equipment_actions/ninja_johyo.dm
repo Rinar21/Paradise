@@ -1,7 +1,9 @@
-/datum/action/item_action/johyo
+/datum/action/item_action/advanced/ninja/johyo
 	name = "Integrated Jōhyō"
 	desc = "A rope dagger conveniently hidden inside your suit. \
 	Has a pulse launcher that allowes you to shot it at an incredible speed, and grab your victims to get them right next to you! Energy cost: 500"
+	charge_type = ADV_ACTION_TYPE_TOGGLE_RECHARGE
+	charge_max = 5 SECONDS
 	use_itemicon = FALSE
 	icon_icon = 'icons/mob/actions/actions_ninja.dmi'
 	button_icon_state = "kunai"
@@ -17,6 +19,11 @@
 	else
 		integrated_harpoon = new
 		integrated_harpoon.my_suit = src
+		for(var/datum/action/item_action/advanced/ninja/johyo/ninja_action in actions)
+			integrated_harpoon.my_action = ninja_action
+			ninja_action.action_ready = TRUE
+			ninja_action.toggle_button_on_off()
+			break
 		ninja.put_in_hands(integrated_harpoon)
 
 //Harpoon
@@ -32,30 +39,39 @@
 	max_charges = 1
 	recharge_rate = 0
 	charge_tick = 1
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
 	slot_flags = 0
 	flags = DROPDEL | ABSTRACT | NOBLUDGEON
 	force = 10
 	ninja_weapon = TRUE
-	var/cost = 50
+	var/cost = 500
 	var/obj/item/clothing/suit/space/space_ninja/my_suit = null
+	var/datum/action/item_action/advanced/ninja/johyo/my_action = null
 
 
 /obj/item/gun/magic/johyo/Destroy()
 	. = ..()
 	my_suit.integrated_harpoon = null
 	my_suit = null
+	my_action.action_ready = FALSE
+	my_action.toggle_button_on_off()
+	my_action = null
 
-/obj/item/gun/magic/johyo/equip_to_best_slot(mob/M)
+
+/obj/item/gun/magic/johyo/equip_to_best_slot(mob/user, force = FALSE, drop_on_fail = FALSE, qdel_on_fail = FALSE)
 	qdel(src)
 
+
+/obj/item/gun/magic/johyo/run_drop_held_item(mob/user)
+	qdel(src)
+
+
 /obj/item/gun/magic/johyo/can_trigger_gun(mob/living/user)
-	if(my_suit.s_coold > 0)
-		to_chat(user, span_warning("<b>ERROR</b>: suit is on cooldown."))
+	if(!my_action.IsAvailable(show_message = TRUE, ignore_ready = TRUE))
 		return FALSE
 	if(!my_suit.ninjacost(cost*burst_size))
-		my_suit.s_coold = 5 SECONDS
+		my_action.use_action()
 		return TRUE
 	return FALSE
 
@@ -76,14 +92,12 @@
 	armour_penetration = 100
 	damage_type = BRUTE
 	hitsound = 'sound/weapons/whip.ogg'
-	weaken = 4
-	var/chain
-
+	weaken = 2 SECONDS
 
 /obj/item/projectile/johyo/fire(setAngle)
 	if(firer)
 		firer.say(pick("Get over here!", "Come here!"))
-		chain = firer.Beam(src, icon_state = "chain_dark", time = INFINITY, maxdistance = INFINITY)
+		chain = firer.Beam(src, icon_state = "chain_dark", time = INFINITY, maxdistance = INFINITY, beam_sleep_time = 1)
 	. = ..()
 
 /obj/item/projectile/johyo/on_hit(atom/target)

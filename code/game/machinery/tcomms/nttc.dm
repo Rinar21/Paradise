@@ -35,6 +35,7 @@
 		"Life Support Specialist" = "engradio",
 		"Mechanic" = "engradio",
 		"Station Engineer" = "engradio",
+		"Trainee Engineer" = "engradio",
 		// Central Command
 		"Emergency Response Team Engineer" = "dsquadradio", // I know this says deathsquad but the class for responseteam is neon green. No.
 		"Emergency Response Team Leader" = "dsquadradio",
@@ -51,6 +52,7 @@
 		"Chief Medical Officer" = "medradio",
 		"Coroner" = "medradio",
 		"Medical Doctor" = "medradio",
+		"Intern" = "medradio",
 		"Paramedic" = "medradio",
 		"Psychiatrist" = "medradio",
 		"Virologist" = "medradio",
@@ -59,6 +61,7 @@
 		"Research Director" = "sciradio",
 		"Roboticist" = "sciradio",
 		"Scientist" = "sciradio",
+		"Student Scientist" = "sciradio",
 		// Security
 		"Brig Physician" = "secradio",
 		"Detective" = "secradio",
@@ -66,6 +69,7 @@
 		"Internal Affairs Agent" = "secradio",
 		"Magistrate" = "secradio",
 		"Security Officer" = "secradio",
+		"Security Cadet" = "secradio",
 		"Security Pod Pilot" = "secradio",
 		"Warden" = "secradio",
 		// Supply
@@ -92,7 +96,7 @@
 	/// List of SolGov Marine jobs
 	var/list/tsf_jobs = list("Solar Federation Specops Lieutenant", "Solar Federation Specops Marine", "Solar Federation Marine")
 	//  List of USSP jobs
-	var/list/soviet_jobs = list("Soviet Tourist", "Soviet Conscript", "Soviet Soldier", "Soviet Officer", "Soviet Marine", "Soviet Marine Captain")
+	var/list/soviet_jobs = list("Soviet Tourist", "Soviet Conscript", "Soviet Soldier", "Soviet Officer", "Soviet Marine", "Soviet Marine Captain", "Soviet General", "Soviet Engineer", "Soviet Scientist", "Soviet Medic")
 	// Defined so code compiles and incase someone has a non-standard job
 	var/job_class = "radio"
 	// NOW FOR ACTUAL TOGGLES
@@ -164,7 +168,7 @@
 // Fucking broken as shit, someone help me fix this.
 /datum/nttc_configuration/proc/nttc_deserialize(text, var/ckey)
 	if(word_blacklist.Find(text)) //uh oh, they tried to be naughty
-		message_admins("<span class='danger'>EXPLOIT WARNING: </span> [ckey] attempted to upload an NTTC configuration containing JS abusable tags!")
+		message_admins(span_danger("EXPLOIT WARNING: ") + "[ckey] attempted to upload an NTTC configuration containing JS abusable tags!")
 		log_admin("EXPLOIT WARNING: [ckey] attempted to upload an NTTC configuration containing JS abusable tags")
 		return FALSE
 	var/list/var_list = json_decode(text)

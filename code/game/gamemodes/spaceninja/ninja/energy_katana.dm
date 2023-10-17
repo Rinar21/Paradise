@@ -47,10 +47,19 @@
 /obj/item/melee/energy_katana/afterattack(atom/target, mob/user, proximity, params)
 	. = ..()
 	if(user && user.a_intent == INTENT_DISARM && !target.density)
-		jaunt.teleport(user, target)
-		if(user.client)
-			user.client.mouse_pointer_icon = file(jaunt.update_cursor())
-		jaunt.update_action_style(color_style)
+		if(isninja(user))
+			jaunt.teleport(user, target)
+			if(user.client)
+				user.client.mouse_pointer_icon = file(jaunt.update_cursor())
+				jaunt.update_action_style(color_style)
+		else
+			var/mob/living/carbon/human/H = user
+			var/obj/item/organ/external/affecting = H.get_organ("[user.hand ? "l" : "r" ]_hand")
+			if(affecting.droplimb())
+				H.UpdateDamageIcon()
+				playsound(src, 'sound/creatures/terrorspiders/rip.ogg', 120, 1)
+				to_chat(user, span_userdanger("That was a bad idea."))
+				H.emote("scream")
 
 /obj/item/melee/energy_katana/pickup(mob/living/user)
 	. = ..()
@@ -60,6 +69,14 @@
 		jaunt.update_action_style(color_style)
 		user.update_icons()
 		playsound(get_turf(src), 'sound/items/unsheath.ogg', 25, TRUE, 5)
+	if(!isninja(user))
+		var/mob/living/carbon/human/H = user
+		var/obj/item/organ/external/affecting = H.get_organ("[user.hand ? "l" : "r" ]_hand")
+		if(affecting.receive_damage(20))		//INFERNO
+			H.UpdateDamageIcon()
+			to_chat(user, span_userdanger("Oh fuck, it hurts!."))
+			playsound(src, 'sound/weapons/bladeslice.ogg', 100, 1)
+
 
 /obj/item/melee/energy_katana/dropped(mob/user)
 	. = ..()
@@ -67,6 +84,18 @@
 		jaunt.Remove(user)
 		user.client.mouse_pointer_icon = initial(user.client.mouse_pointer_icon)
 		user.update_icons()
+
+/obj/item/melee/energy_katana/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!isninja(user))
+		var/mob/living/carbon/human/H = user
+		var/obj/item/organ/external/affecting = H.get_organ("[user.hand ? "l" : "r" ]_hand")
+		if(affecting.droplimb())
+			H.UpdateDamageIcon()
+			playsound(src, 'sound/creatures/terrorspiders/rip.ogg', 120, 1)
+			to_chat(user, span_userdanger("That was a bad idea."))
+			H.emote("scream")
+		return
+	..()
 
 //If we hit the Ninja who owns this Katana, they catch it.
 //Works for if the Ninja throws it or it throws itself(nope) or someone tries
@@ -108,9 +137,9 @@
 
 	if(user.put_in_active_hand(src))
 		msg = "Your Energy Katana teleports into your hand!"
-	else if(user.equip_to_slot_if_possible(src, slot_belt, 0, 1))
+	else if(user.equip_to_slot_if_possible(src, slot_belt, disable_warning = TRUE))
 		msg = "Your Energy Katana teleports back to you, sheathing itself as it does so!</span>"
-	else if(user.equip_to_slot_if_possible(src, slot_back, 0, 1))
+	else if(user.equip_to_slot_if_possible(src, slot_back, disable_warning = TRUE))
 		msg = "Your Energy Katana teleports back to you, sheathing itself at your back as it does so!</span>"
 	else
 		msg = "Your Energy Katana teleports to your location!"
@@ -144,13 +173,13 @@
 /datum/action/innate/dash/ninja/proc/update_cursor()
 	switch(current_charges)
 		if(3)
-			return "icons/mouse_pointers/ninja_cursor_three.dmi"
+			return "icons/misc/mouse_pointers/ninja_cursor_three.dmi"
 		if(2)
-			return "icons/mouse_pointers/ninja_cursor_two.dmi"
+			return "icons/misc/mouse_pointers/ninja_cursor_two.dmi"
 		if(1)
-			return "icons/mouse_pointers/ninja_cursor_one.dmi"
+			return "icons/misc/mouse_pointers/ninja_cursor_one.dmi"
 		if(0)
-			return "icons/mouse_pointers/ninja_cursor_off.dmi"
+			return "icons/misc/mouse_pointers/ninja_cursor_off.dmi"
 
 /datum/action/innate/dash/ninja/proc/update_action_style(color_style)
 	button_icon_state = "arrows_[clamp(current_charges, 0, max_charges)]" //Защита от потери иконок при админ абузе

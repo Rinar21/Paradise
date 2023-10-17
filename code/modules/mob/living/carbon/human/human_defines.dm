@@ -17,7 +17,9 @@
 	var/age = 30		//Player's age (pure fluff)
 
 	var/underwear = "Nude"	//Which underwear the player wants
+	var/color_underwear = "#ffffff"
 	var/undershirt = "Nude"	//Which undershirt the player wants
+	var/color_undershirt = "#ffffff"
 	var/socks = "Nude" //Which socks the player wants
 	var/backbag = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
 
@@ -43,6 +45,7 @@
 	var/datum/personal_crafting/handcrafting
 
 	var/special_voice = "" // For changing our voice. Used by a symptom.
+	var/special_tts_voice = ""
 
 	var/hand_blood_color
 
@@ -61,9 +64,6 @@
 
 	var/heartbeat = 0
 	var/receiving_cpr = FALSE
-
-	var/fire_dmi = 'icons/mob/OnFire.dmi'
-	var/fire_sprite = "Standing"
 
 	var/datum/body_accessory/body_accessory = null
 	/// Name of tail image in species effects icon file.

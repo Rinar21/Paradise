@@ -33,7 +33,7 @@
 /datum/gear/suit/coat/job/med
 	display_name = "winter coat, medical"
 	path = /obj/item/clothing/suit/hooded/wintercoat/medical
-	allowed_roles = list("Chief Medical Officer", "Medical Doctor", "Chemist", "Psychiatrist", "Paramedic", "Virologist", "Brig Physician" , "Coroner")
+	allowed_roles = list("Chief Medical Officer", "Medical Doctor", "Intern", "Chemist", "Psychiatrist", "Paramedic", "Virologist", "Brig Physician" , "Coroner")
 
 /datum/gear/suit/coat/job/cmo
 	display_name = "winter coat, chief medical officer"
@@ -42,18 +42,18 @@
 
 /datum/gear/suit/coat/job/sci
 	display_name = "winter coat, science"
-	path = /obj/item/clothing/suit/hooded/wintercoat/science
-	allowed_roles = list("Scientist", "Research Director")
+	path = /obj/item/clothing/suit/hooded/wintercoat/medical/science
+	allowed_roles = list("Scientist", "Research Director", "Student Scientist")
 
 /datum/gear/suit/coat/job/rd
 	display_name = "winter coat, research director"
-	path = /obj/item/clothing/suit/hooded/wintercoat/science/rd
+	path = /obj/item/clothing/suit/hooded/wintercoat/medical/science/rd
 	allowed_roles = list("Research Director")
 
 /datum/gear/suit/coat/job/engi
 	display_name = "winter coat, engineering"
 	path = /obj/item/clothing/suit/hooded/wintercoat/engineering
-	allowed_roles = list("Chief Engineer", "Station Engineer", "Mechanic")
+	allowed_roles = list("Chief Engineer", "Station Engineer", "Trainee Engineer", "Mechanic")
 
 /datum/gear/suit/coat/job/atmos
 	display_name = "winter coat, atmospherics"
@@ -77,7 +77,7 @@
 
 /datum/gear/suit/coat/job/qm
 	display_name = "winter coat, quartermaster"
-	path = /obj/item/clothing/suit/hooded/wintercoat/qm
+	path = /obj/item/clothing/suit/hooded/wintercoat/cargo/qm
 	allowed_roles = list("Quartermaster")
 
 /datum/gear/suit/coat/job/miner
@@ -88,7 +88,7 @@
 /datum/gear/suit/coat/job/hop
 	display_name = "winter coat, head of personnel"
 	path = /obj/item/clothing/suit/hooded/wintercoat/hop
-	allowed_roles = list("Head Of Personnel")
+	allowed_roles = list("Head of Personnel")
 
 //LABCOATS
 /datum/gear/suit/labcoat_emt
@@ -172,7 +172,7 @@
 /datum/gear/suit/suragi_jacket/eng
 	display_name = "Suragi Jacket - Engineering"
 	path = /obj/item/clothing/suit/storage/suragi_jacket/eng
-	allowed_roles = list("Station Engineer", "Mechanic")
+	allowed_roles = list("Station Engineer", "Trainee Engineer", "Mechanic")
 
 
 /datum/gear/suit/suragi_jacket/botany
@@ -184,7 +184,7 @@
 /datum/gear/suit/suragi_jacket/medic
 	display_name = "Suragi Jacket - Medical"
 	path = /obj/item/clothing/suit/storage/suragi_jacket/medic
-	allowed_roles = list("Medical Doctor", "Psychiatrist", "Paramedic", "Coroner")
+	allowed_roles = list("Medical Doctor", "Intern", "Psychiatrist", "Paramedic", "Coroner")
 
 
 /datum/gear/suit/suragi_jacket/medsec
@@ -220,7 +220,7 @@
 /datum/gear/suit/suragi_jacket/sci
 	display_name = "Suragi Jacket - Science"
 	path = /obj/item/clothing/suit/storage/suragi_jacket/sci
-	allowed_roles = list("Scientist")
+	allowed_roles = list("Scientist", "Student Scientist")
 
 
 /datum/gear/suit/suragi_jacket/janitor

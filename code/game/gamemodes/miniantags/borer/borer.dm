@@ -43,7 +43,7 @@
 	to_chat(B.host, "<span class='danger'>You feel the captive mind of [src] begin to resist your control.</span>")
 
 	var/delay = (rand(350,450) + B.host.getBrainLoss())
-	addtimer(CALLBACK(src, .proc/return_control, B), delay)
+	addtimer(CALLBACK(src, PROC_REF(return_control), B), delay)
 
 
 /mob/living/captive_brain/proc/return_control(mob/living/simple_animal/borer/B)
@@ -175,6 +175,10 @@
 		to_chat(src, "You cannot do that in your current state.")
 		return
 
+	if(host.stat == DEAD)
+		to_chat(src, "<span class='warning'>Мозг носителя не способен воспринимать вас сейчас!</span>")
+		return
+
 	var/input = stripped_input(src, "Please enter a message to tell your host.", "Borer", "")
 	if(!input)
 		return
@@ -208,6 +212,8 @@
 	set category = "Borer"
 	set desc = "Communicate mentally with your borer."
 
+	if(src.stat == DEAD) // This shouldn't appear if host is not alive, but double-check
+		return
 
 	var/mob/living/simple_animal/borer/B = has_brain_worms()
 	if(!B)
@@ -230,6 +236,9 @@
 	set category = "Borer"
 	set desc = "Communicate mentally with the trapped mind of your host."
 
+	if(src.stat == DEAD)
+		to_chat(src, "<span class='warning'>Мозг жертвы не способен воспринимать вас в этом состоянии!</span>")
+		return
 
 	var/mob/living/simple_animal/borer/B = has_brain_worms()
 	if(!B || !B.host_brain)
@@ -530,7 +539,7 @@
 
 	to_chat(src, "<span class='warning'>You focus your psychic lance on [M] and freeze [M.p_their()] limbs with a wave of terrible dread.</span>")
 	to_chat(M, "<span class='warning'>You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing.</span>")
-	M.Weaken(3)
+	M.Weaken(6 SECONDS)
 
 	used_dominate = world.time
 	attempting_to_dominate = FALSE
@@ -564,7 +573,7 @@
 
 	leaving = TRUE
 
-	addtimer(CALLBACK(src, .proc/let_go), 200)
+	addtimer(CALLBACK(src, PROC_REF(let_go)), 200)
 
 /mob/living/simple_animal/borer/proc/let_go()
 
@@ -639,7 +648,7 @@
 	bonding = TRUE
 
 	var/delay = 300+(host.getBrainLoss()*5)
-	addtimer(CALLBACK(src, .proc/assume_control), delay)
+	addtimer(CALLBACK(src, PROC_REF(assume_control)), delay)
 
 /mob/living/simple_animal/borer/proc/assume_control()
 	if(!host || !src || controlling)
@@ -757,7 +766,7 @@
 		return
 
 	if(B.chemicals >= 100)
-		to_chat(src, "<span class='danger'>Your host twitches and quivers as you rapdly excrete several larvae from your sluglike body.</span>")
+		to_chat(src, "<span class='danger'>Your host twitches and quivers as you rapidly excrete several larvae from your sluglike body.</span>")
 		visible_message("<span class='danger'>[src] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</span>")
 		B.chemicals -= 100
 		var/turf/T = get_turf(src)

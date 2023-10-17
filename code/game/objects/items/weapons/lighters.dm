@@ -64,6 +64,11 @@
 	set_light(0)
 	STOP_PROCESSING(SSobj, src)
 
+/obj/item/lighter/extinguish_light(force = FALSE)
+	if(!force)
+		return
+	turn_off_lighter()
+
 /obj/item/lighter/proc/show_off_message(mob/living/user)
 	to_chat(user, "<span class='notice'>You shut off [src].")
 
@@ -264,13 +269,18 @@
 	..()
 	matchignite()
 
+/obj/item/match/extinguish_light(force = FALSE)
+	if(!force)
+		return
+	matchburnout()
+
 /obj/item/match/proc/matchignite()
 	if(!lit && !burnt)
 		lit = TRUE
 		icon_state = "match_lit"
 		damtype = "fire"
 		force = 3
-		hitsound = 'sound/items/welder.ogg'
+		hitsound = 'sound/weapons/tap.ogg'
 		item_state = "cigon"
 		name = "lit match"
 		desc = "A match. This one is lit."
