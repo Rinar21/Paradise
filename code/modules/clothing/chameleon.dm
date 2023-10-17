@@ -273,14 +273,15 @@
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/eyes.dmi',
-		"Drask" = 'icons/mob/species/drask/eyes.dmi',
-		"Grey" = 'icons/mob/species/grey/eyes.dmi',
-		"Monkey" = 'icons/mob/species/monkey/eyes.dmi',
-		"Farwa" = 'icons/mob/species/monkey/eyes.dmi',
-		"Wolpin" = 'icons/mob/species/monkey/eyes.dmi',
-		"Neara" = 'icons/mob/species/monkey/eyes.dmi',
-		"Stok" = 'icons/mob/species/monkey/eyes.dmi'
+		"Vox" = 'icons/mob/clothing/species/vox/eyes.dmi',
+		"Drask" = 'icons/mob/clothing/species/drask/eyes.dmi',
+		"Grey" = 'icons/mob/clothing/species/grey/eyes.dmi',
+		"Monkey" = 'icons/mob/clothing/species/monkey/eyes.dmi',
+		"Farwa" = 'icons/mob/clothing/species/monkey/eyes.dmi',
+		"Wolpin" = 'icons/mob/clothing/species/monkey/eyes.dmi',
+		"Neara" = 'icons/mob/clothing/species/monkey/eyes.dmi',
+		"Stok" = 'icons/mob/clothing/species/monkey/eyes.dmi',
+		"Resomi" = 'icons/mob/clothing/species/resomi/eyes.dmi'
 	)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
@@ -387,7 +388,8 @@
 		"Farwa" = 'icons/mob/clothing/species/monkey/head.dmi',
 		"Wolpin" = 'icons/mob/clothing/species/monkey/head.dmi',
 		"Neara" = 'icons/mob/clothing/species/monkey/head.dmi',
-		"Stok" = 'icons/mob/clothing/species/monkey/head.dmi'
+		"Stok" = 'icons/mob/clothing/species/monkey/head.dmi',
+		"Resomi" = 'icons/mob/clothing/species/resomi/head.dmi'
 	)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
@@ -426,17 +428,18 @@
 	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH
 
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/mask.dmi',
-		"Unathi" = 'icons/mob/species/unathi/mask.dmi',
-		"Tajaran" = 'icons/mob/species/tajaran/mask.dmi',
-		"Vulpkanin" = 'icons/mob/species/vulpkanin/mask.dmi',
-		"Drask" = 'icons/mob/species/drask/mask.dmi',
-		"Grey" = 'icons/mob/species/grey/mask.dmi',
-		"Monkey" = 'icons/mob/species/monkey/mask.dmi',
-		"Farwa" = 'icons/mob/species/monkey/mask.dmi',
-		"Wolpin" = 'icons/mob/species/monkey/mask.dmi',
-		"Neara" = 'icons/mob/species/monkey/mask.dmi',
-		"Stok" = 'icons/mob/species/monkey/mask.dmi'
+		"Vox" = 'icons/mob/clothing/vox/mask.dmi',
+		"Unathi" = 'icons/mob/clothing/unathi/mask.dmi',
+		"Tajaran" = 'icons/mob/clothing/tajaran/mask.dmi',
+		"Vulpkanin" = 'icons/mob/clothing/vulpkanin/mask.dmi',
+		"Drask" = 'icons/mob/clothing/drask/mask.dmi',
+		"Grey" = 'icons/mob/clothing/grey/mask.dmi',
+		"Monkey" = 'icons/mob/clothing/monkey/mask.dmi',
+		"Farwa" = 'icons/mob/clothing/monkey/mask.dmi',
+		"Wolpin" = 'icons/mob/clothing/monkey/mask.dmi',
+		"Neara" = 'icons/mob/clothing/monkey/mask.dmi',
+		"Stok" = 'icons/mob/clothing/monkey/mask.dmi',
+		"Resomi" = 'icons/mob/clothing/species/resomi/mask.dmi'
 	)
 
 	var/obj/item/voice_changer/voice_changer
