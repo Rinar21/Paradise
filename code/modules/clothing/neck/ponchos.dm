@@ -11,7 +11,8 @@
 		"Farwa" = 'icons/mob/species/monkey/neck.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/neck.dmi',
 		"Neara" = 'icons/mob/species/monkey/neck.dmi',
-		"Stok" = 'icons/mob/species/monkey/neck.dmi'
+		"Stok" = 'icons/mob/species/monkey/neck.dmi',
+		"Resomi" = 'icons/mob/species/resomi/neck.dmi'
 	)
 
 /obj/item/clothing/neck/poncho/green

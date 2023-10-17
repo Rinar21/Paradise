@@ -116,6 +116,10 @@
 	icon_state = "beret"
 	dog_fashion = /datum/dog_fashion/head/beret
 
+	sprite_sheets = list(
+		"Resomi" = 'icons/mob/species/resomi/head.dmi'
+		)
+
 /obj/item/clothing/head/beret/durathread
 	name = "durathread beret"
 	desc =  "A beret made from durathread, its resilient fibres provide some protection to the wearer."

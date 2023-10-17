@@ -7,6 +7,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	body_parts_covered = UPPER_TORSO | ARMS
 
+	sprite_sheets = list(
+		"Resomi" = 'icons/mob/species/resomi/neck.dmi'
+		)
+
 /obj/item/clothing/neck/cloak/head_of_security
 	name = "head of security's cloak"
 	desc = "Worn by the leader of Brigston, ruling the station with an iron fist."

@@ -523,7 +523,7 @@ BLIND     // can't see anything
 		"Wolpin" = 'icons/mob/species/monkey/shoes.dmi',
 		"Neara" = 'icons/mob/species/monkey/shoes.dmi',
 		"Stok" = 'icons/mob/species/monkey/shoes.dmi',
-		"Resomi" = 'icons/mob/species/Resomi/shoes.dmi',
+		"Resomi" = 'icons/mob/species/resomi/shoes.dmi'
 		)
 
 /obj/item/clothing/shoes/attackby(obj/item/I, mob/user, params)
@@ -717,7 +717,8 @@ BLIND     // can't see anything
 		"Monkey" = 'icons/mob/species/monkey/uniform.dmi',
 		"Farwa" = 'icons/mob/species/monkey/uniform.dmi',
 		"Wolpin" = 'icons/mob/species/monkey/uniform.dmi',
-		"Neara" = 'icons/mob/species/monkey/uniform.dmi'
+		"Neara" = 'icons/mob/species/monkey/uniform.dmi',
+		"Resomi" = 'icons/mob/species/resomi/uniform.dmi',
 		//"Stok" = 'icons/mob/species/monkey/uniform.dmi' - стоки слишком жирные для маленькой одежды
 		)
 
