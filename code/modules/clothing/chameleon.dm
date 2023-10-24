@@ -428,17 +428,17 @@
 	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH
 
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/clothing/vox/mask.dmi',
-		"Unathi" = 'icons/mob/clothing/unathi/mask.dmi',
-		"Tajaran" = 'icons/mob/clothing/tajaran/mask.dmi',
-		"Vulpkanin" = 'icons/mob/clothing/vulpkanin/mask.dmi',
-		"Drask" = 'icons/mob/clothing/drask/mask.dmi',
-		"Grey" = 'icons/mob/clothing/grey/mask.dmi',
-		"Monkey" = 'icons/mob/clothing/monkey/mask.dmi',
-		"Farwa" = 'icons/mob/clothing/monkey/mask.dmi',
-		"Wolpin" = 'icons/mob/clothing/monkey/mask.dmi',
-		"Neara" = 'icons/mob/clothing/monkey/mask.dmi',
-		"Stok" = 'icons/mob/clothing/monkey/mask.dmi',
+		"Vox" = 'icons/mob/clothing/species/vox/mask.dmi',
+		"Unathi" = 'icons/mob/clothing/species/unathi/mask.dmi',
+		"Tajaran" = 'icons/mob/clothing/species/tajaran/mask.dmi',
+		"Vulpkanin" = 'icons/mob/clothing/species/vulpkanin/mask.dmi',
+		"Drask" = 'icons/mob/clothing/species/drask/mask.dmi',
+		"Grey" = 'icons/mob/clothing/species/grey/mask.dmi',
+		"Monkey" = 'icons/mob/clothing/species/monkey/mask.dmi',
+		"Farwa" = 'icons/mob/clothing/species/monkey/mask.dmi',
+		"Wolpin" = 'icons/mob/clothing/species/monkey/mask.dmi',
+		"Neara" = 'icons/mob/clothing/species/monkey/mask.dmi',
+		"Stok" = 'icons/mob/clothing/species/monkey/mask.dmi',
 		"Resomi" = 'icons/mob/clothing/species/resomi/mask.dmi'
 	)
 

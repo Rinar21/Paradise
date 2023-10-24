@@ -106,8 +106,9 @@
 
 /mob/living/carbon/human/resomi/Initialize(mapload)
 	. = ..(mapload, /datum/species/resomi)
-	fire_dmi = 'icons/mob/species/resomi/OnFire.dmi'
-	genetic_mutable = 'icons/mob/species/resomi/genetics.dmi'
+	//временно убираем
+	//fire_dmi = 'icons/mob/clothing/species/resomi/OnFire.dmi'
+	//mutable_appearance = 'icons/mob/clothing/species/resomi/genetics.dmi'
 
 /mob/living/carbon/human/diona/Initialize(mapload)
 	. = ..(mapload, /datum/species/diona)

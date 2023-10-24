@@ -17,7 +17,7 @@
 	colour = "#535353"
 
 	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/neck.dmi'
+		"Resomi" = 'icons/mob/clothing/species/resomi/neck.dmi'
 		)
 
 /obj/item/clothing/neck/cloak/head_of_security

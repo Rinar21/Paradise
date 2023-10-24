@@ -146,7 +146,7 @@
 	dog_fashion = /datum/dog_fashion/head/beret
 
 	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/head.dmi'
+		"Resomi" = 'icons/mob/clothing/species/resomi/head.dmi'
 		)
 
 /obj/item/clothing/head/beret/durathread
